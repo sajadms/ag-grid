@@ -1,5 +1,5 @@
-import { AgRadioButton } from "./agRadioButton";
-import { _ } from "../utils";
+import { AgRadioButton } from './agRadioButton';
+import { _ } from '../utils';
 
 export class AgToggleButton extends AgRadioButton {
     protected className = 'ag-toggle-button';

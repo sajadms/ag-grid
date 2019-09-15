@@ -56,7 +56,8 @@ $ag-range-selected-color-2: opacify($range-selection-background-color, 0.2) !def
 $ag-range-selected-color-3: opacify($range-selection-background-color, 0.3) !default;
 $ag-range-selected-color-4: opacify($range-selection-background-color, 0.4) !default;
 $range-selection-highlight-color: $active !default;
-$selected-color: lighten($active, 40) !default;
+$selection-color: $alpine-orange-1;
+$selected-color: lighten($selection-color, 40) !default;
 
 $background-color: $default-background !default;
 

@@ -106,3 +106,32 @@ export const Step2 = () => {
     </div>
   );
 };
+
+export const Step3 = () => {
+  return (
+    <div
+      className="ag-theme-alpine"
+      style={{
+        height: "500px",
+        width: "600px"
+      }}
+    >
+      <AgGridReact
+        columnDefs={columnDefs.map((def, index) => ({
+          ...def,
+          ...(index === 0
+            ? { checkboxSelection: true, headerCheckboxSelection: true }
+            : {}),
+          sortable: true,
+          filter: true,
+          filterParams: {
+            applyButton: true,
+            clearButton: true
+          }
+        }))}
+        rowSelection="multiple"
+        rowData={data}
+      ></AgGridReact>
+    </div>
+  );
+};
