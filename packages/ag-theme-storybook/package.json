@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "ag-grid-community": "21.2.1",
+    "ag-grid-enterprise": "21.2.1",
     "ag-grid-react": "21.2.1",
     "css-loader": "^3.2.0",
     "node-sass": "^4.12.0",

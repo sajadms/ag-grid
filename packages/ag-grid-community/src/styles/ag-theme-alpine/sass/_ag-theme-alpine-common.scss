@@ -1,134 +1,8 @@
-@import "../../ag-theme-base/sass/ag-theme-base";
-@import "./ag-theme-alpine-mixins";
+@import '../../ag-theme-base/sass/ag-theme-base';
+@import './ag-theme-alpine-mixins';
 
 @mixin ag-theme-alpine($params) {
     @include ag-grid-theme($params);
-
-    %form-font {
-        font: $form-element-font-weight $form-element-font-size $form-element-font-family;
-    }
-
-    %halo {
-        transition: box-shadow 0.1s ease-out;
-
-        &:focus {
-            border-color: $active;
-            box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
-        }
-    }
-
-    %input-box {
-        @extend %halo, %form-font;
-        appearance: none;
-        -webkit-appearance: none;
-        border-radius: $border-radius;
-        padding: $grid-size;
-        border: 1px solid $form-element-border-color;
-        background: $alpine-white;
-        box-sizing: border-box;
-    }
-
-    %input-text {
-        @extend %input-box;
-    }
-
-    %label {
-        @extend %form-font;
-    }
-
-    %select {
-        @extend %input-box;
-        background-image: url("data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPg0KPHBhdGggZD0iTTI0LjcwOCAxMi4zNTVsLTguNzA4IDguNzA2LTguNzA4LTguNzA2IDEuNDE2LTEuNDE2IDcuMjkyIDcuMjk0IDcuMjkyLTcuMjk0YzAuNDcyIDAuNDcyIDAuOTQ0IDAuOTQ0IDEuNDE2IDEuNDE2eiI+PC9wYXRoPg0KPC9zdmc+");
-        background-repeat: no-repeat;
-        background-position: right $grid-size top $grid-size;
-        background-size: $grid-size * 3;
-
-        &::-ms-expand {
-            display: none;
-        }
-    }
-
-    %radio-button {
-        @extend %halo;
-        -webkit-appearance: none;
-        border: 1px solid $form-element-border-color;
-        border-radius: 100%;
-        width: $form-element-font-size - 1;
-        height: $form-element-font-size - 1;
-        margin: 0;
-        margin-top: -$form-element-font-size / 4;
-        vertical-align: middle;
-        background: $alpine-white;
-
-        &::after {
-            content: " ";
-            border-radius: 100%;
-            background: $active;
-            width: 0;
-            height: 0;
-            display: block;
-            margin-left: $form-element-font-size - 8;
-            margin-top: $form-element-font-size - 8;
-            transition: all 0.08s ease-out;
-        }
-
-        &:checked {
-            // border-color: $active;
-            &::after {
-                width: $form-element-font-size - 7;
-                height: $form-element-font-size - 7;
-                margin-left: 2px;
-                margin-top: 2px;
-            }
-        }
-    }
-
-    %button {
-        @extend %form-font, %halo;
-
-        appearance: none;
-        -webkit-appearance: none;
-        border-radius: $border-radius;
-        border: 1px solid $active;
-        color: $active;
-        background: $alpine-white;
-        font-weight: 600;
-        padding: $grid-size $grid-size * 2;
-        transition: all 0.1s;
-
-        &:hover {
-            border-color: $active;
-            background-color: transparentize($active, 0.9);
-            color: $active;
-        }
-
-        &:active {
-            border-color: $active;
-            background-color: transparentize($active, 0.1);
-            color: $alpine-white;
-        }
-    }
-
-    %reset-button {
-        @extend %button;
-
-        color: $alpine-gray-3;
-        border-color: $alpine-gray-3;
-        font-weight: 500;
-
-        &:hover {
-            border-color: $active;
-            background-color: transparentize($active, 0.9);
-            color: $active;
-        }
-
-        &:active {
-            border-color: $active;
-            background-color: transparentize($active, 0.1);
-            color: $alpine-white;
-        }
-    }
-
     .ag-root {
         border: 1px solid $chrome-border-color;
         border-radius: $border-radius;
@@ -188,21 +62,32 @@
                 @extend %button;
             }
 
-            button[ref="eClearButton"] {
+            button[ref='eClearButton'] {
                 @extend %reset-button;
             }
         }
-    }
-    .ag-filter-condition input[type="radio"] {
-        @extend %radio-button;
-    }
 
-    .ag-filter-condition label {
-        @extend %label;
+        .ag-filter-condition input[type='radio'] {
+            @extend %radio-button;
+        }
+
+        .ag-filter-condition label {
+            @extend %label;
+        }
     }
 
     .ag-menu {
         background: $alpine-gray-5;
+
+        .ag-menu-list {
+            padding: $grid-size * 2;
+            margin: 0;
+
+            .ag-menu-option > span {
+                padding-top: $grid-size;
+                padding-bottom: $grid-size;
+            }
+        }
     }
 
     ////////////////////////////////////////

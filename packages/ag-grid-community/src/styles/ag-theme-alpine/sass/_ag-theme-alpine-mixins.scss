@@ -1,15 +1,15 @@
-@import "../vars/ag-theme-alpine-vars";
+@import '../vars/ag-theme-alpine-vars';
 
 $unselected-color: $alpine-gray-4;
 $background-color: $alpine-white;
+$checkbox-size: 12px;
 
 @mixin checkbox() {
     -webkit-appearance: none;
-    width: 1rem;
-    height: 1rem;
+    width: $checkbox-size;
+    height: $checkbox-size;
     vertical-align: middle;
     border-radius: 100%;
-    margin-top: -2px;
     border: 1px solid $unselected-color;
     background: $background-color;
     transition: background-color 0.1s linear;
@@ -22,9 +22,9 @@ $background-color: $alpine-white;
 
     // the element creates the flashing effect when the checkbox is ticked.
     &::before {
-        content: " ";
-        width: 1rem;
-        height: 1rem;
+        content: ' ';
+        width: $checkbox-size;
+        height: $checkbox-size;
         background: $background-color;
         display: block;
         transform: translate(-1px, -1px);
@@ -36,15 +36,15 @@ $background-color: $alpine-white;
     }
 
     &::after {
-        content: " ";
+        content: ' ';
         border-right: 1px solid $background-color;
         border-bottom: 1px solid $background-color;
         display: block;
-        transform: translate(5px, 2px) rotate(45deg);
+        transform: translate($checkbox-size / 4, 1px) rotate(45deg);
         transition: all 0.2s linear;
         clip-path: inset(0px 5px 0px 0px);
-        width: 4px;
-        height: 8px;
+        width: $checkbox-size / 3;
+        height: $checkbox-size / 2;
     }
 
     &:checked {
@@ -68,8 +68,8 @@ $background-color: $alpine-white;
 
     &:indeterminate::after {
         clip-path: inset(0px 0px 0px 0px);
-        transform: rotate(0) translate(3px, 7px);
-        width: 7px;
+        transform: rotate(0) translate($checkbox-size / 3 / 2 - 1, $checkbox-size / 2 - 1);
+        width: $checkbox-size / 3 * 2;
         height: 0px;
     }
 
@@ -81,5 +81,130 @@ $background-color: $alpine-white;
     &:checked:disabled {
         background-color: transparentize($selection-color, 0.5);
         border-color: transparentize($selection-color, 0.3);
+    }
+}
+
+%form-font {
+    font: $form-element-font-weight $form-element-font-size $form-element-font-family;
+}
+
+%halo {
+    transition: box-shadow 0.1s ease-out;
+
+    &:focus {
+        border-color: $active;
+        box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
+    }
+}
+
+%input-box {
+    @extend %halo, %form-font;
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: $border-radius;
+    padding: $grid-size;
+    border: 1px solid $form-element-border-color;
+    background: $alpine-white;
+    box-sizing: border-box;
+}
+
+%input-text {
+    @extend %input-box;
+}
+
+%label {
+    @extend %form-font;
+}
+
+%select {
+    @extend %input-box;
+    background-image: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPg0KPHBhdGggZD0iTTI0LjcwOCAxMi4zNTVsLTguNzA4IDguNzA2LTguNzA4LTguNzA2IDEuNDE2LTEuNDE2IDcuMjkyIDcuMjk0IDcuMjkyLTcuMjk0YzAuNDcyIDAuNDcyIDAuOTQ0IDAuOTQ0IDEuNDE2IDEuNDE2eiI+PC9wYXRoPg0KPC9zdmc+');
+    background-repeat: no-repeat;
+    background-position: right $grid-size top $grid-size;
+    background-size: $grid-size * 3;
+
+    &::-ms-expand {
+        display: none;
+    }
+}
+
+%radio-button {
+    @extend %halo;
+    -webkit-appearance: none;
+    border: 1px solid $form-element-border-color;
+    border-radius: 100%;
+    width: $form-element-font-size - 1;
+    height: $form-element-font-size - 1;
+    margin: 0;
+    margin-top: -$form-element-font-size / 4;
+    vertical-align: middle;
+    background: $alpine-white;
+
+    &::after {
+        content: ' ';
+        border-radius: 100%;
+        background: $active;
+        width: 0;
+        height: 0;
+        display: block;
+        margin-left: $form-element-font-size - 8;
+        margin-top: $form-element-font-size - 8;
+        transition: all 0.08s ease-out;
+    }
+
+    &:checked {
+        // border-color: $active;
+        &::after {
+            width: $form-element-font-size - 7;
+            height: $form-element-font-size - 7;
+            margin-left: 2px;
+            margin-top: 2px;
+        }
+    }
+}
+
+%button {
+    @extend %form-font, %halo;
+
+    appearance: none;
+    -webkit-appearance: none;
+    border-radius: $border-radius;
+    border: 1px solid $active;
+    color: $active;
+    background: $alpine-white;
+    font-weight: 600;
+    padding: $grid-size $grid-size * 2;
+    transition: all 0.1s;
+
+    &:hover {
+        border-color: $active;
+        background-color: transparentize($active, 0.9);
+        color: $active;
+    }
+
+    &:active {
+        border-color: $active;
+        background-color: transparentize($active, 0.1);
+        color: $alpine-white;
+    }
+}
+
+%reset-button {
+    @extend %button;
+
+    color: $alpine-gray-3;
+    border-color: $alpine-gray-3;
+    font-weight: 500;
+
+    &:hover {
+        border-color: $active;
+        background-color: transparentize($active, 0.9);
+        color: $active;
+    }
+
+    &:active {
+        border-color: $active;
+        background-color: transparentize($active, 0.1);
+        color: $alpine-white;
     }
 }
