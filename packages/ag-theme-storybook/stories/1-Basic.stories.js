@@ -2,7 +2,6 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
-import "ag-grid-enterprise";
 
 export default {
   title: "Tutorial Steps"
