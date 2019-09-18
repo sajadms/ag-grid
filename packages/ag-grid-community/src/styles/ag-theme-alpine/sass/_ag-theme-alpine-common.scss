@@ -3,6 +3,12 @@
 
 @mixin ag-theme-alpine($params) {
     @include ag-grid-theme($params);
+    .ag-cell,
+    .ag-header-cell,
+    .ag-header-group-cell {
+        box-sizing: border-box;
+    }
+
     .ag-root {
         border: 1px solid $chrome-border-color;
         border-radius: $border-radius;
@@ -11,13 +17,21 @@
     .ag-header {
         border-bottom: 1px solid $chrome-border-color;
     }
+    .ag-header-cell {
+        border-color: $chrome-border-color;
+    }
 
-    .ag-header-cell:not(:last-child) {
+    .ag-ltr .ag-header-cell,
+    .ag-ltr .ag-header-group-cell {
         border-right: 1px solid $chrome-border-color;
     }
 
-    .ag-ltr .ag-cell:not(:last-child) {
+    .ag-ltr .ag-cell {
         border-right: 1px solid $border-color;
+    }
+
+    .ag-column-hover {
+        background-color: transparentize($alpine-blue-1, 0.97);
     }
 
     // basic filter menu
@@ -100,6 +114,11 @@
         box-shadow: 0 0 2px 0.1rem transparentize($alpine-gray-4, 0.6);
     }
 
+    &.ag-dnd-ghost {
+        box-shadow: 0 0 2px 0.1rem transparentize($alpine-gray-4, 0.6);
+        border-radius: $border-radius;
+    }
+
     ////////////////////////////////////////
     // Selection Checkbox
     ////////////////////////////////////////
@@ -126,5 +145,46 @@
     &.ag-popup .ag-tooltip {
         font-size: $tooltip-font-size;
         padding: $grid-size / 2 $grid-size;
+    }
+
+    ////////////////////////////////////////
+    // Column Resize Handle
+    ////////////////////////////////////////
+    $resize-handle-color: transparentize($border-color, 0.2);
+    .ag-header-cell-resize {
+        box-sizing: border-box;
+        right: 0;
+        width: $grid-size;
+
+        &::before {
+            content: ' ';
+            border-left: 1px solid $resize-handle-color;
+            border-right: 1px solid $resize-handle-color;
+            width: 3px;
+            height: $header-height / 4;
+            margin-top: $header-height * 3 / 2 / 4;
+            display: block;
+            transform: translateX($grid-size / 2 - 1);
+        }
+    }
+
+    ////////////////////////////////////////
+    // Pinned Containers
+    ////////////////////////////////////////
+    .ag-pinned-left-header,
+    .ag-root:not(.ag-has-focus) .ag-cell.ag-cell-last-left-pinned:not(.ag-cell-range-right) {
+        border-right: 1px solid $chrome-border-color !important;
+    }
+
+    .ag-pinned-right-header {
+        border-left-color: $chrome-border-color;
+    }
+
+    .ag-ltr .ag-pinned-right-header .ag-header-cell-resize {
+        left: -1px;
+    }
+
+    .ag-ltr .ag-root:not(.ag-has-focus) .ag-cell.ag-cell-first-right-pinned:not(.ag-cell-range-left) {
+        border-left-color: $chrome-border-color;
     }
 }
