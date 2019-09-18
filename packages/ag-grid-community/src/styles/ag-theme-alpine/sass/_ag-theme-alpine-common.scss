@@ -73,6 +73,7 @@
 
         .ag-filter-condition label {
             @extend %label;
+            margin-right: $grid-size;
         }
     }
 
@@ -99,10 +100,16 @@
         box-shadow: 0 0 2px 0.1rem transparentize($alpine-gray-4, 0.6);
     }
 
+    ////////////////////////////////////////
+    // Selection Checkbox
+    ////////////////////////////////////////
     .ag-selection-checkbox input {
         @include checkbox;
     }
 
+    ////////////////////////////////////////
+    // Header Checkbox
+    ////////////////////////////////////////
     .ag-checkbox {
         .ag-input-wrapper {
             overflow: visible;
@@ -111,5 +118,13 @@
         input {
             @include checkbox;
         }
+    }
+
+    ////////////////////////////////////////
+    // Header Checkbox
+    ////////////////////////////////////////
+    &.ag-popup .ag-tooltip {
+        font-size: $tooltip-font-size;
+        padding: $grid-size / 2 $grid-size;
     }
 }
