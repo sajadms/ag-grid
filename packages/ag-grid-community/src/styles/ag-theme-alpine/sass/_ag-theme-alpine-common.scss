@@ -30,7 +30,7 @@
         border-right: 1px solid $border-color;
     }
 
-    .ag-column-hover {
+    .ag-cell.ag-column-hover {
         background-color: transparentize($alpine-blue-1, 0.97);
     }
 
@@ -186,5 +186,43 @@
 
     .ag-ltr .ag-root:not(.ag-has-focus) .ag-cell.ag-cell-first-right-pinned:not(.ag-cell-range-left) {
         border-left-color: $chrome-border-color;
+    }
+
+    ////////////////////////////////////////
+    // Floating Filter
+    ////////////////////////////////////////
+    .ag-input-wrapper input:not([type]) {
+        @extend %input-text;
+        border-color: $form-element-border-color;
+        font-size: smaller;
+    }
+
+    .ag-floating-filter-body {
+        .ag-input-wrapper {
+            overflow: visible;
+        }
+    }
+
+    .ag-floating-filter-button {
+        button {
+            @include with-dropdown-arrow();
+            @extend %button;
+            background-position: right $grid-size / 2 top $grid-size / 2;
+            padding: $grid-size - 1;
+            padding-left: $grid-size - 1;
+            height: $icon-size + $grid-size * 2 - 2;
+            width: $icon-size + $grid-size * 5;
+            border-radius: $border-radius;
+            border: 1px solid $form-element-border-color;
+            text-align: left;
+
+            .ag-icon {
+                color: $form-element-border-color;
+            }
+
+            &:active .ag-icon {
+                color: $alpine-white;
+            }
+        }
     }
 }
