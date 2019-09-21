@@ -181,3 +181,66 @@ export const PinnedColumns = () => (
     ></AgGridReact>
   </div>
 );
+
+export const DraggableRows = () => (
+  <div
+    className="ag-theme-alpine"
+    style={{
+      height: "500px",
+      width: "600px"
+    }}
+  >
+    <AgGridReact
+      defaultColDef={{ resizable: true }}
+      rowDragManaged={true}
+      columnDefs={columnDefs.map((row, index) =>
+        index === 0 ? { rowDrag: true, ...row } : row
+      )}
+      rowData={data}
+    ></AgGridReact>
+  </div>
+);
+
+export const Selection = () => (
+  <div
+    className="ag-theme-alpine"
+    style={{
+      height: "500px",
+      width: "600px"
+    }}
+  >
+    <AgGridReact
+      rowSelection={"multiple"}
+      columnDefs={columnDefs}
+      rowData={data}
+    ></AgGridReact>
+  </div>
+);
+
+export const FloatingFilter = () => {
+  return (
+    <div
+      className="ag-theme-alpine"
+      style={{
+        height: "500px",
+        width: "900px"
+      }}
+    >
+      <AgGridReact
+        columnDefs={columnDefs.map(def => ({
+          ...def,
+          floatingFilterComponentParams: { suppressFilterButton: false },
+
+          sortable: true,
+          filter: true,
+          filterParams: {
+            applyButton: true,
+            clearButton: true
+          }
+        }))}
+        floatingFilter={true}
+        rowData={data}
+      ></AgGridReact>
+    </div>
+  );
+};

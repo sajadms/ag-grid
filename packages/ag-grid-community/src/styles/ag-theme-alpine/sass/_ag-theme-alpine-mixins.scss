@@ -97,8 +97,15 @@ $checkbox-size: 12px;
     }
 }
 
+%custom-selection {
+    &::selection {
+        background-color: $active;
+        color: $alpine-white;
+    }
+}
+
 %input-box {
-    @extend %halo, %form-font;
+    @extend %halo, %form-font, %custom-selection;
     appearance: none;
     -webkit-appearance: none;
     border-radius: $border-radius;
@@ -106,11 +113,6 @@ $checkbox-size: 12px;
     border: 1px solid $form-element-border-color;
     background: $alpine-white;
     box-sizing: border-box;
-
-    &::selection {
-        background-color: $active;
-        color: $alpine-white;
-    }
 }
 
 %input-text {

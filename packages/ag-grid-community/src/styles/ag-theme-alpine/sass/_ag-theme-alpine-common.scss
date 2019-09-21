@@ -30,7 +30,7 @@
         border-right: 1px solid $border-color;
     }
 
-    .ag-cell.ag-column-hover {
+    .ag-row:not(.ag-row-selected) .ag-cell.ag-column-hover {
         background-color: transparentize($alpine-blue-1, 0.97);
     }
 
@@ -224,5 +224,89 @@
                 color: $alpine-white;
             }
         }
+    }
+
+    ////////////////////////////////////////
+    // Navigation
+    ////////////////////////////////////////
+    .ag-ltr,
+    .ag-rtl {
+        .ag-has-focus .ag-cell-focus:not(.ag-cell-range-selected),
+        .ag-has-focus .ag-cell-focus.ag-cell-range-single-cell,
+        .ag-cell-focus.ag-cell-range-single-cell.ag-cell-range-handle {
+            border: 1px solid $alpine-blue-1;
+        }
+    }
+
+    .ag-cell.ag-cell-inline-editing {
+        box-shadow: 0 0 2px 0.1rem transparentize($alpine-blue-1, 0.6);
+        border-radius: 0;
+        padding: 0;
+        height: 100%;
+        overflow: visible;
+
+        // text editor
+        .ag-input-wrapper .ag-cell-edit-input {
+            @extend %input-text;
+            border: 0;
+            border-radius: 0;
+            padding-left: $grid-size * 3 - 1;
+            font: $font-weight $font-size $font-family;
+        }
+        // select editor
+        .ag-cell-edit-input select {
+            @extend %select;
+            border: 0;
+            border-radius: 0;
+            padding-left: $grid-size * 3 - 1;
+            background-position: right $grid-size top $row-height / 2 - 9;
+            font: $font-weight $font-size $font-family;
+        }
+    }
+
+    // Popup editing
+    .ag-popup > div.ag-popup-editor {
+        min-height: $row-height;
+        box-shadow: 0 0 2px 0.1rem transparentize($alpine-blue-1, 0.6);
+        border-color: $alpine-blue-1;
+        border-radius: 0;
+        padding: 0;
+        overflow: visible;
+        box-sizing: border-box;
+
+        // text editor
+        .ag-input-wrapper .ag-cell-edit-input,
+        .ag-cell-edit-input select {
+            border: 0;
+            border-radius: 0;
+            padding-left: $grid-size * 3 - 1;
+            padding-right: $grid-size * 6 - 1;
+            font: $font-weight $font-size $font-family;
+            line-height: $row-height - $grid-size * 2 - 2;
+        }
+
+        .ag-input-wrapper .ag-cell-edit-input {
+            @extend %input-text;
+        }
+
+        // select editor
+        .ag-cell-edit-input select {
+            @extend %select;
+            background-position: right $grid-size top $row-height / 2 - 9;
+        }
+
+        textarea {
+            @extend %custom-selection;
+            border: 0;
+            font: $font-weight $font-size $font-family;
+            padding: $grid-size * 2 $grid-size * 3;
+        }
+    }
+
+    .ag-overlay-loading-center {
+        box-shadow: 0 0 2px 0.1rem transparentize($alpine-gray-4, 0.6);
+        border: 1px solid $alpine-gray-4;
+        padding: $grid-size * 2 $grid-size * 3;
+        font: $font-weight $font-size $font-family;
     }
 }
