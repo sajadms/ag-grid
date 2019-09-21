@@ -43,13 +43,20 @@ var CheckboxSelectionComponent = /** @class */ (function (_super) {
         return _super.call(this, "<span class=\"ag-selection-checkbox\" unselectable=\"on\"/>") || this;
     }
     CheckboxSelectionComponent.prototype.createAndAddIcons = function () {
-        this.eCheckedIcon = utils_1._.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper, this.column);
-        this.eUncheckedIcon = utils_1._.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper, this.column);
-        this.eIndeterminateIcon = utils_1._.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper, this.column);
         var element = this.getGui();
-        element.appendChild(this.eCheckedIcon);
-        element.appendChild(this.eUncheckedIcon);
-        element.appendChild(this.eIndeterminateIcon);
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.checkbox = document.createElement('input');
+            this.checkbox.type = 'checkbox';
+            element.appendChild(this.checkbox);
+        }
+        else {
+            this.eCheckedIcon = utils_1._.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper, this.column);
+            this.eUncheckedIcon = utils_1._.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper, this.column);
+            this.eIndeterminateIcon = utils_1._.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper, this.column);
+            element.appendChild(this.eCheckedIcon);
+            element.appendChild(this.eUncheckedIcon);
+            element.appendChild(this.eIndeterminateIcon);
+        }
     };
     CheckboxSelectionComponent.prototype.onDataChanged = function () {
         // when rows are loaded for the second time, this can impact the selection, as a row
@@ -61,9 +68,15 @@ var CheckboxSelectionComponent = /** @class */ (function (_super) {
     };
     CheckboxSelectionComponent.prototype.onSelectionChanged = function () {
         var state = this.rowNode.isSelected();
-        utils_1._.setDisplayed(this.eCheckedIcon, state === true);
-        utils_1._.setDisplayed(this.eUncheckedIcon, state === false);
-        utils_1._.setDisplayed(this.eIndeterminateIcon, typeof state !== 'boolean');
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.checkbox.checked = state === true;
+            this.checkbox.indeterminate = typeof state !== 'boolean';
+        }
+        else {
+            utils_1._.setDisplayed(this.eCheckedIcon, state === true);
+            utils_1._.setDisplayed(this.eUncheckedIcon, state === false);
+            utils_1._.setDisplayed(this.eIndeterminateIcon, typeof state !== 'boolean');
+        }
     };
     CheckboxSelectionComponent.prototype.onCheckedClicked = function () {
         var groupSelectsFiltered = this.gridOptionsWrapper.isGroupSelectsFiltered();
@@ -81,6 +94,14 @@ var CheckboxSelectionComponent = /** @class */ (function (_super) {
             this.onCheckedClicked();
         }
     };
+    CheckboxSelectionComponent.prototype.onCheckboxClicked = function (event) {
+        if (this.checkbox.checked) {
+            this.onUncheckedClicked(event);
+        }
+        else {
+            this.onCheckedClicked();
+        }
+    };
     CheckboxSelectionComponent.prototype.init = function (params) {
         this.rowNode = params.rowNode;
         this.column = params.column;
@@ -91,9 +112,14 @@ var CheckboxSelectionComponent = /** @class */ (function (_super) {
         this.addGuiEventListener('click', function (event) { return utils_1._.stopPropagationForAgGrid(event); });
         // likewise we don't want double click on this icon to open a group
         this.addGuiEventListener('dblclick', function (event) { return utils_1._.stopPropagationForAgGrid(event); });
-        this.addDestroyableEventListener(this.eCheckedIcon, 'click', this.onCheckedClicked.bind(this));
-        this.addDestroyableEventListener(this.eUncheckedIcon, 'click', this.onUncheckedClicked.bind(this));
-        this.addDestroyableEventListener(this.eIndeterminateIcon, 'click', this.onIndeterminateClicked.bind(this));
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.addDestroyableEventListener(this.checkbox, 'click', this.onCheckboxClicked.bind(this));
+        }
+        else {
+            this.addDestroyableEventListener(this.eCheckedIcon, 'click', this.onCheckedClicked.bind(this));
+            this.addDestroyableEventListener(this.eUncheckedIcon, 'click', this.onUncheckedClicked.bind(this));
+            this.addDestroyableEventListener(this.eIndeterminateIcon, 'click', this.onIndeterminateClicked.bind(this));
+        }
         this.addDestroyableEventListener(this.rowNode, rowNode_1.RowNode.EVENT_ROW_SELECTED, this.onSelectionChanged.bind(this));
         this.addDestroyableEventListener(this.rowNode, rowNode_1.RowNode.EVENT_DATA_CHANGED, this.onDataChanged.bind(this));
         this.addDestroyableEventListener(this.rowNode, rowNode_1.RowNode.EVENT_SELECTABLE_CHANGED, this.onSelectableChanged.bind(this));

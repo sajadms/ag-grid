@@ -1,9 +1,9 @@
 // Type definitions for ag-grid-community v21.2.1
 // Project: http://www.ag-grid.com/
 // Definitions by: Niall Crosby <https://github.com/ag-grid/>
-import { AgEvent } from "../events";
-import { AgAbstractInputField } from "./agAbstractInputField";
-import { LabelAlignment } from "./agAbstractLabel";
+import { AgEvent } from '../events';
+import { AgAbstractInputField } from './agAbstractInputField';
+import { LabelAlignment } from './agAbstractLabel';
 export interface ChangeEvent extends AgEvent {
     selected: boolean;
 }
@@ -25,17 +25,19 @@ export declare class AgCheckbox extends AgAbstractInputField<HTMLInputElement, b
     constructor();
     protected postConstruct(): void;
     protected addInputListeners(): void;
-    private addIconsPlaceholder;
-    private onClick;
     getNextValue(): boolean;
     setPassive(passive: boolean): void;
-    setReadOnly(readOnly: boolean): void;
     isReadOnly(): boolean;
-    protected isSelected(): boolean;
+    setReadOnly(readOnly: boolean): void;
     toggle(): void;
+    getValue(): boolean;
+    setValue(value: boolean | undefined, silent?: boolean): this;
+    protected isSelected(): boolean;
     protected setSelected(selected?: boolean, silent?: boolean): void;
     protected getIconName(): string;
     protected updateIcons(): void;
-    getValue(): boolean;
-    setValue(value: boolean | undefined, silent?: boolean): this;
+    private dispatchChange;
+    private addIconsPlaceholder;
+    private onClick;
+    private onCheckboxClick;
 }

@@ -884,7 +884,7 @@ var GridOptionsWrapper = /** @class */ (function () {
             }
         }
         if (this.isGroupRemoveSingleChildren() && this.isGroupHideOpenParents()) {
-            console.warn('ag-Grid: groupRemoveSingleChildren and groupHideOpenParents do not work with each other, you need to pick one. And don\'t ask us how to us these together on our support forum either you will get the same answer!');
+            console.warn("ag-Grid: groupRemoveSingleChildren and groupHideOpenParents do not work with each other, you need to pick one. And don't ask us how to us these together on our support forum either you will get the same answer!");
         }
         this.addEventListener(GridOptionsWrapper_1.PROP_DOM_LAYOUT, this.updateLayoutClasses.bind(this));
     };
@@ -911,7 +911,7 @@ var GridOptionsWrapper = /** @class */ (function () {
         var invalidPropertyKeys = Object.keys(invalidProperties);
         invalidPropertyKeys.forEach(function (invalidPropertyKey) {
             var fuzzySuggestions = invalidProperties[invalidPropertyKey];
-            console.warn("ag-grid: invalid " + containerName + " property '" + invalidPropertyKey + "' did you mean any of these: " + fuzzySuggestions.slice(0, 8).join(","));
+            console.warn("ag-grid: invalid " + containerName + " property '" + invalidPropertyKey + "' did you mean any of these: " + fuzzySuggestions.slice(0, 8).join(','));
         });
         if (invalidPropertyKeys.length > 0) {
             console.warn("ag-grid: to see all the valid " + containerName + " properties please check: " + docsUrl);
@@ -937,7 +937,7 @@ var GridOptionsWrapper = /** @class */ (function () {
         return this.enterprise;
     };
     GridOptionsWrapper.prototype.isRowSelection = function () {
-        return this.gridOptions.rowSelection === "single" || this.gridOptions.rowSelection === "multiple";
+        return this.gridOptions.rowSelection === 'single' || this.gridOptions.rowSelection === 'multiple';
     };
     GridOptionsWrapper.prototype.isRowDeselection = function () {
         return isTrue(this.gridOptions.rowDeselection);
@@ -973,9 +973,9 @@ var GridOptionsWrapper = /** @class */ (function () {
         return this.gridOptions.rowModelType === constants_1.Constants.ROW_MODEL_TYPE_SERVER_SIDE;
     };
     GridOptionsWrapper.prototype.isRowModelDefault = function () {
-        return utils_1._.missing(this.gridOptions.rowModelType) ||
+        return (utils_1._.missing(this.gridOptions.rowModelType) ||
             this.gridOptions.rowModelType === constants_1.Constants.ROW_MODEL_TYPE_CLIENT_SIDE ||
-            this.gridOptions.rowModelType === constants_1.Constants.DEPRECATED_ROW_MODEL_TYPE_NORMAL;
+            this.gridOptions.rowModelType === constants_1.Constants.DEPRECATED_ROW_MODEL_TYPE_NORMAL);
     };
     GridOptionsWrapper.prototype.isFullRowEdit = function () {
         return this.gridOptions.editType === 'fullRow';
@@ -1077,16 +1077,16 @@ var GridOptionsWrapper = /** @class */ (function () {
     GridOptionsWrapper.prototype.getDomLayout = function () {
         var _this = this;
         var domLayout = this.gridOptions.domLayout;
-        if (domLayout === constants_1.Constants.DOM_LAYOUT_PRINT
-            || domLayout === constants_1.Constants.DOM_LAYOUT_AUTO_HEIGHT
-            || domLayout === constants_1.Constants.DOM_LAYOUT_NORMAL) {
+        if (domLayout === constants_1.Constants.DOM_LAYOUT_PRINT || domLayout === constants_1.Constants.DOM_LAYOUT_AUTO_HEIGHT || domLayout === constants_1.Constants.DOM_LAYOUT_NORMAL) {
             return domLayout;
         }
         else if (domLayout === null || domLayout === undefined) {
             return constants_1.Constants.DOM_LAYOUT_NORMAL;
         }
         else {
-            utils_1._.doOnce(function () { return console.warn("ag-Grid: " + _this.gridOptions.domLayout + " is not valid for DOM Layout, valid values are " + constants_1.Constants.DOM_LAYOUT_NORMAL + ", " + constants_1.Constants.DOM_LAYOUT_AUTO_HEIGHT + " and " + constants_1.Constants.DOM_LAYOUT_PRINT); }, 'warn about dom layout values');
+            utils_1._.doOnce(function () {
+                return console.warn("ag-Grid: " + _this.gridOptions.domLayout + " is not valid for DOM Layout, valid values are " + constants_1.Constants.DOM_LAYOUT_NORMAL + ", " + constants_1.Constants.DOM_LAYOUT_AUTO_HEIGHT + " and " + constants_1.Constants.DOM_LAYOUT_PRINT);
+            }, 'warn about dom layout values');
             return constants_1.Constants.DOM_LAYOUT_NORMAL;
         }
     };
@@ -1217,7 +1217,7 @@ var GridOptionsWrapper = /** @class */ (function () {
         return isTrue(this.gridOptions.ensureDomOrder);
     };
     GridOptionsWrapper.prototype.isEnableCharts = function () {
-        if (isTrue((this.gridOptions.enableCharts))) {
+        if (isTrue(this.gridOptions.enableCharts)) {
             if (!this.context.isModuleRegistered("chartsModule" /* ChartsModule */)) {
                 utils_1._.doOnce(function () {
                     console.warn('ag-grid: Charts is enabled but the Charts Module has not been included.');
@@ -1258,8 +1258,7 @@ var GridOptionsWrapper = /** @class */ (function () {
     GridOptionsWrapper.prototype.isPaginateChildRows = function () {
         // if using groupSuppressRow, means we are not showing parent rows,
         // so we always paginate on the child rows here as there are no parent rows
-        if (this.isGroupSuppressRow() || this.isGroupRemoveSingleChildren()
-            || this.isGroupRemoveLowestSingleChildren()) {
+        if (this.isGroupSuppressRow() || this.isGroupRemoveSingleChildren() || this.isGroupRemoveLowestSingleChildren()) {
             return true;
         }
         return isTrue(this.gridOptions.paginateChildRows);
@@ -1701,13 +1700,13 @@ var GridOptionsWrapper = /** @class */ (function () {
         return document;
     };
     GridOptionsWrapper.prototype.getMinColWidth = function () {
-        if (this.gridOptions.minColWidth && (this.gridOptions.minColWidth > GridOptionsWrapper_1.MIN_COL_WIDTH)) {
+        if (this.gridOptions.minColWidth && this.gridOptions.minColWidth > GridOptionsWrapper_1.MIN_COL_WIDTH) {
             return this.gridOptions.minColWidth;
         }
         return GridOptionsWrapper_1.MIN_COL_WIDTH;
     };
     GridOptionsWrapper.prototype.getMaxColWidth = function () {
-        if (this.gridOptions.maxColWidth && (this.gridOptions.maxColWidth > GridOptionsWrapper_1.MIN_COL_WIDTH)) {
+        if (this.gridOptions.maxColWidth && this.gridOptions.maxColWidth > GridOptionsWrapper_1.MIN_COL_WIDTH) {
             return this.gridOptions.maxColWidth;
         }
         return null;
@@ -1741,8 +1740,7 @@ var GridOptionsWrapper = /** @class */ (function () {
     // allow the user to provide the scroll width before we work it out.
     GridOptionsWrapper.prototype.getScrollbarWidth = function () {
         if (this.scrollWidth == null) {
-            var useGridOptions = typeof this.gridOptions.scrollbarWidth === 'number' &&
-                this.gridOptions.scrollbarWidth >= 0;
+            var useGridOptions = typeof this.gridOptions.scrollbarWidth === 'number' && this.gridOptions.scrollbarWidth >= 0;
             this.scrollWidth = useGridOptions ? this.gridOptions.scrollbarWidth : utils_1._.getScrollbarWidth();
         }
         return this.scrollWidth;
@@ -1780,8 +1778,7 @@ var GridOptionsWrapper = /** @class */ (function () {
             console.warn('ag-grid: since version 4.3.x groupAggFunction is now called groupRowAggNodes');
         }
         if (options.checkboxSelection) {
-            console.warn('ag-grid: since version 8.0.x checkboxSelection is not supported as a grid option. ' +
-                'If you want this on all columns, use defaultColDef instead and set it there');
+            console.warn('ag-grid: since version 8.0.x checkboxSelection is not supported as a grid option. ' + 'If you want this on all columns, use defaultColDef instead and set it there');
         }
         if (options.paginationInitialRowCount) {
             console.warn('ag-grid: since version 9.0.x paginationInitialRowCount is now called infiniteInitialRowCount');
@@ -1905,7 +1902,7 @@ var GridOptionsWrapper = /** @class */ (function () {
         }
         var sideBarDef = this.gridOptions.sideBar;
         if (Object.keys(toolPanelColumnsCompProps).length > 0 && sideBarDef && sideBarDef.toolPanels) {
-            var columnsDef = (sideBarDef.toolPanels.filter(function (it) { return it.id === 'columns'; }));
+            var columnsDef = sideBarDef.toolPanels.filter(function (it) { return it.id === 'columns'; });
             if (columnsDef.length === 1) {
                 utils_1._.mergeDeep(columnsDef[0], {
                     componentParams: toolPanelColumnsCompProps
@@ -1914,10 +1911,9 @@ var GridOptionsWrapper = /** @class */ (function () {
         }
         if (options.enableStatusBar) {
             console.warn("ag-grid: since version 19.x, enableStatusBar is gone, please specify statusBar components");
-            options.statusBar = options.statusBar ||
-                {
-                    components: [{ component: 'agAggregationComponent' }]
-                };
+            options.statusBar = options.statusBar || {
+                components: [{ component: 'agAggregationComponent' }]
+            };
         }
         if (options.alwaysShowStatusBar) {
             console.warn("ag-grid: since version 19.x, alwaysShowStatusBar is gone. Please specify a min-height on the ag-status-bar css class, eg .ag-status-bar {min-height: 35px; }");
@@ -2039,8 +2035,7 @@ var GridOptionsWrapper = /** @class */ (function () {
             }
         }
         var defaultRowHeight = this.getDefaultRowHeight();
-        var rowHeight = this.gridOptions.rowHeight && this.isNumeric(this.gridOptions.rowHeight) ?
-            this.gridOptions.rowHeight : defaultRowHeight;
+        var rowHeight = this.gridOptions.rowHeight && this.isNumeric(this.gridOptions.rowHeight) ? this.gridOptions.rowHeight : defaultRowHeight;
         var minRowHeight = Math.min(defaultRowHeight, rowHeight);
         if (this.columnController.isAutoRowHeightActive()) {
             if (allowEstimate) {
@@ -2058,6 +2053,9 @@ var GridOptionsWrapper = /** @class */ (function () {
     };
     GridOptionsWrapper.prototype.getVirtualItemHeight = function () {
         return this.specialForNewMaterial(20, 'virtualItemHeight');
+    };
+    GridOptionsWrapper.prototype.useNativeCheckboxes = function () {
+        return this.environment.useNativeCheckboxes();
     };
     GridOptionsWrapper.prototype.isNumeric = function (value) {
         return !isNaN(value) && typeof value === 'number';
@@ -17244,13 +17242,20 @@ var CheckboxSelectionComponent = /** @class */ (function (_super) {
         return _super.call(this, "<span class=\"ag-selection-checkbox\" unselectable=\"on\"/>") || this;
     }
     CheckboxSelectionComponent.prototype.createAndAddIcons = function () {
-        this.eCheckedIcon = utils_1._.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper, this.column);
-        this.eUncheckedIcon = utils_1._.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper, this.column);
-        this.eIndeterminateIcon = utils_1._.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper, this.column);
         var element = this.getGui();
-        element.appendChild(this.eCheckedIcon);
-        element.appendChild(this.eUncheckedIcon);
-        element.appendChild(this.eIndeterminateIcon);
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.checkbox = document.createElement('input');
+            this.checkbox.type = 'checkbox';
+            element.appendChild(this.checkbox);
+        }
+        else {
+            this.eCheckedIcon = utils_1._.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper, this.column);
+            this.eUncheckedIcon = utils_1._.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper, this.column);
+            this.eIndeterminateIcon = utils_1._.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper, this.column);
+            element.appendChild(this.eCheckedIcon);
+            element.appendChild(this.eUncheckedIcon);
+            element.appendChild(this.eIndeterminateIcon);
+        }
     };
     CheckboxSelectionComponent.prototype.onDataChanged = function () {
         // when rows are loaded for the second time, this can impact the selection, as a row
@@ -17262,9 +17267,15 @@ var CheckboxSelectionComponent = /** @class */ (function (_super) {
     };
     CheckboxSelectionComponent.prototype.onSelectionChanged = function () {
         var state = this.rowNode.isSelected();
-        utils_1._.setDisplayed(this.eCheckedIcon, state === true);
-        utils_1._.setDisplayed(this.eUncheckedIcon, state === false);
-        utils_1._.setDisplayed(this.eIndeterminateIcon, typeof state !== 'boolean');
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.checkbox.checked = state === true;
+            this.checkbox.indeterminate = typeof state !== 'boolean';
+        }
+        else {
+            utils_1._.setDisplayed(this.eCheckedIcon, state === true);
+            utils_1._.setDisplayed(this.eUncheckedIcon, state === false);
+            utils_1._.setDisplayed(this.eIndeterminateIcon, typeof state !== 'boolean');
+        }
     };
     CheckboxSelectionComponent.prototype.onCheckedClicked = function () {
         var groupSelectsFiltered = this.gridOptionsWrapper.isGroupSelectsFiltered();
@@ -17282,6 +17293,14 @@ var CheckboxSelectionComponent = /** @class */ (function (_super) {
             this.onCheckedClicked();
         }
     };
+    CheckboxSelectionComponent.prototype.onCheckboxClicked = function (event) {
+        if (this.checkbox.checked) {
+            this.onUncheckedClicked(event);
+        }
+        else {
+            this.onCheckedClicked();
+        }
+    };
     CheckboxSelectionComponent.prototype.init = function (params) {
         this.rowNode = params.rowNode;
         this.column = params.column;
@@ -17292,9 +17311,14 @@ var CheckboxSelectionComponent = /** @class */ (function (_super) {
         this.addGuiEventListener('click', function (event) { return utils_1._.stopPropagationForAgGrid(event); });
         // likewise we don't want double click on this icon to open a group
         this.addGuiEventListener('dblclick', function (event) { return utils_1._.stopPropagationForAgGrid(event); });
-        this.addDestroyableEventListener(this.eCheckedIcon, 'click', this.onCheckedClicked.bind(this));
-        this.addDestroyableEventListener(this.eUncheckedIcon, 'click', this.onUncheckedClicked.bind(this));
-        this.addDestroyableEventListener(this.eIndeterminateIcon, 'click', this.onIndeterminateClicked.bind(this));
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.addDestroyableEventListener(this.checkbox, 'click', this.onCheckboxClicked.bind(this));
+        }
+        else {
+            this.addDestroyableEventListener(this.eCheckedIcon, 'click', this.onCheckedClicked.bind(this));
+            this.addDestroyableEventListener(this.eUncheckedIcon, 'click', this.onUncheckedClicked.bind(this));
+            this.addDestroyableEventListener(this.eIndeterminateIcon, 'click', this.onIndeterminateClicked.bind(this));
+        }
         this.addDestroyableEventListener(this.rowNode, rowNode_1.RowNode.EVENT_ROW_SELECTED, this.onSelectionChanged.bind(this));
         this.addDestroyableEventListener(this.rowNode, rowNode_1.RowNode.EVENT_DATA_CHANGED, this.onDataChanged.bind(this));
         this.addDestroyableEventListener(this.rowNode, rowNode_1.RowNode.EVENT_SELECTABLE_CHANGED, this.onSelectableChanged.bind(this));
@@ -19930,29 +19954,42 @@ var Environment = /** @class */ (function () {
         var theme = this.getTheme().theme;
         return !!theme && theme.indexOf("dark") >= 0;
     };
+    Environment.prototype.useNativeCheckboxes = function () {
+        var theme = this.getTheme().theme;
+        return !!theme && theme.indexOf("alpine") >= 0;
+    };
     Environment.prototype.getTheme = function () {
-        var reg = /\bag-(fresh|dark|blue|material|bootstrap|(?:theme-([\w\-]*)))\b/;
-        var el = this.eGridDiv;
-        var themeMatch;
-        while (el) {
-            themeMatch = reg.exec(el.className);
+        return this.getThemeOnce();
+    };
+    // Traversing the tree is expensive, and the
+    // theme getter will happen with every checkbox aksing if native or not.
+    Environment.prototype.getThemeOnce = function () {
+        if (!this.theme) {
+            var reg = /\bag-(fresh|dark|blue|material|bootstrap|(?:theme-([\w\-]*)))\b/;
+            var el = this.eGridDiv;
+            var themeMatch = void 0;
+            while (el) {
+                themeMatch = reg.exec(el.className);
+                if (!themeMatch) {
+                    el = el.parentElement;
+                }
+                else {
+                    break;
+                }
+            }
             if (!themeMatch) {
-                el = el.parentElement;
+                return {};
             }
-            else {
-                break;
+            var theme_1 = themeMatch[0];
+            var usingOldTheme = themeMatch[2] === undefined;
+            if (usingOldTheme) {
+                var newTheme_1 = theme_1.replace("ag-", "ag-theme-");
+                utils_1._.doOnce(function () { return console.warn("ag-Grid: As of v19 old theme are no longer provided. Please replace " + theme_1 + " with " + newTheme_1 + "."); }, "using-old-theme");
             }
+            this.theme = theme_1;
+            this.themeElement = el;
         }
-        if (!themeMatch) {
-            return {};
-        }
-        var theme = themeMatch[0];
-        var usingOldTheme = themeMatch[2] === undefined;
-        if (usingOldTheme) {
-            var newTheme_1 = theme.replace("ag-", "ag-theme-");
-            utils_1._.doOnce(function () { return console.warn("ag-Grid: As of v19 old theme are no longer provided. Please replace " + theme + " with " + newTheme_1 + "."); }, "using-old-theme");
-        }
-        return { theme: theme, el: el };
+        return { theme: this.theme, el: this.themeElement };
     };
     __decorate([
         context_1.Autowired("eGridDiv"),
@@ -29847,7 +29884,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var context_1 = __webpack_require__(12);
 var gridOptionsWrapper_1 = __webpack_require__(3);
 var agAbstractInputField_1 = __webpack_require__(108);
-var agAbstractField_1 = __webpack_require__(109);
 var utils_1 = __webpack_require__(4);
 var AgCheckbox = /** @class */ (function (_super) {
     __extends(AgCheckbox, _super);
@@ -29870,14 +29906,81 @@ var AgCheckbox = /** @class */ (function (_super) {
     }
     AgCheckbox.prototype.postConstruct = function () {
         _super.prototype.postConstruct.call(this);
-        utils_1._.addCssClass(this.eInput, 'ag-hidden');
-        this.addIconsPlaceholder();
-        this.updateIcons();
+        if (!this.gridOptionsWrapper.useNativeCheckboxes()) {
+            utils_1._.addCssClass(this.eInput, 'ag-hidden');
+            this.addIconsPlaceholder();
+            this.updateIcons();
+        }
     };
     AgCheckbox.prototype.addInputListeners = function () {
         var _this = this;
-        this.addDestroyableEventListener(this.getGui(), 'click', function (e) { return _this.onClick(e); });
-        this.addDestroyableEventListener(this.eInput, 'change', function (e) { return _this.setValue(e.target.checked, true); });
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.addDestroyableEventListener(this.eInput, 'click', this.onCheckboxClick.bind(this));
+        }
+        else {
+            this.addDestroyableEventListener(this.getGui(), 'click', function (e) { return _this.onClick(e); });
+            this.addDestroyableEventListener(this.eInput, 'change', function (e) { return _this.setValue(e.target.checked, true); });
+        }
+    };
+    AgCheckbox.prototype.getNextValue = function () {
+        return this.selected === undefined ? true : !this.selected;
+    };
+    AgCheckbox.prototype.setPassive = function (passive) {
+        this.passive = passive;
+    };
+    AgCheckbox.prototype.isReadOnly = function () {
+        return this.readOnly;
+    };
+    AgCheckbox.prototype.setReadOnly = function (readOnly) {
+        this.eInput.readOnly = readOnly;
+        this.readOnly = readOnly;
+        this.updateIcons();
+    };
+    AgCheckbox.prototype.toggle = function () {
+        var nextValue = this.getNextValue();
+        if (this.passive) {
+            this.dispatchChange(nextValue);
+        }
+        else {
+            this.setValue(nextValue);
+        }
+    };
+    AgCheckbox.prototype.getValue = function () {
+        return this.isSelected();
+    };
+    AgCheckbox.prototype.setValue = function (value, silent) {
+        this.setSelected(value, silent);
+        return this;
+    };
+    AgCheckbox.prototype.isSelected = function () {
+        return this.selected;
+    };
+    AgCheckbox.prototype.setSelected = function (selected, silent) {
+        if (this.selected === selected) {
+            return;
+        }
+        this.selected = typeof selected === 'boolean' ? selected : undefined;
+        this.eInput.checked = this.selected;
+        this.eInput.indeterminate = this.selected === undefined;
+        this.updateIcons();
+        if (!silent) {
+            this.dispatchChange(this.selected);
+        }
+    };
+    AgCheckbox.prototype.getIconName = function () {
+        var value = this.getValue();
+        var prop = value === undefined ? 'indeterminate' : value ? 'selected' : 'unselected';
+        var readOnlyStr = this.isReadOnly() ? 'ReadOnly' : '';
+        return "" + this.iconMap[prop] + readOnlyStr;
+    };
+    AgCheckbox.prototype.updateIcons = function () {
+        if (!this.gridOptionsWrapper.useNativeCheckboxes()) {
+            utils_1._.clearElement(this.eIconEl);
+            this.eIconEl.appendChild(utils_1._.createIconNoSpan(this.getIconName(), this.gridOptionsWrapper, null));
+        }
+    };
+    AgCheckbox.prototype.dispatchChange = function (selected) {
+        this.dispatchEvent({ type: AgCheckbox.EVENT_CHANGED, selected: selected });
     };
     AgCheckbox.prototype.addIconsPlaceholder = function () {
         var iconDiv = document.createElement('div');
@@ -29893,66 +29996,9 @@ var AgCheckbox = /** @class */ (function (_super) {
             this.toggle();
         }
     };
-    AgCheckbox.prototype.getNextValue = function () {
-        return this.selected === undefined ? true : !this.selected;
-    };
-    AgCheckbox.prototype.setPassive = function (passive) {
-        this.passive = passive;
-    };
-    AgCheckbox.prototype.setReadOnly = function (readOnly) {
-        this.readOnly = readOnly;
-        this.updateIcons();
-    };
-    AgCheckbox.prototype.isReadOnly = function () {
-        return this.readOnly;
-    };
-    AgCheckbox.prototype.isSelected = function () {
-        return this.selected;
-    };
-    AgCheckbox.prototype.toggle = function () {
-        var nextValue = this.getNextValue();
-        if (this.passive) {
-            var event_1 = {
-                type: AgCheckbox.EVENT_CHANGED,
-                selected: nextValue
-            };
-            this.dispatchEvent(event_1);
-        }
-        else {
-            this.setValue(nextValue);
-        }
-    };
-    AgCheckbox.prototype.setSelected = function (selected, silent) {
-        if (this.selected === selected) {
-            return;
-        }
-        this.selected = typeof selected === 'boolean' ? selected : undefined;
-        this.eInput.checked = this.selected;
-        this.updateIcons();
-        if (!silent) {
-            var event_2 = {
-                type: agAbstractField_1.AgAbstractField.EVENT_CHANGED,
-                selected: this.selected
-            };
-            this.dispatchEvent(event_2);
-        }
-    };
-    AgCheckbox.prototype.getIconName = function () {
-        var value = this.getValue();
-        var prop = value === undefined ? 'indeterminate' : (value ? 'selected' : 'unselected');
-        var readOnlyStr = this.isReadOnly() ? 'ReadOnly' : '';
-        return "" + this.iconMap[prop] + readOnlyStr;
-    };
-    AgCheckbox.prototype.updateIcons = function () {
-        utils_1._.clearElement(this.eIconEl);
-        this.eIconEl.appendChild(utils_1._.createIconNoSpan(this.getIconName(), this.gridOptionsWrapper, null));
-    };
-    AgCheckbox.prototype.getValue = function () {
-        return this.isSelected();
-    };
-    AgCheckbox.prototype.setValue = function (value, silent) {
-        this.setSelected(value, silent);
-        return this;
+    AgCheckbox.prototype.onCheckboxClick = function (e) {
+        this.selected = e.target.checked;
+        this.dispatchChange(this.selected);
     };
     __decorate([
         context_1.Autowired('gridOptionsWrapper'),

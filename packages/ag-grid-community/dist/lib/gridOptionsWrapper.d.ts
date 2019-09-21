@@ -1,19 +1,19 @@
 // Type definitions for ag-grid-community v21.2.1
 // Project: http://www.ag-grid.com/
 // Definitions by: Niall Crosby <https://github.com/ag-grid/>
-import { RowNode } from "./entities/rowNode";
-import { ChartRef, GetChartToolbarItems, GetContextMenuItems, GetMainMenuItems, GetRowNodeIdFunc, GridOptions, IsRowMaster, IsRowSelectable, NavigateToNextCellParams, NodeChildDetails, PaginationNumberFormatterParams, PostProcessPopupParams, ProcessChartOptionsParams, ProcessDataFromClipboardParams, TabToNextCellParams } from "./entities/gridOptions";
-import { GridApi } from "./gridApi";
-import { ColDef, ColGroupDef, IAggFunc, SuppressKeyboardEventParams } from "./entities/colDef";
-import { ColumnApi } from "./columnController/columnApi";
-import { IViewportDatasource } from "./interfaces/iViewportDatasource";
-import { IDatasource } from "./rowModels/iDatasource";
-import { CellPosition } from "./entities/cellPosition";
-import { IServerSideDatasource } from "./interfaces/iServerSideDatasource";
-import { BaseExportParams, ProcessCellForExportParams, ProcessHeaderForExportParams } from "./exporter/exportParams";
-import { AgEvent } from "./events";
-import { SideBarDef } from "./entities/sideBar";
-import { ChartOptions } from "./interfaces/iChartOptions";
+import { RowNode } from './entities/rowNode';
+import { ChartRef, GetChartToolbarItems, GetContextMenuItems, GetMainMenuItems, GetRowNodeIdFunc, GridOptions, IsRowMaster, IsRowSelectable, NavigateToNextCellParams, NodeChildDetails, PaginationNumberFormatterParams, PostProcessPopupParams, ProcessChartOptionsParams, ProcessDataFromClipboardParams, TabToNextCellParams } from './entities/gridOptions';
+import { GridApi } from './gridApi';
+import { ColDef, ColGroupDef, IAggFunc, SuppressKeyboardEventParams } from './entities/colDef';
+import { ColumnApi } from './columnController/columnApi';
+import { IViewportDatasource } from './interfaces/iViewportDatasource';
+import { IDatasource } from './rowModels/iDatasource';
+import { CellPosition } from './entities/cellPosition';
+import { IServerSideDatasource } from './interfaces/iServerSideDatasource';
+import { BaseExportParams, ProcessCellForExportParams, ProcessHeaderForExportParams } from './exporter/exportParams';
+import { AgEvent } from './events';
+import { SideBarDef } from './entities/sideBar';
+import { ChartOptions } from './interfaces/iChartOptions';
 export interface PropertyChangedEvent extends AgEvent {
     currentValue: any;
     previousValue: any;
@@ -292,6 +292,7 @@ export declare class GridOptionsWrapper {
     };
     isDynamicRowHeight(): boolean;
     getVirtualItemHeight(): number;
+    useNativeCheckboxes(): boolean;
     private isNumeric;
     private specialForNewMaterial;
     private getDefaultRowHeight;

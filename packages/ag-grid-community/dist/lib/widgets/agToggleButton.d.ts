@@ -1,7 +1,7 @@
 // Type definitions for ag-grid-community v21.2.1
 // Project: http://www.ag-grid.com/
 // Definitions by: Niall Crosby <https://github.com/ag-grid/>
-import { AgRadioButton } from "./agRadioButton";
+import { AgRadioButton } from './agRadioButton';
 export declare class AgToggleButton extends AgRadioButton {
     protected className: string;
     protected postConstruct(): void;

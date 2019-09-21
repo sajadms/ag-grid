@@ -31,7 +31,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var context_1 = require("../context/context");
 var gridOptionsWrapper_1 = require("../gridOptionsWrapper");
 var agAbstractInputField_1 = require("./agAbstractInputField");
-var agAbstractField_1 = require("./agAbstractField");
 var utils_1 = require("../utils");
 var AgCheckbox = /** @class */ (function (_super) {
     __extends(AgCheckbox, _super);
@@ -54,14 +53,81 @@ var AgCheckbox = /** @class */ (function (_super) {
     }
     AgCheckbox.prototype.postConstruct = function () {
         _super.prototype.postConstruct.call(this);
-        utils_1._.addCssClass(this.eInput, 'ag-hidden');
-        this.addIconsPlaceholder();
-        this.updateIcons();
+        if (!this.gridOptionsWrapper.useNativeCheckboxes()) {
+            utils_1._.addCssClass(this.eInput, 'ag-hidden');
+            this.addIconsPlaceholder();
+            this.updateIcons();
+        }
     };
     AgCheckbox.prototype.addInputListeners = function () {
         var _this = this;
-        this.addDestroyableEventListener(this.getGui(), 'click', function (e) { return _this.onClick(e); });
-        this.addDestroyableEventListener(this.eInput, 'change', function (e) { return _this.setValue(e.target.checked, true); });
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.addDestroyableEventListener(this.eInput, 'click', this.onCheckboxClick.bind(this));
+        }
+        else {
+            this.addDestroyableEventListener(this.getGui(), 'click', function (e) { return _this.onClick(e); });
+            this.addDestroyableEventListener(this.eInput, 'change', function (e) { return _this.setValue(e.target.checked, true); });
+        }
+    };
+    AgCheckbox.prototype.getNextValue = function () {
+        return this.selected === undefined ? true : !this.selected;
+    };
+    AgCheckbox.prototype.setPassive = function (passive) {
+        this.passive = passive;
+    };
+    AgCheckbox.prototype.isReadOnly = function () {
+        return this.readOnly;
+    };
+    AgCheckbox.prototype.setReadOnly = function (readOnly) {
+        this.eInput.readOnly = readOnly;
+        this.readOnly = readOnly;
+        this.updateIcons();
+    };
+    AgCheckbox.prototype.toggle = function () {
+        var nextValue = this.getNextValue();
+        if (this.passive) {
+            this.dispatchChange(nextValue);
+        }
+        else {
+            this.setValue(nextValue);
+        }
+    };
+    AgCheckbox.prototype.getValue = function () {
+        return this.isSelected();
+    };
+    AgCheckbox.prototype.setValue = function (value, silent) {
+        this.setSelected(value, silent);
+        return this;
+    };
+    AgCheckbox.prototype.isSelected = function () {
+        return this.selected;
+    };
+    AgCheckbox.prototype.setSelected = function (selected, silent) {
+        if (this.selected === selected) {
+            return;
+        }
+        this.selected = typeof selected === 'boolean' ? selected : undefined;
+        this.eInput.checked = this.selected;
+        this.eInput.indeterminate = this.selected === undefined;
+        this.updateIcons();
+        if (!silent) {
+            this.dispatchChange(this.selected);
+        }
+    };
+    AgCheckbox.prototype.getIconName = function () {
+        var value = this.getValue();
+        var prop = value === undefined ? 'indeterminate' : value ? 'selected' : 'unselected';
+        var readOnlyStr = this.isReadOnly() ? 'ReadOnly' : '';
+        return "" + this.iconMap[prop] + readOnlyStr;
+    };
+    AgCheckbox.prototype.updateIcons = function () {
+        if (!this.gridOptionsWrapper.useNativeCheckboxes()) {
+            utils_1._.clearElement(this.eIconEl);
+            this.eIconEl.appendChild(utils_1._.createIconNoSpan(this.getIconName(), this.gridOptionsWrapper, null));
+        }
+    };
+    AgCheckbox.prototype.dispatchChange = function (selected) {
+        this.dispatchEvent({ type: AgCheckbox.EVENT_CHANGED, selected: selected });
     };
     AgCheckbox.prototype.addIconsPlaceholder = function () {
         var iconDiv = document.createElement('div');
@@ -77,66 +143,9 @@ var AgCheckbox = /** @class */ (function (_super) {
             this.toggle();
         }
     };
-    AgCheckbox.prototype.getNextValue = function () {
-        return this.selected === undefined ? true : !this.selected;
-    };
-    AgCheckbox.prototype.setPassive = function (passive) {
-        this.passive = passive;
-    };
-    AgCheckbox.prototype.setReadOnly = function (readOnly) {
-        this.readOnly = readOnly;
-        this.updateIcons();
-    };
-    AgCheckbox.prototype.isReadOnly = function () {
-        return this.readOnly;
-    };
-    AgCheckbox.prototype.isSelected = function () {
-        return this.selected;
-    };
-    AgCheckbox.prototype.toggle = function () {
-        var nextValue = this.getNextValue();
-        if (this.passive) {
-            var event_1 = {
-                type: AgCheckbox.EVENT_CHANGED,
-                selected: nextValue
-            };
-            this.dispatchEvent(event_1);
-        }
-        else {
-            this.setValue(nextValue);
-        }
-    };
-    AgCheckbox.prototype.setSelected = function (selected, silent) {
-        if (this.selected === selected) {
-            return;
-        }
-        this.selected = typeof selected === 'boolean' ? selected : undefined;
-        this.eInput.checked = this.selected;
-        this.updateIcons();
-        if (!silent) {
-            var event_2 = {
-                type: agAbstractField_1.AgAbstractField.EVENT_CHANGED,
-                selected: this.selected
-            };
-            this.dispatchEvent(event_2);
-        }
-    };
-    AgCheckbox.prototype.getIconName = function () {
-        var value = this.getValue();
-        var prop = value === undefined ? 'indeterminate' : (value ? 'selected' : 'unselected');
-        var readOnlyStr = this.isReadOnly() ? 'ReadOnly' : '';
-        return "" + this.iconMap[prop] + readOnlyStr;
-    };
-    AgCheckbox.prototype.updateIcons = function () {
-        utils_1._.clearElement(this.eIconEl);
-        this.eIconEl.appendChild(utils_1._.createIconNoSpan(this.getIconName(), this.gridOptionsWrapper, null));
-    };
-    AgCheckbox.prototype.getValue = function () {
-        return this.isSelected();
-    };
-    AgCheckbox.prototype.setValue = function (value, silent) {
-        this.setSelected(value, silent);
-        return this;
+    AgCheckbox.prototype.onCheckboxClick = function (e) {
+        this.selected = e.target.checked;
+        this.dispatchChange(this.selected);
     };
     __decorate([
         context_1.Autowired('gridOptionsWrapper'),
