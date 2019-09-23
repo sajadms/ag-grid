@@ -1,5 +1,4 @@
-$alpine-blue-1: #0ebedf;
-$alpine-blue-2: #18a4e0;
+$alpine-blue-2: #1894e0;
 $alpine-orange-1: #f3ac13;
 
 $alpine-black: #223;
@@ -68,7 +67,7 @@ $header-background-color: $chrome-background !default;
 $header-cell-hover-background-color: $header-background-color !default;
 $header-foreground-color: $secondary-foreground-color !default;
 
-$hover-color: transparentize($alpine-blue-1, 0.9) !default;
+$hover-color: transparentize($active, 0.9) !default;
 $chip-background-color: darken($alt-background, 5) !default;
 
 $row-stub-background-color: inherit !default;
@@ -81,7 +80,7 @@ $value-change-delta-down-color: #e53935 !default;
 $value-change-value-highlight-background-color: transparentize(#16a085, 0.5) !default;
 
 $header-height: $grid-size * 8 !default;
-$virtual-item-height: $grid-size * 7 !default;
+$virtual-item-height: $grid-size * 5 !default;
 $row-border-width: 1px !default;
 
 $toolpanel-indent-size: $grid-size + $icon-size !default;

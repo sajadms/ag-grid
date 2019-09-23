@@ -31,10 +31,12 @@
     }
 
     .ag-row:not(.ag-row-selected) .ag-cell.ag-column-hover {
-        background-color: transparentize($alpine-blue-1, 0.97);
+        background-color: transparentize($active, 0.97);
     }
 
-    // basic filter menu
+    ////////////////////////////////////////
+    // filter menu
+    ////////////////////////////////////////
     .ag-filter {
         .ag-filter-body-wrapper {
             padding: $grid-size * 2;
@@ -89,8 +91,19 @@
             @extend %label;
             margin-right: $grid-size;
         }
+
+        .ag-native-checkbox {
+            @include checkbox($active);
+        }
     }
 
+    .ag-filter-header-container {
+        margin-bottom: $grid-size;
+        .ag-set-filter-item {
+            margin-top: $grid-size;
+            margin-bottom: $grid-size;
+        }
+    }
     ////////////////////////////////////////
     // context menu and enterprise column menu
     ////////////////////////////////////////
@@ -172,10 +185,6 @@
                 padding-bottom: $grid-size;
             }
         }
-    }
-
-    .ag-primary-cols-header-panel {
-        border-top: 0;
     }
 
     ////////////////////////////////////////
@@ -307,12 +316,12 @@
         .ag-has-focus .ag-cell-focus:not(.ag-cell-range-selected),
         .ag-has-focus .ag-cell-focus.ag-cell-range-single-cell,
         .ag-cell-focus.ag-cell-range-single-cell.ag-cell-range-handle {
-            border: 1px solid $alpine-blue-1;
+            border: 1px solid $active;
         }
     }
 
     .ag-cell.ag-cell-inline-editing {
-        box-shadow: 0 0 2px 0.1rem transparentize($alpine-blue-1, 0.6);
+        box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
         border-radius: 0;
         padding: 0;
         height: 100%;
@@ -342,8 +351,8 @@
     ////////////////////////////////////////
     .ag-popup > div.ag-popup-editor {
         min-height: $row-height;
-        box-shadow: 0 0 2px 0.1rem transparentize($alpine-blue-1, 0.6);
-        border-color: $alpine-blue-1;
+        box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
+        border-color: $active;
         border-radius: 0;
         padding: 0;
         overflow: visible;
@@ -377,16 +386,31 @@
             padding: $grid-size * 2 $grid-size * 3;
         }
     }
+
     ////////////////////////////////////////
     // Column Chooser
     ////////////////////////////////////////
     .ag-column-select-panel {
-        .ag-primary-cols-header-panel,
-        .ag-primary-cols-list-panel {
+        .ag-primary-cols-header-panel {
+            border-top: 0;
             padding-left: $grid-size;
+
+            & > div[ref='eSelect'] {
+                margin-left: $grid-size * 2;
+            }
+        }
+
+        .ag-primary-cols-list-panel {
+            margin-left: $grid-size * 2;
+            margin-right: $grid-size * 2;
+            padding-left: 0;
         }
 
         .ag-primary-cols-header-panel {
+            padding-top: $grid-size * 2;
+            padding-bottom: $grid-size * 2;
+            height: auto;
+
             .ag-checkbox {
                 @include checkbox($active);
             }
@@ -400,9 +424,8 @@
             @include checkbox($active);
         }
 
-        .ag-primary-cols-list-panel div {
-            padding-top: $grid-size;
-            padding-bottom: $grid-size;
+        .ag-primary-cols-list-panel > div {
+            height: $grid-size * 5;
         }
 
         .ag-primary-cols-filter-wrapper.ag-input-wrapper {
