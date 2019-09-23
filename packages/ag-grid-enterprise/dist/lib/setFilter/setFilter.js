@@ -54,7 +54,7 @@ var SetFilter = /** @class */ (function (_super) {
         this.resetUiToDefaults();
         if (model) {
             // also supporting old filter model for backwards compatibility
-            var newValues = (model instanceof Array) ? model : model.values;
+            var newValues = model instanceof Array ? model : model.values;
             this.valueModel.setModel(newValues);
             this.updateSelectAll();
             this.virtualList.refresh();
@@ -85,12 +85,18 @@ var SetFilter = /** @class */ (function (_super) {
         this.eCheckedIcon = ag_grid_community_1._.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper, this.setFilterParams.column);
         this.eUncheckedIcon = ag_grid_community_1._.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper, this.setFilterParams.column);
         this.eIndeterminateCheckedIcon = ag_grid_community_1._.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper, this.setFilterParams.column);
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.eSelectAllCheckbox = document.createElement('input');
+            this.eSelectAllCheckbox.type = 'checkbox';
+            this.eSelectAllCheckbox.className = 'ag-native-checkbox';
+            this.eSelectAll.appendChild(this.eSelectAllCheckbox);
+        }
         this.initialiseFilterBodyUi();
-        var doSyncLikeExcel = params.syncValuesLikeExcel
+        var doSyncLikeExcel = params.syncValuesLikeExcel &&
             // sync like excel only withs with CSRM
-            && this.rowModel.getType() === ag_grid_community_1.Constants.ROW_MODEL_TYPE_CLIENT_SIDE
+            this.rowModel.getType() === ag_grid_community_1.Constants.ROW_MODEL_TYPE_CLIENT_SIDE &&
             // sync only needed if user not providing values
-            && !params.values;
+            !params.values;
         if (doSyncLikeExcel) {
             this.setupSyncValuesLikeExcel();
         }
@@ -119,23 +125,30 @@ var SetFilter = /** @class */ (function (_super) {
         this.addDestroyableEventListener(this.eventService, ag_grid_community_1.Events.EVENT_CELL_VALUE_CHANGED, cellValueChangedListener);
     };
     SetFilter.prototype.updateCheckboxIcon = function () {
-        ag_grid_community_1._.clearElement(this.eSelectAll);
-        var icon;
-        switch (this.selectAllState) {
-            case CheckboxState.INTERMEDIATE:
-                icon = this.eIndeterminateCheckedIcon;
-                break;
-            case CheckboxState.CHECKED:
-                icon = this.eCheckedIcon;
-                break;
-            case CheckboxState.UNCHECKED:
-                icon = this.eUncheckedIcon;
-                break;
-            default: // default happens when initialising for first time
-                icon = this.eCheckedIcon;
-                break;
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.eSelectAllCheckbox.checked = this.selectAllState === CheckboxState.CHECKED;
+            this.eSelectAllCheckbox.indeterminate = this.selectAllState === CheckboxState.INTERMEDIATE;
         }
-        this.eSelectAll.appendChild(icon);
+        else {
+            ag_grid_community_1._.clearElement(this.eSelectAll);
+            var icon = void 0;
+            switch (this.selectAllState) {
+                case CheckboxState.INTERMEDIATE:
+                    icon = this.eIndeterminateCheckedIcon;
+                    break;
+                case CheckboxState.CHECKED:
+                    icon = this.eCheckedIcon;
+                    break;
+                case CheckboxState.UNCHECKED:
+                    icon = this.eUncheckedIcon;
+                    break;
+                default:
+                    // default happens when initialising for first time
+                    icon = this.eCheckedIcon;
+                    break;
+            }
+            this.eSelectAll.appendChild(icon);
+        }
     };
     SetFilter.prototype.setLoading = function (loading) {
         ag_grid_community_1._.setDisplayed(this.eFilterLoading, loading);
@@ -189,7 +202,7 @@ var SetFilter = /** @class */ (function (_super) {
         var appliedModel = this.getModel();
         if (appliedModel) {
             this.appliedModelValuesMapped = {};
-            appliedModel.values.forEach(function (value) { return _this.appliedModelValuesMapped[value] = true; });
+            appliedModel.values.forEach(function (value) { return (_this.appliedModelValuesMapped[value] = true); });
         }
         else {
             this.appliedModelValuesMapped = undefined;
@@ -222,8 +235,7 @@ var SetFilter = /** @class */ (function (_super) {
     };
     SetFilter.prototype.onNewRowsLoaded = function () {
         var valuesType = this.valueModel.getValuesType();
-        var valuesTypeProvided = valuesType === setValueModel_1.SetFilterModelValuesType.PROVIDED_CB
-            || valuesType === setValueModel_1.SetFilterModelValuesType.PROVIDED_LIST;
+        var valuesTypeProvided = valuesType === setValueModel_1.SetFilterModelValuesType.PROVIDED_CB || valuesType === setValueModel_1.SetFilterModelValuesType.PROVIDED_LIST;
         // if the user is providing values, and we are keeping the previous selection, then
         // loading new rows into the grid should have no impact.
         var newRowsActionKeep = this.isNewRowsActionKeep();

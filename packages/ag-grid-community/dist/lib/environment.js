@@ -22,24 +22,24 @@ var FRESH_GRID_SIZE = 4;
 var BALHAM_GRID_SIZE = 4;
 var ALPINE_GRID_SIZE = 6;
 var HARD_CODED_SIZES = {
-    "ag-theme-material": {
+    'ag-theme-material': {
         headerHeight: MAT_GRID_SIZE * 7,
         virtualItemHeight: MAT_GRID_SIZE * 5,
         rowHeight: MAT_GRID_SIZE * 6
     },
-    "ag-theme-classic": {
+    'ag-theme-classic': {
         headerHeight: 25,
         virtualItemHeight: FRESH_GRID_SIZE * 5,
         rowHeight: 25
     },
-    "ag-theme-balham": {
+    'ag-theme-balham': {
         headerHeight: BALHAM_GRID_SIZE * 8,
         virtualItemHeight: BALHAM_GRID_SIZE * 7,
         rowHeight: BALHAM_GRID_SIZE * 7
     },
-    "ag-theme-alpine": {
+    'ag-theme-alpine': {
         headerHeight: ALPINE_GRID_SIZE * 8,
-        virtualItemHeight: ALPINE_GRID_SIZE * 7,
+        virtualItemHeight: ALPINE_GRID_SIZE * 5,
         rowHeight: ALPINE_GRID_SIZE * 7
     }
 };
@@ -53,16 +53,16 @@ var HARD_CODED_SIZES = {
  *     </div>
  */
 var SASS_PROPERTY_BUILDER = {
-    headerHeight: ["ag-header-row"],
-    virtualItemHeight: ["ag-virtual-list-container", "ag-virtual-list-item"],
-    rowHeight: ["ag-row"]
+    headerHeight: ['ag-header-row'],
+    virtualItemHeight: ['ag-virtual-list-container', 'ag-virtual-list-item'],
+    rowHeight: ['ag-row']
 };
 var CALCULATED_SIZES = {};
 var Environment = /** @class */ (function () {
     function Environment() {
     }
     Environment.prototype.getSassVariable = function (theme, key) {
-        var useTheme = "ag-theme-" + (theme.match("material") ? "material" : theme.match("balham") ? "balham" : "classic");
+        var useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : 'classic');
         var defaultValue = HARD_CODED_SIZES[useTheme][key];
         var calculatedValue = 0;
         if (!CALCULATED_SIZES[theme]) {
@@ -73,12 +73,12 @@ var Environment = /** @class */ (function () {
         }
         if (SASS_PROPERTY_BUILDER[key]) {
             var classList = SASS_PROPERTY_BUILDER[key];
-            var div = document.createElement("div");
+            var div = document.createElement('div');
             var el = classList.reduce(function (el, currentClass, idx) {
                 if (idx === 0) {
                     utils_1._.addCssClass(el, theme);
                 }
-                var div = document.createElement("div");
+                var div = document.createElement('div');
                 utils_1._.addCssClass(div, currentClass);
                 el.appendChild(div);
                 return div;
@@ -94,11 +94,11 @@ var Environment = /** @class */ (function () {
     };
     Environment.prototype.isThemeDark = function () {
         var theme = this.getTheme().theme;
-        return !!theme && theme.indexOf("dark") >= 0;
+        return !!theme && theme.indexOf('dark') >= 0;
     };
     Environment.prototype.useNativeCheckboxes = function () {
         var theme = this.getTheme().theme;
-        return !!theme && theme.indexOf("alpine") >= 0;
+        return !!theme && theme.indexOf('alpine') >= 0;
     };
     Environment.prototype.getTheme = function () {
         return this.getThemeOnce();
@@ -125,8 +125,8 @@ var Environment = /** @class */ (function () {
             var theme_1 = themeMatch[0];
             var usingOldTheme = themeMatch[2] === undefined;
             if (usingOldTheme) {
-                var newTheme_1 = theme_1.replace("ag-", "ag-theme-");
-                utils_1._.doOnce(function () { return console.warn("ag-Grid: As of v19 old theme are no longer provided. Please replace " + theme_1 + " with " + newTheme_1 + "."); }, "using-old-theme");
+                var newTheme_1 = theme_1.replace('ag-', 'ag-theme-');
+                utils_1._.doOnce(function () { return console.warn("ag-Grid: As of v19 old theme are no longer provided. Please replace " + theme_1 + " with " + newTheme_1 + "."); }, 'using-old-theme');
             }
             this.theme = theme_1;
             this.themeElement = el;
@@ -134,11 +134,11 @@ var Environment = /** @class */ (function () {
         return { theme: this.theme, el: this.themeElement };
     };
     __decorate([
-        context_1.Autowired("eGridDiv"),
+        context_1.Autowired('eGridDiv'),
         __metadata("design:type", HTMLElement)
     ], Environment.prototype, "eGridDiv", void 0);
     Environment = __decorate([
-        context_1.Bean("environment")
+        context_1.Bean('environment')
     ], Environment);
     return Environment;
 }());

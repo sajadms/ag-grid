@@ -53,7 +53,13 @@ var SetFilterListItem = /** @class */ (function (_super) {
         var _this = this;
         this.eCheckedIcon = ag_grid_community_1._.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper, this.column);
         this.eUncheckedIcon = ag_grid_community_1._.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper, this.column);
-        this.eCheckbox = this.queryForHtmlElement(".ag-filter-checkbox");
+        this.eCheckbox = this.queryForHtmlElement('.ag-filter-checkbox');
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.eNativeCheckbox = document.createElement('input');
+            this.eNativeCheckbox.type = 'checkbox';
+            this.eNativeCheckbox.className = 'ag-native-checkbox';
+            this.eCheckbox.appendChild(this.eNativeCheckbox);
+        }
         this.eClickableArea = this.getGui();
         this.updateCheckboxIcon();
         this.render();
@@ -77,17 +83,22 @@ var SetFilterListItem = /** @class */ (function (_super) {
         this.updateCheckboxIcon();
     };
     SetFilterListItem.prototype.updateCheckboxIcon = function () {
-        ag_grid_community_1._.clearElement(this.eCheckbox);
-        if (this.isSelected()) {
-            this.eCheckbox.appendChild(this.eCheckedIcon);
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.eNativeCheckbox.checked = this.isSelected();
         }
         else {
-            this.eCheckbox.appendChild(this.eUncheckedIcon);
+            ag_grid_community_1._.clearElement(this.eCheckbox);
+            if (this.isSelected()) {
+                this.eCheckbox.appendChild(this.eCheckedIcon);
+            }
+            else {
+                this.eCheckbox.appendChild(this.eUncheckedIcon);
+            }
         }
     };
     SetFilterListItem.prototype.render = function () {
         var _this = this;
-        var valueElement = this.queryForHtmlElement(".ag-filter-value");
+        var valueElement = this.queryForHtmlElement('.ag-filter-value');
         var valueFormatted = this.valueFormatterService.formatValue(this.column, null, null, this.value);
         var colDef = this.column.getColDef();
         var params = {

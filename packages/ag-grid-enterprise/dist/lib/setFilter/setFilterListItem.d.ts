@@ -1,5 +1,5 @@
 // ag-grid-enterprise v21.2.1
-import { AgEvent, Column, Component } from "ag-grid-community";
+import { AgEvent, Column, Component } from 'ag-grid-community';
 export interface SelectedEvent extends AgEvent {
 }
 export declare class SetFilterListItem extends Component {
@@ -9,6 +9,7 @@ export declare class SetFilterListItem extends Component {
     private userComponentFactory;
     private static TEMPLATE;
     private eCheckbox;
+    private eNativeCheckbox;
     private eClickableArea;
     private selected;
     private value;
