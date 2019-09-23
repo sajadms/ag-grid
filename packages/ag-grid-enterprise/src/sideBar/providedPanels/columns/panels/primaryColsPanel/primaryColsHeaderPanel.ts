@@ -1,32 +1,25 @@
-import {
-    Autowired,
-    Column,
-    ColumnController,
-    Component,
-    Events,
-    EventService,
-    GridOptionsWrapper,
-    PostConstruct,
-    PreConstruct,
-    RefSelector,
-    _
-} from "ag-grid-community/main";
-import { ToolPanelColumnCompParams } from "../../columnToolPanel";
+import { Autowired, Column, ColumnController, Component, Events, EventService, GridOptionsWrapper, PostConstruct, PreConstruct, RefSelector, _ } from 'ag-grid-community/main';
+import { ToolPanelColumnCompParams } from '../../columnToolPanel';
 
-export enum SELECTED_STATE { CHECKED, UNCHECKED, INDETERMINATE }
+export enum SELECTED_STATE {
+    CHECKED,
+    UNCHECKED,
+    INDETERMINATE
+}
 
 export class PrimaryColsHeaderPanel extends Component {
-
-    @Autowired('gridOptionsWrapper') private gridOptionsWrapper: GridOptionsWrapper;
+    @Autowired('gridOptionsWrapper')
+    private gridOptionsWrapper: GridOptionsWrapper;
     @Autowired('columnController') private columnController: ColumnController;
     @Autowired('eventService') private eventService: EventService;
 
     @RefSelector('eFilterTextField')
-
     private eFilterTextField: HTMLInputElement;
     private eSelectChecked: HTMLElement;
     private eSelectUnchecked: HTMLElement;
     private eSelectIndeterminate: HTMLElement;
+
+    private eSelectCheckbox: HTMLInputElement;
 
     private eExpandChecked: HTMLElement;
     private eExpandUnchecked: HTMLElement;
@@ -48,20 +41,28 @@ export class PrimaryColsHeaderPanel extends Component {
         const translate = this.gridOptionsWrapper.getLocaleTextFunc();
 
         this.setTemplate(
-        `<div class="ag-primary-cols-header-panel" role="presentation">
+            `<div class="ag-primary-cols-header-panel" role="presentation">
             <div ref="eExpand"></div>
             <div ref="eSelect"></div>
             <div class="ag-input-wrapper ag-primary-cols-filter-wrapper" ref="eFilterWrapper" role="presentation">
                 <input class="ag-primary-cols-filter" ref="eFilterTextField" type="text" placeholder="${translate('filterOoo', 'Filter...')}">        
             </div>
-        </div>`);
+        </div>`
+        );
     }
 
     @PostConstruct
     public postConstruct(): void {
         this.addEventListeners();
         this.createExpandIcons();
-        this.createCheckIcons();
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.eSelectCheckbox = document.createElement('input');
+            this.eSelectCheckbox.type = 'checkbox';
+            this.eSelectCheckbox.className = 'ag-checkbox';
+            this.eSelect.appendChild(this.eSelectCheckbox);
+        } else {
+            this.createCheckIcons();
+        }
         this.setExpandState(SELECTED_STATE.CHECKED);
 
         this.addDestroyableEventListener(this.eExpand, 'click', this.onExpandClicked.bind(this));
@@ -79,20 +80,19 @@ export class PrimaryColsHeaderPanel extends Component {
     }
 
     private createExpandIcons() {
-        this.eExpand.appendChild(this.eExpandChecked = _.createIconNoSpan('columnSelectOpen', this.gridOptionsWrapper));
-        this.eExpand.appendChild(this.eExpandUnchecked = _.createIconNoSpan('columnSelectClosed', this.gridOptionsWrapper));
-        this.eExpand.appendChild(this.eExpandIndeterminate = _.createIconNoSpan('columnSelectIndeterminate', this.gridOptionsWrapper));
+        this.eExpand.appendChild((this.eExpandChecked = _.createIconNoSpan('columnSelectOpen', this.gridOptionsWrapper)));
+        this.eExpand.appendChild((this.eExpandUnchecked = _.createIconNoSpan('columnSelectClosed', this.gridOptionsWrapper)));
+        this.eExpand.appendChild((this.eExpandIndeterminate = _.createIconNoSpan('columnSelectIndeterminate', this.gridOptionsWrapper)));
     }
 
     private createCheckIcons() {
-        this.eSelect.appendChild(this.eSelectChecked = _.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper));
-        this.eSelect.appendChild(this.eSelectUnchecked = _.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper));
-        this.eSelect.appendChild(this.eSelectIndeterminate =  _.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper));
+        this.eSelect.appendChild((this.eSelectChecked = _.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper)));
+        this.eSelect.appendChild((this.eSelectUnchecked = _.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper)));
+        this.eSelect.appendChild((this.eSelectIndeterminate = _.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper)));
     }
 
     // we only show expand / collapse if we are showing columns
     private showOrHideOptions(): void {
-
         const showFilter = !this.params.suppressColumnFilter;
         const showSelect = !this.params.suppressColumnSelectAll;
         const showExpand = !this.params.suppressColumnExpandAll;
@@ -126,7 +126,7 @@ export class PrimaryColsHeaderPanel extends Component {
         if (!this.onFilterTextChangedDebounced) {
             this.onFilterTextChangedDebounced = _.debounce(() => {
                 const filterText = this.eFilterTextField.value;
-                this.dispatchEvent({type: 'filterChanged', filterText: filterText});
+                this.dispatchEvent({ type: 'filterChanged', filterText: filterText });
             }, 400);
         }
 
@@ -140,17 +140,17 @@ export class PrimaryColsHeaderPanel extends Component {
         // 3. column controller fires events of column updated
         // 4. update in this panel is updated based on events fired by column controller
         if (this.selectState === SELECTED_STATE.CHECKED) {
-            this.dispatchEvent({type: 'unselectAll'});
+            this.dispatchEvent({ type: 'unselectAll' });
         } else {
-            this.dispatchEvent({type: 'selectAll'});
+            this.dispatchEvent({ type: 'selectAll' });
         }
     }
 
     private onExpandClicked(): void {
         if (this.expandState === SELECTED_STATE.CHECKED) {
-            this.dispatchEvent({type: 'collapseAll'});
+            this.dispatchEvent({ type: 'collapseAll' });
         } else {
-            this.dispatchEvent({type: 'expandAll'});
+            this.dispatchEvent({ type: 'expandAll' });
         }
     }
 
@@ -163,7 +163,6 @@ export class PrimaryColsHeaderPanel extends Component {
     }
 
     private setColumnsCheckedState(): void {
-
         const allPrimaryColumns = this.columnController.getAllPrimaryColumns();
         let columns: Column[] = [];
         if (allPrimaryColumns !== null) {
@@ -175,7 +174,6 @@ export class PrimaryColsHeaderPanel extends Component {
         let uncheckedCount = 0;
 
         columns.forEach(col => {
-
             // ignore lock visible columns
             if (col.getColDef().lockVisible) {
                 return;
@@ -213,8 +211,13 @@ export class PrimaryColsHeaderPanel extends Component {
             this.selectState = SELECTED_STATE.CHECKED;
         }
 
-        _.setDisplayed(this.eSelectChecked, this.selectState === SELECTED_STATE.CHECKED);
-        _.setDisplayed(this.eSelectUnchecked, this.selectState === SELECTED_STATE.UNCHECKED);
-        _.setDisplayed(this.eSelectIndeterminate, this.selectState === SELECTED_STATE.INDETERMINATE);
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.eSelectCheckbox.checked = this.selectState === SELECTED_STATE.CHECKED;
+            this.eSelectCheckbox.indeterminate = this.selectState === SELECTED_STATE.INDETERMINATE;
+        } else {
+            _.setDisplayed(this.eSelectChecked, this.selectState === SELECTED_STATE.CHECKED);
+            _.setDisplayed(this.eSelectUnchecked, this.selectState === SELECTED_STATE.UNCHECKED);
+            _.setDisplayed(this.eSelectIndeterminate, this.selectState === SELECTED_STATE.INDETERMINATE);
+        }
     }
 }

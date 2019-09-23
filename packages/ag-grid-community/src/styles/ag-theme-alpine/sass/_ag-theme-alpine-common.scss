@@ -91,26 +91,91 @@
         }
     }
 
+    ////////////////////////////////////////
+    // context menu and enterprise column menu
+    ////////////////////////////////////////
     .ag-menu {
-        font: $chrome-font-weight $chrome-font-size $chrome-font-family;
         background: $alpine-gray-5;
 
         .ag-menu-list {
-            padding: $grid-size * 2;
             margin: 0;
+        }
+    }
 
-            .ag-menu-option > span {
-                padding-top: $grid-size;
-                padding-bottom: $grid-size;
-            }
+    .ag-menu-list {
+        font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+        padding: $grid-size * 2;
+        margin: 0;
 
-            .ag-menu-option-shortcut {
-                text-align: right;
-                font-size: 0.7rem;
-                vertical-align: super;
-                opacity: 0.7;
+        .ag-menu-option > span {
+            padding-top: $grid-size;
+            padding-bottom: $grid-size;
+        }
+
+        .ag-menu-option-shortcut {
+            text-align: right;
+            font-size: 0.7rem;
+            vertical-align: super;
+            opacity: 0.7;
+        }
+    }
+
+    .ag-tab-header {
+        border-bottom: 1px solid $chrome-border-color;
+
+        .ag-tab {
+            padding: $grid-size $grid-size * 2;
+
+            .ag-icon {
+                margin-left: $grid-size;
+                display: block;
             }
         }
+
+        .ag-tab-selected {
+            .ag-icon {
+                color: $active;
+            }
+        }
+
+        .ag-tab::after {
+            content: ' ';
+            width: $grid-size * 3;
+            height: 0px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border: 1px solid $chrome-border-color;
+            border-bottom-color: $alpine-gray-5;
+            background: $alpine-gray-5;
+            position: relative;
+            left: -($grid-size * 3 - 1);
+            bottom: -$grid-size * 3 - 1;
+            display: block;
+            transition: all 0.1s linear;
+        }
+        .ag-tab-selected::after {
+            opacity: 1;
+            height: 6px;
+        }
+    }
+
+    // resets from the main theme
+    .ag-tab-body {
+        border-top: 1px solid $border-color;
+        padding: 0;
+
+        .ag-menu-list {
+            & > div:first-child > span {
+                padding-top: $grid-size;
+            }
+            & > div:last-child > span {
+                padding-bottom: $grid-size;
+            }
+        }
+    }
+
+    .ag-primary-cols-header-panel {
+        border-top: 0;
     }
 
     ////////////////////////////////////////
@@ -272,7 +337,9 @@
         }
     }
 
+    ////////////////////////////////////////
     // Popup editing
+    ////////////////////////////////////////
     .ag-popup > div.ag-popup-editor {
         min-height: $row-height;
         box-shadow: 0 0 2px 0.1rem transparentize($alpine-blue-1, 0.6);
@@ -310,7 +377,40 @@
             padding: $grid-size * 2 $grid-size * 3;
         }
     }
+    ////////////////////////////////////////
+    // Column Chooser
+    ////////////////////////////////////////
+    .ag-column-select-panel {
+        .ag-primary-cols-header-panel {
+            .ag-checkbox {
+                @include checkbox($active);
+            }
 
+            .ag-input-wrapper {
+                margin-right: $grid-size * 2;
+            }
+        }
+
+        .ag-primary-cols-list-panel .ag-checkbox input {
+            @include checkbox($active);
+        }
+
+        .ag-primary-cols-list-panel div {
+            padding-top: $grid-size;
+            padding-bottom: $grid-size;
+        }
+
+        .ag-primary-cols-filter-wrapper.ag-input-wrapper {
+            overflow: visible;
+        }
+        .ag-primary-cols-filter {
+            @extend %input-box;
+        }
+    }
+
+    ////////////////////////////////////////
+    // Overlay
+    ////////////////////////////////////////
     .ag-overlay-loading-center {
         box-shadow: 0 0 2px 0.1rem transparentize($alpine-gray-4, 0.6);
         border: 1px solid $alpine-gray-4;

@@ -63,5 +63,10 @@
   },
   "peerDependencies": {
     "ag-grid-community": "^21.2.0"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "printWidth": 180,
+    "tabWidth": 4
   }
 }

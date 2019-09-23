@@ -4,7 +4,7 @@ $unselected-color: $alpine-gray-4;
 $background-color: $alpine-white;
 $checkbox-size: 12px;
 
-@mixin checkbox() {
+@mixin checkbox($color: $selection-color) {
     -webkit-appearance: none;
     width: $checkbox-size;
     height: $checkbox-size;
@@ -13,10 +13,11 @@ $checkbox-size: 12px;
     border: 1px solid $unselected-color;
     background: $background-color;
     transition: background-color 0.1s linear;
+    display: block;
 
     &:focus {
-        box-shadow: 0 0 1px 1px transparentize($selection-color, 0.6);
-        border-color: $selection-color;
+        box-shadow: 0 0 1px 1px transparentize($color, 0.6);
+        border-color: $color;
         outline: none;
     }
 
@@ -48,8 +49,8 @@ $checkbox-size: 12px;
     }
 
     &:checked {
-        background-color: $selection-color;
-        border-color: $selection-color;
+        background-color: $color;
+        border-color: $color;
     }
 
     &:checked::after {
@@ -62,8 +63,8 @@ $checkbox-size: 12px;
     }
 
     &:indeterminate {
-        background-color: $selection-color;
-        border-color: $selection-color;
+        background-color: $color;
+        border-color: $color;
     }
 
     &:indeterminate::after {
@@ -79,8 +80,8 @@ $checkbox-size: 12px;
     }
 
     &:checked:disabled {
-        background-color: transparentize($selection-color, 0.5);
-        border-color: transparentize($selection-color, 0.3);
+        background-color: transparentize($color, 0.5);
+        border-color: transparentize($color, 0.3);
     }
 }
 
