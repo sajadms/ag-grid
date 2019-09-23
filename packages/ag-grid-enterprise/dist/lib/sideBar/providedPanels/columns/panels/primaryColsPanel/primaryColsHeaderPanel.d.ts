@@ -1,6 +1,6 @@
 // ag-grid-enterprise v21.2.1
-import { Component } from "ag-grid-community/main";
-import { ToolPanelColumnCompParams } from "../../columnToolPanel";
+import { Component } from 'ag-grid-community/main';
+import { ToolPanelColumnCompParams } from '../../columnToolPanel';
 export declare enum SELECTED_STATE {
     CHECKED = 0,
     UNCHECKED = 1,
@@ -14,6 +14,7 @@ export declare class PrimaryColsHeaderPanel extends Component {
     private eSelectChecked;
     private eSelectUnchecked;
     private eSelectIndeterminate;
+    private eSelectCheckbox;
     private eExpandChecked;
     private eExpandUnchecked;
     private eExpandIndeterminate;

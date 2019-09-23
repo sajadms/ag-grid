@@ -45,7 +45,15 @@ var PrimaryColsHeaderPanel = /** @class */ (function (_super) {
     PrimaryColsHeaderPanel.prototype.postConstruct = function () {
         this.addEventListeners();
         this.createExpandIcons();
-        this.createCheckIcons();
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.eSelectCheckbox = document.createElement('input');
+            this.eSelectCheckbox.type = 'checkbox';
+            this.eSelectCheckbox.className = 'ag-checkbox';
+            this.eSelect.appendChild(this.eSelectCheckbox);
+        }
+        else {
+            this.createCheckIcons();
+        }
         this.setExpandState(SELECTED_STATE.CHECKED);
         this.addDestroyableEventListener(this.eExpand, 'click', this.onExpandClicked.bind(this));
         this.addDestroyableEventListener(this.eSelect, 'click', this.onSelectClicked.bind(this));
@@ -59,14 +67,14 @@ var PrimaryColsHeaderPanel = /** @class */ (function (_super) {
         }
     };
     PrimaryColsHeaderPanel.prototype.createExpandIcons = function () {
-        this.eExpand.appendChild(this.eExpandChecked = main_1._.createIconNoSpan('columnSelectOpen', this.gridOptionsWrapper));
-        this.eExpand.appendChild(this.eExpandUnchecked = main_1._.createIconNoSpan('columnSelectClosed', this.gridOptionsWrapper));
-        this.eExpand.appendChild(this.eExpandIndeterminate = main_1._.createIconNoSpan('columnSelectIndeterminate', this.gridOptionsWrapper));
+        this.eExpand.appendChild((this.eExpandChecked = main_1._.createIconNoSpan('columnSelectOpen', this.gridOptionsWrapper)));
+        this.eExpand.appendChild((this.eExpandUnchecked = main_1._.createIconNoSpan('columnSelectClosed', this.gridOptionsWrapper)));
+        this.eExpand.appendChild((this.eExpandIndeterminate = main_1._.createIconNoSpan('columnSelectIndeterminate', this.gridOptionsWrapper)));
     };
     PrimaryColsHeaderPanel.prototype.createCheckIcons = function () {
-        this.eSelect.appendChild(this.eSelectChecked = main_1._.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper));
-        this.eSelect.appendChild(this.eSelectUnchecked = main_1._.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper));
-        this.eSelect.appendChild(this.eSelectIndeterminate = main_1._.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper));
+        this.eSelect.appendChild((this.eSelectChecked = main_1._.createIconNoSpan('checkboxChecked', this.gridOptionsWrapper)));
+        this.eSelect.appendChild((this.eSelectUnchecked = main_1._.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper)));
+        this.eSelect.appendChild((this.eSelectIndeterminate = main_1._.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper)));
     };
     // we only show expand / collapse if we are showing columns
     PrimaryColsHeaderPanel.prototype.showOrHideOptions = function () {
@@ -177,9 +185,15 @@ var PrimaryColsHeaderPanel = /** @class */ (function (_super) {
         else {
             this.selectState = SELECTED_STATE.CHECKED;
         }
-        main_1._.setDisplayed(this.eSelectChecked, this.selectState === SELECTED_STATE.CHECKED);
-        main_1._.setDisplayed(this.eSelectUnchecked, this.selectState === SELECTED_STATE.UNCHECKED);
-        main_1._.setDisplayed(this.eSelectIndeterminate, this.selectState === SELECTED_STATE.INDETERMINATE);
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+            this.eSelectCheckbox.checked = this.selectState === SELECTED_STATE.CHECKED;
+            this.eSelectCheckbox.indeterminate = this.selectState === SELECTED_STATE.INDETERMINATE;
+        }
+        else {
+            main_1._.setDisplayed(this.eSelectChecked, this.selectState === SELECTED_STATE.CHECKED);
+            main_1._.setDisplayed(this.eSelectUnchecked, this.selectState === SELECTED_STATE.UNCHECKED);
+            main_1._.setDisplayed(this.eSelectIndeterminate, this.selectState === SELECTED_STATE.INDETERMINATE);
+        }
     };
     __decorate([
         main_1.Autowired('gridOptionsWrapper'),

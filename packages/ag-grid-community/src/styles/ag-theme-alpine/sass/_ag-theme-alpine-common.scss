@@ -381,6 +381,11 @@
     // Column Chooser
     ////////////////////////////////////////
     .ag-column-select-panel {
+        .ag-primary-cols-header-panel,
+        .ag-primary-cols-list-panel {
+            padding-left: $grid-size;
+        }
+
         .ag-primary-cols-header-panel {
             .ag-checkbox {
                 @include checkbox($active);
