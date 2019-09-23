@@ -1,7 +1,7 @@
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { AgGridReact } from "ag-grid-react";
-import React from "react";
+import React, { useRef } from "react";
 
 export default {
   title: "Basic Features"
@@ -241,6 +241,33 @@ export const FloatingFilter = () => {
         floatingFilter={true}
         rowData={data}
       ></AgGridReact>
+    </div>
+  );
+};
+
+export const Overlay = () => {
+  const gridRef = useRef(null);
+
+  return (
+    <div>
+      <button onClick={e => gridRef.current.api.showLoadingOverlay()}>
+        Show Overlay
+      </button>
+      <div
+        className="ag-theme-alpine"
+        style={{
+          height: "500px",
+          width: "100%"
+        }}
+      >
+        <AgGridReact
+          ref={gridRef}
+          columnDefs={columnDefs}
+          rowData={data}
+          rowSelection="multiple"
+          overlayLoadingTemplate='<span class="ag-overlay-loading-center">Please wait while your rows are loading</span>'
+        ></AgGridReact>
+      </div>
     </div>
   );
 };
