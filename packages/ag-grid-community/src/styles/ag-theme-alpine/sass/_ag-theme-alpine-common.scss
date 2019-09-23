@@ -232,7 +232,7 @@
     ////////////////////////////////////////
     // Column Resize Handle
     ////////////////////////////////////////
-    $resize-handle-color: transparentize($border-color, 0.2);
+    $resize-handle-color: transparentize($chrome-border-color, 0.4);
     .ag-header-cell-resize {
         box-sizing: border-box;
         right: 0;
