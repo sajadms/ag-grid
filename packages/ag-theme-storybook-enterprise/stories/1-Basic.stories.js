@@ -93,6 +93,7 @@ export const FilterEnabled = () => {
       }}
     >
       <AgGridReact
+        defaultColDef={{ resizable: true }}
         columnDefs={columnDefs.map(def => ({
           ...def,
           sortable: true,

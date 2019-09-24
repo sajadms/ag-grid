@@ -3,13 +3,14 @@
 $unselected-color: $alpine-gray-4;
 $background-color: $alpine-white;
 $checkbox-size: 13px;
+$checkbox-border-radius: $border-radius;
 
 @mixin checkbox($color: $selection-color) {
     -webkit-appearance: none;
     width: $checkbox-size;
     height: $checkbox-size;
     vertical-align: middle;
-    border-radius: 50%;
+    border-radius: $checkbox-border-radius;
     border: 1px solid $unselected-color;
     background: $background-color;
     transition: background-color 0.1s linear;
@@ -32,7 +33,7 @@ $checkbox-size: 13px;
         visibility: hidden;
         position: absolute;
         transition: background-color 0.2s linear;
-        border-radius: 50%;
+        border-radius: $checkbox-border-radius;
         z-index: 2;
     }
 
