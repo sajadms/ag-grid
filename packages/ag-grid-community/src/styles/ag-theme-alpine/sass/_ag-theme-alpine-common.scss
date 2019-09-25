@@ -9,9 +9,16 @@
         box-sizing: border-box;
     }
 
-    .ag-root {
+    .ag-root-wrapper {
         border: 1px solid $chrome-border-color;
         border-radius: $border-radius;
+    }
+
+    .ag-column-drop {
+        border-bottom: 1px solid $chrome-border-color;
+    }
+
+    .ag-root {
     }
 
     .ag-header {
@@ -443,5 +450,62 @@
         border: 1px solid $alpine-gray-4;
         padding: $grid-size * 2 $grid-size * 3;
         font: $font-weight $font-size $font-family;
+    }
+
+    ////////////////////////////////////////
+    // Grouping
+    ////////////////////////////////////////
+    .ag-group-checkbox input[type='checkbox'] {
+        display: inline-block;
+        vertical-align: middle;
+        transform: translatey(-1px);
+    }
+
+    ////////////////////////////////////////
+    // The below works great for grid-size = 4, but does not for larger one.
+    ////////////////////////////////////////
+    .ag-selection-checkbox:not(.ag-hidden),
+    .ag-group-expanded:not(.ag-hidden),
+    .ag-group-contracted:not(.ag-hidden),
+    .ag-group-checkbox:not(.ag-invisible) {
+        ~ .ag-cell-value,
+        + .ag-group-value {
+            &:not(:empty) {
+                margin-left: $grid-size;
+            }
+        }
+        ~ .ag-group-checkbox {
+            margin-left: $grid-size;
+        }
+    }
+
+    ////////////////////////////////////////
+    // Group panel
+    ////////////////////////////////////////
+
+    .ag-column-drop-horizontal {
+        // Align the first pill to the header
+        font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+        .ag-icon-group {
+            margin-right: $grid-size * 2;
+        }
+    }
+
+    .ag-column-drop-cell {
+        padding: 0;
+
+        .ag-column-drag {
+            margin-left: $grid-size;
+            transform: translateY(4px);
+        }
+
+        .ag-column-drop-cell-text {
+            transform: translateY(1px);
+        }
+
+        .ag-column-drop-cell-button {
+            min-width: auto;
+            transform: translateY(4px);
+        }
     }
 }

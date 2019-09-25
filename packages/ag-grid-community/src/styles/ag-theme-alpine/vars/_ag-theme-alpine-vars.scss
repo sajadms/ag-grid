@@ -68,7 +68,7 @@ $header-cell-hover-background-color: $header-background-color !default;
 $header-foreground-color: $secondary-foreground-color !default;
 
 $hover-color: transparentize($active, 0.9) !default;
-$chip-background-color: darken($alt-background, 5) !default;
+$chip-background-color: transparentize($alpine-gray-4, 0.8) !default;
 
 $row-stub-background-color: inherit !default;
 $row-floating-background-color: inherit !default;
@@ -84,7 +84,7 @@ $virtual-item-height: $grid-size * 5 !default;
 $row-border-width: 1px !default;
 
 $toolpanel-indent-size: $grid-size + $icon-size !default;
-$row-group-indent-size: $grid-size * 3 + $icon-size !default;
+$row-group-indent-size: $grid-size + $icon-size !default;
 $cell-horizontal-padding: $grid-size * 3 !default;
 
 $header-icon-size: 14px !default;

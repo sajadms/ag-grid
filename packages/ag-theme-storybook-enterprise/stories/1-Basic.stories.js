@@ -137,3 +137,44 @@ export const SelectionEnabled = () => {
     </div>
   );
 };
+
+const groupColumnDefs = [
+  {
+    headerName: "Make",
+    field: "make",
+    rowGroup: true
+  },
+  {
+    headerName: "Model",
+    field: "model"
+  }
+];
+
+export const Grouping = () => {
+  return (
+    <div
+      className="ag-theme-alpine"
+      style={{
+        height: "500px",
+        width: "600px"
+      }}
+    >
+      <AgGridReact
+        columnDefs={groupColumnDefs}
+        groupSelectsChildren={true}
+        rowSelection="multiple"
+        rowData={data}
+        rowGroupPanelShow="always"
+        autoGroupColumnDef={{
+          headerName: "Model",
+          field: "model",
+          cellRenderer: "agGroupCellRenderer",
+          headerCheckboxSelection: true,
+          cellRendererParams: {
+            checkbox: true
+          }
+        }}
+      ></AgGridReact>
+    </div>
+  );
+};
