@@ -1,5 +1,5 @@
-$alpine-blue-2: #1894e0;
-$alpine-orange-1: #f3ac13;
+$alpine-blue-2: #2196f3;
+$alpine-orange-1: #ff9800;
 
 $alpine-black: #223;
 // $alpine-black: #000;
@@ -47,18 +47,20 @@ $input-disabled-background-color: #ebebeb !default;
 
 $primary-color: $active !default;
 $accent-color: $active !default;
-$range-selection-background-color: transparentize($active, 0.8) !default;
-$range-selection-chart-category-background-color: rgba(0, 255, 132, 0.1) !default;
-$range-selection-chart-background-color: rgba(0, 88, 255, 0.1) !default;
-$ag-range-selected-color-1: opacify($range-selection-background-color, 0.1) !default;
-$ag-range-selected-color-2: opacify($range-selection-background-color, 0.2) !default;
-$ag-range-selected-color-3: opacify($range-selection-background-color, 0.3) !default;
-$ag-range-selected-color-4: opacify($range-selection-background-color, 0.4) !default;
-$range-selection-highlight-color: $active !default;
+$range-selection-background-color: lighten($alpine-orange-1, 44) !default;
+$ag-range-selected-color-1: darken($range-selection-background-color, 10) !default;
+$ag-range-selected-color-2: darken($range-selection-background-color, 20) !default;
+$ag-range-selected-color-3: darken($range-selection-background-color, 30) !default;
+$ag-range-selected-color-4: darken($range-selection-background-color, 40) !default;
+$range-selection-highlight-color: $alpine-orange-1 !default;
+
 $selection-color: $alpine-orange-1;
 $selected-color: lighten($selection-color, 40) !default;
 
 $background-color: $default-background !default;
+
+$range-selection-chart-category-background-color: rgba(0, 255, 132, 0.1) !default;
+$range-selection-chart-background-color: rgba(0, 88, 255, 0.1) !default;
 
 $editor-background-color: $chrome-background !default;
 $panel-background-color: $chrome-background !default;

@@ -37,7 +37,7 @@
         border-right: 1px solid $border-color;
     }
 
-    .ag-row:not(.ag-row-selected) .ag-cell.ag-column-hover {
+    .ag-row:not(.ag-row-selected) .ag-cell.ag-column-hover:not(.ag-cell-range-selected) {
         background-color: transparentize($active, 0.97);
     }
 
@@ -506,6 +506,51 @@
         .ag-column-drop-cell-button {
             min-width: auto;
             transform: translateY(4px);
+        }
+    }
+
+    ////////////////////////////////////////
+    // Range selection
+    ////////////////////////////////////////
+    .ag-ltr,
+    .ag-rtl {
+        .ag-cell.ag-cell-range-selected:not(.ag-cell-range-single-cell) {
+            border: 1px solid transparent;
+            &.ag-cell-range-top {
+                border-top-color: $alpine-orange-1;
+            }
+            &.ag-cell-range-right {
+                border-right-color: $alpine-orange-1;
+            }
+            &.ag-cell-range-bottom {
+                border-bottom-color: $alpine-orange-1;
+            }
+            &.ag-cell-range-left {
+                border-left-color: $alpine-orange-1;
+            }
+        }
+    }
+
+    ////////////////////////////////////////
+    // Status Bar
+    ////////////////////////////////////////
+    .ag-status-bar {
+        border: 0;
+        border-top: 1px solid $chrome-border-color;
+        font: $chrome-font-weight $tooltip-font-size - 1 $chrome-font-family;
+        padding-left: $cell-horizontal-padding;
+        padding-right: $cell-horizontal-padding;
+
+        div.ag-name-value:first-child {
+            margin-left: 0;
+        }
+
+        div.ag-name-value:last-child {
+            margin-right: 0;
+        }
+
+        .ag-name-value-value {
+            font-weight: 600;
         }
     }
 }

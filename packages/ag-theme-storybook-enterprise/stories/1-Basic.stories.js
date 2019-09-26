@@ -178,3 +178,33 @@ export const Grouping = () => {
     </div>
   );
 };
+
+export const RangeSelectionAndStatusBar = () => {
+  return (
+    <div
+      className="ag-theme-alpine"
+      style={{
+        height: "500px",
+        width: "900px"
+      }}
+    >
+      <AgGridReact
+        enableRangeSelection
+        columnDefs={columnDefs}
+        rowData={data}
+        statusBar={{
+          statusPanels: [
+            {
+              statusPanel: "agTotalAndFilteredRowCountComponent",
+              align: "left"
+            },
+            { statusPanel: "agTotalRowCountComponent", align: "center" },
+            { statusPanel: "agFilteredRowCountComponent" },
+            { statusPanel: "agSelectedRowCountComponent" },
+            { statusPanel: "agAggregationComponent" }
+          ]
+        }}
+      ></AgGridReact>
+    </div>
+  );
+};
