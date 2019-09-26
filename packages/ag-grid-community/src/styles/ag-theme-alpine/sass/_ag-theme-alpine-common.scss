@@ -394,6 +394,25 @@
     }
 
     ////////////////////////////////////////
+    // Rich Select
+    ////////////////////////////////////////
+    .ag-rich-select {
+        .ag-rich-select-value {
+            @include with-dropdown-arrow();
+            background-position: right $grid-size top $row-height / 2 - $icon-size / 2;
+        }
+
+        .ag-virtual-list-item {
+            height: $grid-size * 5;
+        }
+
+        .ag-rich-select-row-selected {
+            background-color: $active;
+            color: $alpine-white;
+        }
+    }
+
+    ////////////////////////////////////////
     // Column Chooser
     ////////////////////////////////////////
     .ag-column-select-panel {
@@ -479,6 +498,10 @@
         }
     }
 
+    .ag-header-select-all {
+        margin-right: $grid-size;
+    }
+
     ////////////////////////////////////////
     // Group panel
     ////////////////////////////////////////
@@ -496,16 +519,16 @@
 
         .ag-column-drag {
             margin-left: $grid-size;
-            transform: translateY(4px);
+            transform: translateY(1px);
         }
 
         .ag-column-drop-cell-text {
-            transform: translateY(1px);
+            transform: translateY(-1px);
         }
 
         .ag-column-drop-cell-button {
             min-width: auto;
-            transform: translateY(4px);
+            transform: translateY(1px);
         }
     }
 
