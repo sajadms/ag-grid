@@ -85,7 +85,7 @@ $header-height: $grid-size * 8 !default;
 $virtual-item-height: $grid-size * 5 !default;
 $row-border-width: 1px !default;
 
-$toolpanel-indent-size: $grid-size + $icon-size !default;
+$toolpanel-indent-size: $icon-size !default;
 $row-group-indent-size: $grid-size + $icon-size !default;
 $cell-horizontal-padding: $grid-size * 3 !default;
 

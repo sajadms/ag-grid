@@ -239,7 +239,7 @@
     ////////////////////////////////////////
     // Column Resize Handle
     ////////////////////////////////////////
-    $resize-handle-color: transparentize($chrome-border-color, 0);
+    $resize-handle-color: transparentize($chrome-border-color, 0.8);
     .ag-header-cell-resize {
         box-sizing: border-box;
         right: -2px;
@@ -247,12 +247,13 @@
 
         &::before {
             content: ' ';
-            border-right: 1px solid $resize-handle-color;
+            background: $resize-handle-color;
             width: 2px;
+            border-radius: 1px;
             height: $header-height / 4;
             margin-top: $header-height * 3 / 2 / 4;
             display: block;
-            transform: translateX($grid-size / 2 - 1);
+            transform: translateX($grid-size / 2 - 2);
         }
     }
 
@@ -419,22 +420,13 @@
         .ag-primary-cols-header-panel {
             border-top: 0;
             padding-left: $grid-size;
-
-            & > div[ref='eSelect'] {
-                margin-left: $grid-size * 2;
-            }
-        }
-
-        .ag-primary-cols-list-panel {
-            margin-left: $grid-size * 2;
-            margin-right: $grid-size * 2;
-            padding-left: 0;
-        }
-
-        .ag-primary-cols-header-panel {
             padding-top: $grid-size * 2;
             padding-bottom: $grid-size * 2;
             height: auto;
+
+            & > div:first-child {
+                margin-left: $grid-size;
+            }
 
             .ag-checkbox {
                 @include checkbox($active);
@@ -445,8 +437,18 @@
             }
         }
 
+        .ag-primary-cols-list-panel {
+            margin-left: $grid-size * 2;
+            margin-right: $grid-size * 2;
+            padding-left: 0;
+        }
+
         .ag-primary-cols-list-panel .ag-checkbox input {
             @include checkbox($active);
+        }
+
+        .ag-primary-cols-list-panel .ag-column-group-icons {
+            margin-left: 0;
         }
 
         .ag-primary-cols-list-panel > div {
@@ -456,6 +458,7 @@
         .ag-primary-cols-filter-wrapper.ag-input-wrapper {
             overflow: visible;
         }
+
         .ag-primary-cols-filter {
             @extend %input-box;
         }
@@ -574,6 +577,139 @@
 
         .ag-name-value-value {
             font-weight: 600;
+        }
+    }
+
+    ////////////////////////////////////////
+    // Side Bar
+    ////////////////////////////////////////
+    .ag-side-bar {
+        font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+        border: 0;
+
+        .ag-tool-panel-wrapper {
+            border-left: 1px solid $chrome-border-color;
+            // border-right: 1px solid $border-color;
+            background-color: $alpine-gray-5;
+
+            .ag-pivot-mode-select {
+                margin-left: $grid-size * 2;
+                input {
+                    @include toggle-button;
+                }
+            }
+        }
+
+        .ag-column-drop {
+            padding-top: 0;
+            & > div:first-child {
+                background: $alpine-white;
+                padding: $grid-size * 2 $grid-size * 2;
+                border-bottom: 1px solid $border-color;
+                & > span:first-child {
+                    margin-left: 0px;
+                }
+            }
+
+            .ag-column-drop-list {
+                padding: $grid-size;
+            }
+
+            .ag-column-drop-empty-message {
+                font-weight: inherit;
+                opacity: 0.5;
+                border: 1px dashed $border-color;
+                margin: $grid-size * 2;
+                padding: $grid-size * 2;
+            }
+        }
+
+        // filter panel
+        .ag-filter-panel {
+            padding: $grid-size * 2;
+
+            .ag-filter-body-wrapper {
+                padding: 0;
+                padding-top: $grid-size;
+            }
+
+            .ag-filter-apply-panel {
+                margin: 0;
+                margin-bottom: $grid-size;
+                padding-top: $grid-size * 2;
+                justify-content: space-evenly;
+                button {
+                    font-size: 0.8em;
+                    padding: $grid-size / 2 $grid-size;
+                }
+            }
+
+            .ag-filter-toolpanel-instance {
+                font-weight: $chrome-font-weight;
+
+                .ag-filter-toolpanel-header {
+                    padding: $grid-size $grid-size * 2;
+                    padding-left: 0;
+
+                    [ref='eExpand'] {
+                        margin-right: $grid-size;
+                    }
+                }
+            }
+        }
+
+        // side buttons
+        .ag-side-buttons {
+            border-left: 1px solid $chrome-border-color;
+            width: $grid-size * 5;
+
+            .ag-side-button {
+                margin-bottom: $grid-size;
+                button {
+                    display: flex;
+                    align-items: start;
+                    justify-content: center;
+                    flex-direction: column;
+                    appearance: none;
+                    padding: 0;
+                    & > div {
+                        margin-left: $grid-size;
+                        margin-bottom: $grid-size;
+                    }
+                    & > span {
+                        margin-left: $grid-size * 1.5;
+                    }
+                }
+
+                button::before {
+                    content: ' ';
+                    min-height: $grid-size * 18;
+                    width: 3px;
+                    border-top-right-radius: 3px;
+                    border-bottom-right-radius: 3px;
+                    border: 1px solid $chrome-border-color;
+                    border-left-color: $alpine-gray-5;
+                    background: $alpine-gray-5;
+                    position: absolute;
+                    display: block;
+                    transition: all 0.1s linear;
+                }
+
+                &.ag-selected button {
+                    border: 0;
+                    margin-left: 0;
+
+                    & > div .ag-icon {
+                        color: $active;
+                    }
+
+                    &::before {
+                        transform: translate(-2px, 0);
+                        opacity: 1;
+                        width: 8px;
+                    }
+                }
+            }
         }
     }
 }

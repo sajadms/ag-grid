@@ -678,7 +678,7 @@
         }
 
         .ag-column-tool-panel-column.ag-toolpanel-add-group-indent {
-            margin-left: $icon-size + $grid-size * 2;
+            margin-left: $toolpanel-indent-size + $grid-size;
         }
     }
 
@@ -718,6 +718,7 @@
 
                 .ag-filter-toolpanel-header {
                     padding: 0 5px;
+
                     > div {
                         margin: auto 0;
                     }

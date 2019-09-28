@@ -106,6 +106,7 @@ $checkbox-border-radius: $border-radius;
         background-color: $active;
         color: $alpine-white;
     }
+    caret-color: $active;
 }
 
 %input-box {
@@ -221,5 +222,71 @@ $checkbox-border-radius: $border-radius;
         border-color: $active;
         background-color: transparentize($active, 0.1);
         color: $alpine-white;
+    }
+}
+
+$toggle-button-height: 18px;
+$toggle-button-width: 28px;
+
+@mixin toggle-button($color: $active, $background-color: $alpine-white) {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    width: $toggle-button-width;
+    height: $toggle-button-height;
+    background: $alpine-gray-4;
+    border: 1px solid $alpine-gray-4;
+    border-radius: $toggle-button-height / 2;
+    transition: all 0.2s linear;
+    margin: 0;
+    position: relative;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:checked {
+        background: $color;
+        border-color: $active;
+    }
+
+    &::before {
+        box-sizing: border-box;
+        height: $toggle-button-height;
+        width: $toggle-button-height;
+        content: ' ';
+        background: white;
+        display: inline-block;
+        position: absolute;
+        border-radius: $toggle-button-height / 2;
+        transition: left 100ms linear;
+        top: 0px;
+        left: 0px;
+        // below resets stuff from checkbox
+        visibility: visible;
+        border: 1px solid $alpine-gray-4;
+        padding: 0;
+    }
+
+    &:checked::before {
+        left: $toggle-button-width - $toggle-button-height + 1;
+        border-color: $active;
+    }
+
+    &::after {
+        content: ' ';
+        line-height: 20px;
+        display: block;
+        text-align: right;
+        padding-left: 5px;
+        padding-right: 5px;
+        transform: none;
+        width: auto;
+        height: auto;
+        border: 0;
+    }
+
+    &:checked::after {
+        text-align: left;
+        content: ' ';
     }
 }
