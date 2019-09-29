@@ -2057,6 +2057,9 @@ var GridOptionsWrapper = /** @class */ (function () {
     GridOptionsWrapper.prototype.useNativeCheckboxes = function () {
         return this.environment.useNativeCheckboxes();
     };
+    GridOptionsWrapper.prototype.chartMenuPanelWidth = function () {
+        return this.environment.chartMenuPanelWidth();
+    };
     GridOptionsWrapper.prototype.isNumeric = function (value) {
         return !isNaN(value) && typeof value === 'number';
     };
@@ -19883,28 +19886,32 @@ var HARD_CODED_SIZES = {
     'ag-theme-material': {
         headerHeight: MAT_GRID_SIZE * 7,
         virtualItemHeight: MAT_GRID_SIZE * 5,
-        rowHeight: MAT_GRID_SIZE * 6
+        rowHeight: MAT_GRID_SIZE * 6,
+        chartMenuPanelWidth: 220
     },
     'ag-theme-classic': {
         headerHeight: 25,
         virtualItemHeight: FRESH_GRID_SIZE * 5,
-        rowHeight: 25
+        rowHeight: 25,
+        chartMenuPanelWidth: 220
     },
     'ag-theme-balham': {
         headerHeight: BALHAM_GRID_SIZE * 8,
         virtualItemHeight: BALHAM_GRID_SIZE * 7,
-        rowHeight: BALHAM_GRID_SIZE * 7
+        rowHeight: BALHAM_GRID_SIZE * 7,
+        chartMenuPanelWidth: 220
     },
     'ag-theme-alpine': {
         headerHeight: ALPINE_GRID_SIZE * 8,
         virtualItemHeight: ALPINE_GRID_SIZE * 5,
-        rowHeight: ALPINE_GRID_SIZE * 7
+        rowHeight: ALPINE_GRID_SIZE * 7,
+        chartMenuPanelWidth: 240
     }
 };
 /**
  * this object contains a list of Sass variables and an array
  * of CSS styles required to get the correct value.
- * eg. $virtual-item-height requires a structure, so we can get it's height.
+ * eg. $virtual-item-height requires a structure, so we can get its height.
  * <div class="ag-theme-balham">
  *     <div class="ag-virtual-list-container">
  *         <div class="ag-virtual-list-item"></div>
@@ -19913,7 +19920,8 @@ var HARD_CODED_SIZES = {
 var SASS_PROPERTY_BUILDER = {
     headerHeight: ['ag-header-row'],
     virtualItemHeight: ['ag-virtual-list-container', 'ag-virtual-list-item'],
-    rowHeight: ['ag-row']
+    rowHeight: ['ag-row'],
+    chartMenuPanelWidth: ['ag-chart-docked-container']
 };
 var CALCULATED_SIZES = {};
 var Environment = /** @class */ (function () {
@@ -19960,6 +19968,9 @@ var Environment = /** @class */ (function () {
     };
     Environment.prototype.getTheme = function () {
         return this.getThemeOnce();
+    };
+    Environment.prototype.chartMenuPanelWidth = function () {
+        return HARD_CODED_SIZES[this.getTheme().theme].chartMenuPanelWidth;
     };
     // Traversing the tree is expensive, and the
     // theme getter will happen with every checkbox aksing if native or not.
@@ -29890,6 +29901,7 @@ var AgCheckbox = /** @class */ (function (_super) {
     function AgCheckbox() {
         var _this = _super.call(this) || this;
         _this.className = 'ag-checkbox';
+        _this.nativeInputClassName = 'ag-native-checkbox';
         _this.displayTag = 'input';
         _this.inputType = 'checkbox';
         _this.labelAlignment = 'right';
@@ -29910,6 +29922,9 @@ var AgCheckbox = /** @class */ (function (_super) {
             utils_1._.addCssClass(this.eInput, 'ag-hidden');
             this.addIconsPlaceholder();
             this.updateIcons();
+        }
+        else {
+            utils_1._.addCssClass(this.eInput, this.nativeInputClassName);
         }
     };
     AgCheckbox.prototype.addInputListeners = function () {
@@ -40154,6 +40169,7 @@ var AgRadioButton = /** @class */ (function (_super) {
     function AgRadioButton() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.className = 'ag-radio-button';
+        _this.nativeInputClassName = 'ag-native-radio-button';
         _this.inputType = 'radio';
         _this.iconMap = {
             selected: 'radioButtonOn',
@@ -43040,16 +43056,22 @@ var AgToggleButton = /** @class */ (function (_super) {
     function AgToggleButton() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.className = 'ag-toggle-button';
+        _this.nativeInputClassName = 'ag-native-toggle-button';
+        _this.inputType = 'checkbox';
         return _this;
     }
     AgToggleButton.prototype.postConstruct = function () {
         _super.prototype.postConstruct.call(this);
-        utils_1._.addCssClass(this.eIconEl, 'ag-icon');
+        if (!this.gridOptionsWrapper.useNativeCheckboxes()) {
+            utils_1._.addCssClass(this.eIconEl, 'ag-icon');
+        }
     };
     AgToggleButton.prototype.updateIcons = function () {
-        var value = this.getValue();
-        utils_1._.addOrRemoveCssClass(this.eIconEl, 'ag-icon-toggle-on', value);
-        utils_1._.addOrRemoveCssClass(this.eIconEl, 'ag-icon-toggle-off', !value);
+        if (!this.gridOptionsWrapper.useNativeCheckboxes()) {
+            var value = this.getValue();
+            utils_1._.addOrRemoveCssClass(this.eIconEl, 'ag-icon-toggle-on', value);
+            utils_1._.addOrRemoveCssClass(this.eIconEl, 'ag-icon-toggle-off', !value);
+        }
     };
     AgToggleButton.prototype.setValue = function (value, silent) {
         _super.prototype.setValue.call(this, value, silent);

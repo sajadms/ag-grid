@@ -37,6 +37,7 @@ var AgCheckbox = /** @class */ (function (_super) {
     function AgCheckbox() {
         var _this = _super.call(this) || this;
         _this.className = 'ag-checkbox';
+        _this.nativeInputClassName = 'ag-native-checkbox';
         _this.displayTag = 'input';
         _this.inputType = 'checkbox';
         _this.labelAlignment = 'right';
@@ -57,6 +58,9 @@ var AgCheckbox = /** @class */ (function (_super) {
             utils_1._.addCssClass(this.eInput, 'ag-hidden');
             this.addIconsPlaceholder();
             this.updateIcons();
+        }
+        else {
+            utils_1._.addCssClass(this.eInput, this.nativeInputClassName);
         }
     };
     AgCheckbox.prototype.addInputListeners = function () {

@@ -25,6 +25,7 @@ var AgRadioButton = /** @class */ (function (_super) {
     function AgRadioButton() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.className = 'ag-radio-button';
+        _this.nativeInputClassName = 'ag-native-radio-button';
         _this.inputType = 'radio';
         _this.iconMap = {
             selected: 'radioButtonOn',

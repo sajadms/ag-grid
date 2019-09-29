@@ -98,13 +98,13 @@ var ChartMenu = /** @class */ (function (_super) {
         var chartComp = this.getParentComponent();
         var dockedContainer = chartComp.getDockedContainer();
         var context = this.getContext();
-        var menuPanel = this.menuPanel = new ag_grid_community_1.AgPanel({
-            minWidth: 220,
-            width: 220,
+        var menuPanel = (this.menuPanel = new ag_grid_community_1.AgPanel({
+            minWidth: this.gridOptionsWrapper.chartMenuPanelWidth(),
+            width: this.gridOptionsWrapper.chartMenuPanelWidth(),
             height: '100%',
             closable: true,
             hideTitleBar: true
-        });
+        }));
         context.wireBean(this.menuPanel);
         menuPanel.setParentComponent(this);
         dockedContainer.appendChild(menuPanel.getGui());
@@ -142,8 +142,7 @@ var ChartMenu = /** @class */ (function (_super) {
         var _this = this;
         var tab = this.tabs.indexOf(tabName);
         if (!this.menuPanel) {
-            this.createMenu(tab)
-                .then(function () {
+            this.createMenu(tab).then(function () {
                 _this.slideDockedContainer();
             });
         }

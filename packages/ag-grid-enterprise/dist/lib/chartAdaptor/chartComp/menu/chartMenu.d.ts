@@ -1,6 +1,6 @@
 // ag-grid-enterprise v21.2.1
-import { Component } from "ag-grid-community";
-import { ChartController } from "../chartController";
+import { Component } from 'ag-grid-community';
+import { ChartController } from '../chartController';
 export declare class ChartMenu extends Component {
     private gridOptionsWrapper;
     static EVENT_DOWNLOAD_CHART: string;

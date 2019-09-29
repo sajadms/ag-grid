@@ -25,28 +25,32 @@ var HARD_CODED_SIZES = {
     'ag-theme-material': {
         headerHeight: MAT_GRID_SIZE * 7,
         virtualItemHeight: MAT_GRID_SIZE * 5,
-        rowHeight: MAT_GRID_SIZE * 6
+        rowHeight: MAT_GRID_SIZE * 6,
+        chartMenuPanelWidth: 220
     },
     'ag-theme-classic': {
         headerHeight: 25,
         virtualItemHeight: FRESH_GRID_SIZE * 5,
-        rowHeight: 25
+        rowHeight: 25,
+        chartMenuPanelWidth: 220
     },
     'ag-theme-balham': {
         headerHeight: BALHAM_GRID_SIZE * 8,
         virtualItemHeight: BALHAM_GRID_SIZE * 7,
-        rowHeight: BALHAM_GRID_SIZE * 7
+        rowHeight: BALHAM_GRID_SIZE * 7,
+        chartMenuPanelWidth: 220
     },
     'ag-theme-alpine': {
         headerHeight: ALPINE_GRID_SIZE * 8,
         virtualItemHeight: ALPINE_GRID_SIZE * 5,
-        rowHeight: ALPINE_GRID_SIZE * 7
+        rowHeight: ALPINE_GRID_SIZE * 7,
+        chartMenuPanelWidth: 240
     }
 };
 /**
  * this object contains a list of Sass variables and an array
  * of CSS styles required to get the correct value.
- * eg. $virtual-item-height requires a structure, so we can get it's height.
+ * eg. $virtual-item-height requires a structure, so we can get its height.
  * <div class="ag-theme-balham">
  *     <div class="ag-virtual-list-container">
  *         <div class="ag-virtual-list-item"></div>
@@ -55,7 +59,8 @@ var HARD_CODED_SIZES = {
 var SASS_PROPERTY_BUILDER = {
     headerHeight: ['ag-header-row'],
     virtualItemHeight: ['ag-virtual-list-container', 'ag-virtual-list-item'],
-    rowHeight: ['ag-row']
+    rowHeight: ['ag-row'],
+    chartMenuPanelWidth: ['ag-chart-docked-container']
 };
 var CALCULATED_SIZES = {};
 var Environment = /** @class */ (function () {
@@ -102,6 +107,9 @@ var Environment = /** @class */ (function () {
     };
     Environment.prototype.getTheme = function () {
         return this.getThemeOnce();
+    };
+    Environment.prototype.chartMenuPanelWidth = function () {
+        return HARD_CODED_SIZES[this.getTheme().theme].chartMenuPanelWidth;
     };
     // Traversing the tree is expensive, and the
     // theme getter will happen with every checkbox aksing if native or not.

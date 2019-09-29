@@ -293,6 +293,7 @@ export declare class GridOptionsWrapper {
     isDynamicRowHeight(): boolean;
     getVirtualItemHeight(): number;
     useNativeCheckboxes(): boolean;
+    chartMenuPanelWidth(): number;
     private isNumeric;
     private specialForNewMaterial;
     private getDefaultRowHeight;

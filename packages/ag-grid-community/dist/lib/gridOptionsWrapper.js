@@ -1268,6 +1268,9 @@ var GridOptionsWrapper = /** @class */ (function () {
     GridOptionsWrapper.prototype.useNativeCheckboxes = function () {
         return this.environment.useNativeCheckboxes();
     };
+    GridOptionsWrapper.prototype.chartMenuPanelWidth = function () {
+        return this.environment.chartMenuPanelWidth();
+    };
     GridOptionsWrapper.prototype.isNumeric = function (value) {
         return !isNaN(value) && typeof value === 'number';
     };

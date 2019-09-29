@@ -2097,6 +2097,9 @@ var GridOptionsWrapper = /** @class */ (function () {
     GridOptionsWrapper.prototype.useNativeCheckboxes = function () {
         return this.environment.useNativeCheckboxes();
     };
+    GridOptionsWrapper.prototype.chartMenuPanelWidth = function () {
+        return this.environment.chartMenuPanelWidth();
+    };
     GridOptionsWrapper.prototype.isNumeric = function (value) {
         return !isNaN(value) && typeof value === 'number';
     };
@@ -19920,47 +19923,52 @@ var FRESH_GRID_SIZE = 4;
 var BALHAM_GRID_SIZE = 4;
 var ALPINE_GRID_SIZE = 6;
 var HARD_CODED_SIZES = {
-    "ag-theme-material": {
+    'ag-theme-material': {
         headerHeight: MAT_GRID_SIZE * 7,
         virtualItemHeight: MAT_GRID_SIZE * 5,
-        rowHeight: MAT_GRID_SIZE * 6
+        rowHeight: MAT_GRID_SIZE * 6,
+        chartMenuPanelWidth: 220
     },
-    "ag-theme-classic": {
+    'ag-theme-classic': {
         headerHeight: 25,
         virtualItemHeight: FRESH_GRID_SIZE * 5,
-        rowHeight: 25
+        rowHeight: 25,
+        chartMenuPanelWidth: 220
     },
-    "ag-theme-balham": {
+    'ag-theme-balham': {
         headerHeight: BALHAM_GRID_SIZE * 8,
         virtualItemHeight: BALHAM_GRID_SIZE * 7,
-        rowHeight: BALHAM_GRID_SIZE * 7
+        rowHeight: BALHAM_GRID_SIZE * 7,
+        chartMenuPanelWidth: 220
     },
-    "ag-theme-alpine": {
+    'ag-theme-alpine': {
         headerHeight: ALPINE_GRID_SIZE * 8,
-        virtualItemHeight: ALPINE_GRID_SIZE * 7,
-        rowHeight: ALPINE_GRID_SIZE * 7
+        virtualItemHeight: ALPINE_GRID_SIZE * 5,
+        rowHeight: ALPINE_GRID_SIZE * 7,
+        chartMenuPanelWidth: 240
     }
 };
 /**
  * this object contains a list of Sass variables and an array
  * of CSS styles required to get the correct value.
- * eg. $virtual-item-height requires a structure, so we can get it's height.
+ * eg. $virtual-item-height requires a structure, so we can get its height.
  * <div class="ag-theme-balham">
  *     <div class="ag-virtual-list-container">
  *         <div class="ag-virtual-list-item"></div>
  *     </div>
  */
 var SASS_PROPERTY_BUILDER = {
-    headerHeight: ["ag-header-row"],
-    virtualItemHeight: ["ag-virtual-list-container", "ag-virtual-list-item"],
-    rowHeight: ["ag-row"]
+    headerHeight: ['ag-header-row'],
+    virtualItemHeight: ['ag-virtual-list-container', 'ag-virtual-list-item'],
+    rowHeight: ['ag-row'],
+    chartMenuPanelWidth: ['ag-chart-docked-container']
 };
 var CALCULATED_SIZES = {};
 var Environment = /** @class */ (function () {
     function Environment() {
     }
     Environment.prototype.getSassVariable = function (theme, key) {
-        var useTheme = "ag-theme-" + (theme.match("material") ? "material" : theme.match("balham") ? "balham" : "classic");
+        var useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : 'classic');
         var defaultValue = HARD_CODED_SIZES[useTheme][key];
         var calculatedValue = 0;
         if (!CALCULATED_SIZES[theme]) {
@@ -19971,12 +19979,12 @@ var Environment = /** @class */ (function () {
         }
         if (SASS_PROPERTY_BUILDER[key]) {
             var classList = SASS_PROPERTY_BUILDER[key];
-            var div = document.createElement("div");
+            var div = document.createElement('div');
             var el = classList.reduce(function (el, currentClass, idx) {
                 if (idx === 0) {
                     utils_1._.addCssClass(el, theme);
                 }
-                var div = document.createElement("div");
+                var div = document.createElement('div');
                 utils_1._.addCssClass(div, currentClass);
                 el.appendChild(div);
                 return div;
@@ -19992,14 +20000,17 @@ var Environment = /** @class */ (function () {
     };
     Environment.prototype.isThemeDark = function () {
         var theme = this.getTheme().theme;
-        return !!theme && theme.indexOf("dark") >= 0;
+        return !!theme && theme.indexOf('dark') >= 0;
     };
     Environment.prototype.useNativeCheckboxes = function () {
         var theme = this.getTheme().theme;
-        return !!theme && theme.indexOf("alpine") >= 0;
+        return !!theme && theme.indexOf('alpine') >= 0;
     };
     Environment.prototype.getTheme = function () {
         return this.getThemeOnce();
+    };
+    Environment.prototype.chartMenuPanelWidth = function () {
+        return this.getSassVariable(this.getTheme().theme, 'chartMenuPanelWidth');
     };
     // Traversing the tree is expensive, and the
     // theme getter will happen with every checkbox aksing if native or not.
@@ -20023,8 +20034,8 @@ var Environment = /** @class */ (function () {
             var theme_1 = themeMatch[0];
             var usingOldTheme = themeMatch[2] === undefined;
             if (usingOldTheme) {
-                var newTheme_1 = theme_1.replace("ag-", "ag-theme-");
-                utils_1._.doOnce(function () { return console.warn("ag-Grid: As of v19 old theme are no longer provided. Please replace " + theme_1 + " with " + newTheme_1 + "."); }, "using-old-theme");
+                var newTheme_1 = theme_1.replace('ag-', 'ag-theme-');
+                utils_1._.doOnce(function () { return console.warn("ag-Grid: As of v19 old theme are no longer provided. Please replace " + theme_1 + " with " + newTheme_1 + "."); }, 'using-old-theme');
             }
             this.theme = theme_1;
             this.themeElement = el;
@@ -20032,11 +20043,11 @@ var Environment = /** @class */ (function () {
         return { theme: this.theme, el: this.themeElement };
     };
     __decorate([
-        context_1.Autowired("eGridDiv"),
+        context_1.Autowired('eGridDiv'),
         __metadata("design:type", HTMLElement)
     ], Environment.prototype, "eGridDiv", void 0);
     Environment = __decorate([
-        context_1.Bean("environment")
+        context_1.Bean('environment')
     ], Environment);
     return Environment;
 }());
@@ -29930,6 +29941,7 @@ var AgCheckbox = /** @class */ (function (_super) {
     function AgCheckbox() {
         var _this = _super.call(this) || this;
         _this.className = 'ag-checkbox';
+        _this.nativeInputClassName = 'ag-native-checkbox';
         _this.displayTag = 'input';
         _this.inputType = 'checkbox';
         _this.labelAlignment = 'right';
@@ -29950,6 +29962,9 @@ var AgCheckbox = /** @class */ (function (_super) {
             utils_1._.addCssClass(this.eInput, 'ag-hidden');
             this.addIconsPlaceholder();
             this.updateIcons();
+        }
+        else {
+            utils_1._.addCssClass(this.eInput, this.nativeInputClassName);
         }
     };
     AgCheckbox.prototype.addInputListeners = function () {
@@ -40194,6 +40209,7 @@ var AgRadioButton = /** @class */ (function (_super) {
     function AgRadioButton() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.className = 'ag-radio-button';
+        _this.nativeInputClassName = 'ag-native-radio-button';
         _this.inputType = 'radio';
         _this.iconMap = {
             selected: 'radioButtonOn',
@@ -43080,16 +43096,21 @@ var AgToggleButton = /** @class */ (function (_super) {
     function AgToggleButton() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.className = 'ag-toggle-button';
+        _this.nativeInputClassName = 'ag-native-toggle-button';
         return _this;
     }
     AgToggleButton.prototype.postConstruct = function () {
         _super.prototype.postConstruct.call(this);
-        utils_1._.addCssClass(this.eIconEl, 'ag-icon');
+        if (!this.gridOptionsWrapper.useNativeCheckboxes()) {
+            utils_1._.addCssClass(this.eIconEl, 'ag-icon');
+        }
     };
     AgToggleButton.prototype.updateIcons = function () {
-        var value = this.getValue();
-        utils_1._.addOrRemoveCssClass(this.eIconEl, 'ag-icon-toggle-on', value);
-        utils_1._.addOrRemoveCssClass(this.eIconEl, 'ag-icon-toggle-off', !value);
+        if (!this.gridOptionsWrapper.useNativeCheckboxes()) {
+            var value = this.getValue();
+            utils_1._.addOrRemoveCssClass(this.eIconEl, 'ag-icon-toggle-on', value);
+            utils_1._.addOrRemoveCssClass(this.eIconEl, 'ag-icon-toggle-off', !value);
+        }
     };
     AgToggleButton.prototype.setValue = function (value, silent) {
         _super.prototype.setValue.call(this, value, silent);
@@ -44906,13 +44927,13 @@ var ChartMenu = /** @class */ (function (_super) {
         var chartComp = this.getParentComponent();
         var dockedContainer = chartComp.getDockedContainer();
         var context = this.getContext();
-        var menuPanel = this.menuPanel = new ag_grid_community_1.AgPanel({
-            minWidth: 220,
-            width: 220,
+        var menuPanel = (this.menuPanel = new ag_grid_community_1.AgPanel({
+            minWidth: this.gridOptionsWrapper.chartMenuPanelWidth(),
+            width: this.gridOptionsWrapper.chartMenuPanelWidth(),
             height: '100%',
             closable: true,
             hideTitleBar: true
-        });
+        }));
         context.wireBean(this.menuPanel);
         menuPanel.setParentComponent(this);
         dockedContainer.appendChild(menuPanel.getGui());
@@ -44950,8 +44971,7 @@ var ChartMenu = /** @class */ (function (_super) {
         var _this = this;
         var tab = this.tabs.indexOf(tabName);
         if (!this.menuPanel) {
-            this.createMenu(tab)
-                .then(function () {
+            this.createMenu(tab).then(function () {
                 _this.slideDockedContainer();
             });
         }
