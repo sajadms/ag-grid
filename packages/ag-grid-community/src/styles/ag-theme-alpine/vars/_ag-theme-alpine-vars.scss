@@ -26,14 +26,14 @@ $disabled-foreground-color: rgba($color-foreground, $disabled-foreground-color-o
 $input-border-color: $color-border-form-element !default;
 $input-disabled-background-color: $color-background-form-element-disabled !default;
 
-$range-selection-background-color: lighten($color-secondary, 44) !default;
-$ag-range-selected-color-1: darken($range-selection-background-color, 10) !default;
-$ag-range-selected-color-2: darken($range-selection-background-color, 20) !default;
-$ag-range-selected-color-3: darken($range-selection-background-color, 30) !default;
-$ag-range-selected-color-4: darken($range-selection-background-color, 40) !default;
 $range-selection-highlight-color: $color-secondary !default;
 
-$selected-color: lighten($color-secondary, 40) !default;
+$selected-color: $color-selected !default;
+$range-selection-background-color: $color-background-range-selection !default;
+$ag-range-selected-color-1: $color-background-range-selected-1 !default;
+$ag-range-selected-color-2: $color-background-range-selected-2 !default;
+$ag-range-selected-color-3: $color-background-range-selected-3 !default;
+$ag-range-selected-color-4: $color-background-range-selected-4 !default;
 
 $range-selection-chart-category-background-color: transparentize($color-background-chart-range-selection-category, 0.9) !default;
 $range-selection-chart-background-color: transparentize($color-background-chart-range-selection, 0.9) !default;
@@ -45,7 +45,7 @@ $header-background-color: $chrome-background !default;
 $header-cell-hover-background-color: $header-background-color !default;
 $header-foreground-color: $secondary-foreground-color !default;
 
-$hover-color: transparentize($color-primary, 0.9) !default;
+$hover-color: $color-row-hover !default;
 $chip-background-color: $color-background-chip !default;
 
 $row-stub-background-color: inherit !default;

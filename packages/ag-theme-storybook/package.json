@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@storybook/addon-knobs": "^5.2.1",
     "ag-grid-community": "21.2.1",
     "ag-grid-enterprise": "21.2.1",
     "ag-grid-react": "21.2.1",

@@ -10,8 +10,13 @@ export declare class Environment {
     isThemeDark(): boolean;
     useNativeCheckboxes(): boolean;
     getTheme(): {
-        theme?: string;
-        el?: HTMLElement;
+        theme?: undefined;
+        el?: undefined;
+        themeFamily?: undefined;
+    } | {
+        theme: string;
+        el: HTMLElement;
+        themeFamily: string;
     };
     chartMenuPanelWidth(): number;
     private getThemeOnce;

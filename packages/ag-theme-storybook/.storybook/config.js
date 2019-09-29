@@ -1,11 +1,4 @@
-import { configure } from "@storybook/react";
-// import theme from "./theme";
-
-// addParameters({
-//   options: {
-//     theme: theme
-//   }
-// });
-
-// automatically import all files ending in *.stories.js
+import { configure, addDecorator } from "@storybook/react";
+import { withKnobs } from "@storybook/addon-knobs";
+addDecorator(withKnobs);
 configure(require.context("../stories", true, /\.stories\.js$/), module);

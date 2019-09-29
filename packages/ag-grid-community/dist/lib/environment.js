@@ -67,7 +67,7 @@ var Environment = /** @class */ (function () {
     function Environment() {
     }
     Environment.prototype.getSassVariable = function (theme, key) {
-        var useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : 'classic');
+        var useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : theme.match('alpine') ? 'alpine' : 'classic');
         var defaultValue = HARD_CODED_SIZES[useTheme][key];
         var calculatedValue = 0;
         if (!CALCULATED_SIZES[theme]) {
@@ -109,7 +109,7 @@ var Environment = /** @class */ (function () {
         return this.getThemeOnce();
     };
     Environment.prototype.chartMenuPanelWidth = function () {
-        return HARD_CODED_SIZES[this.getTheme().theme].chartMenuPanelWidth;
+        return HARD_CODED_SIZES[this.getTheme().themeFamily].chartMenuPanelWidth;
     };
     // Traversing the tree is expensive, and the
     // theme getter will happen with every checkbox aksing if native or not.
@@ -139,7 +139,7 @@ var Environment = /** @class */ (function () {
             this.theme = theme_1;
             this.themeElement = el;
         }
-        return { theme: this.theme, el: this.themeElement };
+        return { theme: this.theme, el: this.themeElement, themeFamily: this.theme.replace(/-dark$/, '') };
     };
     __decorate([
         context_1.Autowired('eGridDiv'),

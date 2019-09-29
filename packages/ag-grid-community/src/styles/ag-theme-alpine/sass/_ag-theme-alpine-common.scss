@@ -3,6 +3,12 @@
 
 @mixin ag-theme-alpine($params) {
     @include ag-grid-theme($params);
+    color: $color-foreground;
+
+    &.ag-popup {
+        color: $color-foreground;
+    }
+
     .ag-cell,
     .ag-header-cell,
     .ag-header-group-cell {
@@ -387,6 +393,8 @@
         textarea {
             @extend %custom-selection;
             border: 0;
+            color: $color-foreground;
+            background: $color-background;
             font: $font-default;
             padding: $grid-size * 2 $grid-size * 3;
         }
@@ -837,6 +845,8 @@
                 border: 1px solid $color-primary;
                 border-radius: $border-radius;
                 padding: $grid-size;
+                color: $color-foreground;
+                background: $color-background;
             }
 
             select {
@@ -947,6 +957,17 @@
             background-color: unset;
             border: unset;
             border-radius: unset;
+        }
+    }
+
+    .ag-angle-select {
+        .ag-angle-select-field {
+            .ag-parent-circle {
+                background-color: $color-border-form-element;
+            }
+            .ag-child-circle {
+                background-color: $color-background;
+            }
         }
     }
 }

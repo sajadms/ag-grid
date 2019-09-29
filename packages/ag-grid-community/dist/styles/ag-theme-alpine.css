@@ -5,10 +5,10 @@
   font-weight: normal;
   font-style: normal; }
 
-.ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-filter, .ag-theme-alpine .ag-input-wrapper input:not([type]), .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-chart .ag-chart-format input[type='number'], .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select, .ag-theme-alpine .ag-chart .ag-chart-format select, .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-filter, .ag-theme-alpine .ag-filter .ag-filter-condition label, .ag-theme-alpine .ag-filter .ag-filter-apply-panel button[ref='eClearButton'], .ag-theme-alpine .ag-filter .ag-filter-apply-panel button, .ag-theme-alpine .ag-floating-filter-button button {
+.ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-filter, .ag-theme-alpine .ag-input-wrapper input:not([type]), .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-chart .ag-chart-format input[type='number'], .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select, .ag-theme-alpine .ag-chart .ag-chart-format select, .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-filter, .ag-theme-alpine .ag-filter .ag-filter-condition label, .ag-theme-alpine .ag-filter .ag-filter-apply-panel button, .ag-theme-alpine .ag-floating-filter-button button {
   font: 400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
 
-.ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-filter, .ag-theme-alpine .ag-input-wrapper input:not([type]), .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-chart .ag-chart-format input[type='number'], .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select, .ag-theme-alpine .ag-chart .ag-chart-format select, .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-filter, .ag-theme-alpine .ag-filter .ag-filter-condition input[type='radio'], .ag-theme-alpine .ag-chart .ag-chart-data .ag-radio-button input[type='radio'], .ag-theme-alpine .ag-filter .ag-filter-apply-panel button[ref='eClearButton'], .ag-theme-alpine .ag-filter .ag-filter-apply-panel button, .ag-theme-alpine .ag-floating-filter-button button {
+.ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-filter, .ag-theme-alpine .ag-input-wrapper input:not([type]), .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-chart .ag-chart-format input[type='number'], .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select, .ag-theme-alpine .ag-chart .ag-chart-format select, .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-filter, .ag-theme-alpine .ag-filter .ag-filter-condition input[type='radio'], .ag-theme-alpine .ag-chart .ag-chart-data .ag-radio-button input[type='radio'], .ag-theme-alpine .ag-filter .ag-filter-apply-panel button, .ag-theme-alpine .ag-floating-filter-button button {
   transition: box-shadow 0.1s ease-out; }
   .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-filter:focus, .ag-theme-alpine .ag-input-wrapper input:focus:not([type]), .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-input-wrapper .ag-cell-edit-input:focus, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-input-wrapper .ag-cell-edit-input:focus, .ag-theme-alpine .ag-chart .ag-chart-format input:focus[type='number'], .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select:focus, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select:focus, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select:focus, .ag-theme-alpine .ag-chart .ag-chart-format select:focus, .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-filter:focus, .ag-theme-alpine .ag-filter .ag-filter-condition input:focus[type='radio'], .ag-theme-alpine .ag-chart .ag-chart-data .ag-radio-button input:focus[type='radio'], .ag-theme-alpine .ag-filter .ag-filter-apply-panel button:focus, .ag-theme-alpine .ag-floating-filter-button button:focus {
     border-color: #2196f3;
@@ -17,8 +17,8 @@
 .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-filter, .ag-theme-alpine .ag-input-wrapper input:not([type]), .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-chart .ag-chart-format input[type='number'], .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select, .ag-theme-alpine .ag-chart .ag-chart-format select, .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-filter, .ag-theme-alpine .ag-popup > div.ag-popup-editor textarea, .ag-theme-alpine .ag-chart .ag-chart-format textarea {
   caret-color: #2196f3; }
   .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-filter::selection, .ag-theme-alpine .ag-input-wrapper input:not([type])::selection, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-input-wrapper .ag-cell-edit-input::selection, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-input-wrapper .ag-cell-edit-input::selection, .ag-theme-alpine .ag-chart .ag-chart-format input[type='number']::selection, .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select::selection, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select::selection, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select::selection, .ag-theme-alpine .ag-chart .ag-chart-format select::selection, .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-filter::selection, .ag-theme-alpine .ag-popup > div.ag-popup-editor textarea::selection, .ag-theme-alpine .ag-chart .ag-chart-format textarea::selection {
-    background-color: #2196f3;
-    color: #fff; }
+    color: #fff;
+    background-color: #2196f3; }
 
 .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-filter, .ag-theme-alpine .ag-input-wrapper input:not([type]), .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-input-wrapper .ag-cell-edit-input, .ag-theme-alpine .ag-chart .ag-chart-format input[type='number'], .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select, .ag-theme-alpine .ag-chart .ag-chart-format select, .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-filter {
   appearance: none;
@@ -27,6 +27,7 @@
   padding: 6px;
   border: 1px solid #babfc7;
   background: #fff;
+  color: #181d1f;
   box-sizing: border-box; }
 
 .ag-theme-alpine .ag-filter .ag-filter-body-wrapper .ag-filter-select, .ag-theme-alpine .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select, .ag-theme-alpine .ag-popup > div.ag-popup-editor .ag-cell-edit-input select, .ag-theme-alpine .ag-chart .ag-chart-format select {
@@ -64,7 +65,7 @@
     margin-left: 2px;
     margin-top: 2px; }
 
-.ag-theme-alpine .ag-filter .ag-filter-apply-panel button[ref='eClearButton'], .ag-theme-alpine .ag-filter .ag-filter-apply-panel button, .ag-theme-alpine .ag-floating-filter-button button {
+.ag-theme-alpine .ag-filter .ag-filter-apply-panel button, .ag-theme-alpine .ag-floating-filter-button button {
   appearance: none;
   -webkit-appearance: none;
   border-radius: 3px;
@@ -177,11 +178,12 @@
 .ag-theme-alpine {
   -webkit-font-smoothing: antialiased;
   background-color: #fff;
-  color: #223;
+  color: #181d1f;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   font-weight: 400;
   font-size: 14px;
-  line-height: normal; }
+  line-height: normal;
+  color: #181d1f; }
   .ag-theme-alpine label {
     margin-bottom: 0; }
   .ag-theme-alpine * {
@@ -655,16 +657,16 @@
   .ag-theme-alpine .ag-input-wrapper input[type='datetime-local'] {
     border-width: 1px;
     border-style: solid;
-    border-color: #68686e; }
+    border-color: #babfc7; }
     .ag-theme-alpine .ag-input-wrapper input:not([type]):disabled,
     .ag-theme-alpine .ag-input-wrapper input[type='text']:disabled,
     .ag-theme-alpine .ag-input-wrapper input[type='number']:disabled,
     .ag-theme-alpine .ag-input-wrapper input[type='tel']:disabled,
     .ag-theme-alpine .ag-input-wrapper input[type='date']:disabled,
     .ag-theme-alpine .ag-input-wrapper input[type='datetime-local']:disabled {
-      color: #222233;
-      background-color: #ebebeb;
-      border-color: rgba(104, 104, 110, 0.3); }
+      color: #181d1f;
+      background-color: rgba(186, 191, 199, 0.2);
+      border-color: rgba(186, 191, 199, 0.3); }
   .ag-theme-alpine .ag-input-wrapper input[type='date'] {
     flex: 1 1 auto; }
   .ag-theme-alpine .ag-input-wrapper input[type='range'] {
@@ -672,14 +674,14 @@
   .ag-theme-alpine .ag-input-wrapper textarea {
     border-width: 1px;
     border-style: solid;
-    border-color: #68686e; }
+    border-color: #babfc7; }
     .ag-theme-alpine .ag-input-wrapper textarea:disabled {
-      color: #222233;
-      background-color: #ebebeb;
-      border-color: rgba(104, 104, 110, 0.3); }
+      color: #181d1f;
+      background-color: rgba(186, 191, 199, 0.2);
+      border-color: rgba(186, 191, 199, 0.3); }
   .ag-theme-alpine .ag-header {
     background-color: #fff;
-    color: #222233;
+    color: #181d1f;
     font-weight: 700;
     font-size: 13px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -804,7 +806,7 @@
     box-shadow: none;
     padding: 6px;
     border: 1px solid rgba(186, 191, 199, 0.5);
-    color: #222233;
+    color: #181d1f;
     font-weight: 700;
     font-size: 13px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -914,7 +916,7 @@
     .ag-theme-alpine .ag-tool-panel-wrapper .ag-filter-panel {
       width: 100%; }
       .ag-theme-alpine .ag-tool-panel-wrapper .ag-filter-panel .ag-filter-toolpanel-instance {
-        color: #222233;
+        color: #181d1f;
         font-weight: 600;
         flex: auto;
         flex-direction: column;
@@ -949,7 +951,7 @@
       padding: 6px 0;
       padding-bottom: 12px; }
       .ag-theme-alpine .ag-tool-panel-wrapper .ag-column-drop .ag-column-drop-empty-message {
-        color: #222233;
+        color: #181d1f;
         font-weight: 700;
         font-size: 13px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -969,7 +971,7 @@
     margin-right: 6px; }
   .ag-theme-alpine .ag-paging-panel {
     border-top: 1px solid rgba(186, 191, 199, 0.5);
-    color: #222233;
+    color: #181d1f;
     height: 48px;
     padding: 0 18px; }
     .ag-theme-alpine .ag-paging-panel > span {
@@ -986,7 +988,7 @@
     left: 0;
     padding: 0; }
   .ag-theme-alpine .ag-paging-page-summary-panel .ag-paging-button.ag-disabled .ag-icon {
-    color: #222233;
+    color: #181d1f;
     opacity: 1; }
   .ag-theme-alpine .ag-paging-page-summary-panel .ag-paging-button.ag-disabled button {
     cursor: default; }
@@ -1012,9 +1014,9 @@
   .ag-theme-alpine .ag-cell-range-selected:not(.ag-cell-focus) {
     background-color: #fff3e0; }
     .ag-theme-alpine .ag-cell-range-selected:not(.ag-cell-focus).ag-cell-range-chart {
-      background-color: rgba(0, 88, 255, 0.1); }
+      background-color: rgba(33, 150, 243, 0.1); }
     .ag-theme-alpine .ag-cell-range-selected:not(.ag-cell-focus).ag-cell-range-chart.ag-cell-range-chart-category {
-      background-color: rgba(0, 255, 132, 0.1); }
+      background-color: rgba(118, 255, 3, 0.1); }
   .ag-theme-alpine .ag-cell-range-selected-1:not(.ag-cell-focus) {
     background-color: navajowhite; }
   .ag-theme-alpine .ag-cell-range-selected-2:not(.ag-cell-focus) {
@@ -1209,7 +1211,7 @@
     background: #fff;
     border: 1px solid rgba(186, 191, 199, 0.5);
     border-top-width: 0;
-    color: #222233;
+    color: #181d1f;
     font-weight: 700;
     font-size: 13px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -1217,7 +1219,7 @@
     padding-left: 24px;
     line-height: 1.5; }
   .ag-theme-alpine .ag-name-value-value {
-    color: #223; }
+    color: #181d1f; }
   .ag-theme-alpine .ag-status-bar-center {
     text-align: center; }
   .ag-theme-alpine .ag-name-value {
@@ -1247,7 +1249,7 @@
       .ag-theme-alpine .ag-side-bar .ag-side-buttons .ag-side-button button {
         background: transparent;
         border: 0;
-        color: #223;
+        color: #181d1f;
         padding: 12px 0 12px 0;
         width: 100%;
         margin: 0;
@@ -1414,11 +1416,11 @@
     .ag-theme-alpine .ag-panel .ag-title-bar {
       background-color: #fff;
       border-bottom: 1px solid rgba(214, 217, 222, 0.5);
-      color: #222233;
+      color: #181d1f;
       height: 48px;
-      font-size: 13px;
-      font-weight: 700;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      font-family: "Helvetica Neue", sans-serif;
       padding: 5px 10px;
       padding-left: 18px; }
       .ag-theme-alpine .ag-panel .ag-title-bar .ag-title-bar-buttons .ag-button {
@@ -1440,7 +1442,7 @@
         border-radius: 2px; }
   .ag-theme-alpine .ag-tooltip {
     background-color: #fcfdfe;
-    color: #223;
+    color: #181d1f;
     border-radius: 3px;
     padding: 5px;
     border-width: 1px;
@@ -1470,7 +1472,7 @@
     .ag-theme-alpine .ag-chart-tabbed-menu .ag-chart-settings .ag-chart-settings-mini-wrapper .ag-chart-mini-thumbnail.ag-selected {
       border-color: #2196f3; }
   .ag-theme-alpine .ag-chart-tabbed-menu .ag-chart-settings .ag-chart-settings-nav-bar .ag-nav-card-selector .ag-nav-card-item {
-    color: #223;
+    color: #181d1f;
     font-size: 12px; }
     .ag-theme-alpine .ag-chart-tabbed-menu .ag-chart-settings .ag-chart-settings-nav-bar .ag-nav-card-selector .ag-nav-card-item.ag-selected {
       color: #2196f3; }
@@ -1481,7 +1483,7 @@
     font-family: "agGridBalham";
     speak: none;
     font-size: 16px;
-    color: #babfc7;
+    color: lightgray;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -1609,7 +1611,7 @@
       cursor: default;
       opacity: 1; }
   .ag-theme-alpine .ag-icon-checkbox-checked {
-    color: #2196f3; }
+    color: transparent; }
     .ag-theme-alpine .ag-icon-checkbox-checked-readonly:before {
       content: "\E905"; }
   .ag-theme-alpine .ag-icon-checkbox-indeterminate-readonly:before {
@@ -1621,7 +1623,7 @@
   .ag-theme-alpine .ag-right-arrow:before {
     content: "\E91A"; }
   .ag-theme-alpine .ag-icon-radio-button-on {
-    color: #2196f3; }
+    color: transparent; }
   .ag-theme-alpine .ag-right-arrow:before {
     content: "\E92A"; }
   .ag-theme-alpine .ag-rtl {
@@ -1697,6 +1699,8 @@
   .ag-theme-alpine .sass-variables::after {
     content: '{ "autoSizePadding": "18px", "headerHeight": "48px", "groupPaddingSize": "34px", "footerPaddingAddition": "24px", "virtualItemHeight": "30px", "aggFuncPopupHeight": "105px", "checkboxIndentWidth": "22px", "leafNodePadding": "18px", "rowHeight": "42px", "gridSize": "6px", "iconSize": "16px" }';
     display: none; }
+  .ag-theme-alpine.ag-popup {
+    color: #181d1f; }
   .ag-theme-alpine .ag-cell,
   .ag-theme-alpine .ag-header-cell,
   .ag-theme-alpine .ag-header-group-cell {
@@ -1749,7 +1753,7 @@
     display: block;
     margin: 0; }
     .ag-theme-alpine .ag-filter .ag-native-checkbox:focus {
-      box-shadow: 0 0 1px 1px rgba(33, 150, 243, 0.4);
+      box-shadow: 0 0 2px 0.1rem rgba(33, 150, 243, 0.4);
       border-color: #2196f3;
       outline: none; }
     .ag-theme-alpine .ag-filter .ag-native-checkbox::before {
@@ -1792,7 +1796,7 @@
       border-bottom-width: 1.5px;
       height: 0px; }
     .ag-theme-alpine .ag-filter .ag-native-checkbox:disabled {
-      background-color: rgba(186, 191, 199, 0.3);
+      background-color: rgba(186, 191, 199, 0.2);
       border-color: rgba(186, 191, 199, 0.3); }
     .ag-theme-alpine .ag-filter .ag-native-checkbox:checked:disabled {
       background-color: rgba(33, 150, 243, 0.5);
@@ -1852,6 +1856,7 @@
     .ag-theme-alpine .ag-tab-body .ag-menu-list > div:last-child > span {
       padding-bottom: 6px; }
   .ag-theme-alpine.ag-popup > div:not(.ag-tooltip-custom) {
+    box-shadow: 0 0 2px 0.1rem rgba(186, 191, 199, 0.4);
     border: 1px solid #babfc7;
     border-radius: 3px;
     box-shadow: 0 0 2px 0.1rem rgba(186, 191, 199, 0.4); }
@@ -1870,7 +1875,7 @@
     display: block;
     margin: 0; }
     .ag-theme-alpine .ag-selection-checkbox input:focus {
-      box-shadow: 0 0 1px 1px rgba(255, 152, 0, 0.4);
+      box-shadow: 0 0 2px 0.1rem rgba(255, 152, 0, 0.4);
       border-color: #ff9800;
       outline: none; }
     .ag-theme-alpine .ag-selection-checkbox input::before {
@@ -1913,7 +1918,7 @@
       border-bottom-width: 1.5px;
       height: 0px; }
     .ag-theme-alpine .ag-selection-checkbox input:disabled {
-      background-color: rgba(186, 191, 199, 0.3);
+      background-color: rgba(186, 191, 199, 0.2);
       border-color: rgba(186, 191, 199, 0.3); }
     .ag-theme-alpine .ag-selection-checkbox input:checked:disabled {
       background-color: rgba(255, 152, 0, 0.5);
@@ -1932,7 +1937,7 @@
     display: block;
     margin: 0; }
     .ag-theme-alpine .ag-checkbox input:focus {
-      box-shadow: 0 0 1px 1px rgba(255, 152, 0, 0.4);
+      box-shadow: 0 0 2px 0.1rem rgba(255, 152, 0, 0.4);
       border-color: #ff9800;
       outline: none; }
     .ag-theme-alpine .ag-checkbox input::before {
@@ -1975,7 +1980,7 @@
       border-bottom-width: 1.5px;
       height: 0px; }
     .ag-theme-alpine .ag-checkbox input:disabled {
-      background-color: rgba(186, 191, 199, 0.3);
+      background-color: rgba(186, 191, 199, 0.2);
       border-color: rgba(186, 191, 199, 0.3); }
     .ag-theme-alpine .ag-checkbox input:checked:disabled {
       background-color: rgba(255, 152, 0, 0.5);
@@ -2053,8 +2058,8 @@
       background-position: right 6px top 12px;
       font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
   .ag-theme-alpine .ag-popup > div.ag-popup-editor {
-    min-height: 42px;
     box-shadow: 0 0 2px 0.1rem rgba(33, 150, 243, 0.4);
+    min-height: 42px;
     border-color: #2196f3;
     border-radius: 0;
     padding: 0;
@@ -2072,6 +2077,8 @@
       background-position: right 6px top 12px; }
     .ag-theme-alpine .ag-popup > div.ag-popup-editor textarea {
       border: 0;
+      color: #181d1f;
+      background: #fff;
       font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
       padding: 12px 18px; }
   .ag-theme-alpine .ag-rich-select .ag-rich-select-value {
@@ -2084,8 +2091,8 @@
   .ag-theme-alpine .ag-rich-select .ag-virtual-list-item {
     height: 30px; }
   .ag-theme-alpine .ag-rich-select .ag-rich-select-row-selected {
-    background-color: #2196f3;
-    color: #fff; }
+    color: #fff;
+    background-color: #2196f3; }
   .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-header-panel {
     border-top: 0;
     padding-left: 6px;
@@ -2106,7 +2113,7 @@
       display: block;
       margin: 0; }
       .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-header-panel .ag-checkbox:focus {
-        box-shadow: 0 0 1px 1px rgba(33, 150, 243, 0.4);
+        box-shadow: 0 0 2px 0.1rem rgba(33, 150, 243, 0.4);
         border-color: #2196f3;
         outline: none; }
       .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-header-panel .ag-checkbox::before {
@@ -2149,7 +2156,7 @@
         border-bottom-width: 1.5px;
         height: 0px; }
       .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-header-panel .ag-checkbox:disabled {
-        background-color: rgba(186, 191, 199, 0.3);
+        background-color: rgba(186, 191, 199, 0.2);
         border-color: rgba(186, 191, 199, 0.3); }
       .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-header-panel .ag-checkbox:checked:disabled {
         background-color: rgba(33, 150, 243, 0.5);
@@ -2172,7 +2179,7 @@
     display: block;
     margin: 0; }
     .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-list-panel .ag-checkbox input:focus {
-      box-shadow: 0 0 1px 1px rgba(33, 150, 243, 0.4);
+      box-shadow: 0 0 2px 0.1rem rgba(33, 150, 243, 0.4);
       border-color: #2196f3;
       outline: none; }
     .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-list-panel .ag-checkbox input::before {
@@ -2215,7 +2222,7 @@
       border-bottom-width: 1.5px;
       height: 0px; }
     .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-list-panel .ag-checkbox input:disabled {
-      background-color: rgba(186, 191, 199, 0.3);
+      background-color: rgba(186, 191, 199, 0.2);
       border-color: rgba(186, 191, 199, 0.3); }
     .ag-theme-alpine .ag-column-select-panel .ag-primary-cols-list-panel .ag-checkbox input:checked:disabled {
       background-color: rgba(33, 150, 243, 0.5);
@@ -2283,7 +2290,8 @@
   .ag-theme-alpine .ag-status-bar {
     border: 0;
     border-top: 1px solid #babfc7;
-    font: 400 11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font: 400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 11px;
     padding-left: 18px;
     padding-right: 18px; }
     .ag-theme-alpine .ag-status-bar div.ag-name-value:first-child {
@@ -2305,16 +2313,16 @@
           -webkit-appearance: none;
           width: 28px;
           height: 18px;
-          background: #babfc7;
-          border: 1px solid #babfc7;
+          background-color: #babfc7;
+          border-color: #babfc7;
           border-radius: 9px;
-          transition: all 0.2s linear;
           margin: 0;
           position: relative; }
           .ag-theme-alpine .ag-side-bar .ag-tool-panel-wrapper .ag-pivot-mode-select input:focus {
-            box-shadow: none; }
+            box-shadow: none;
+            border-color: #babfc7; }
           .ag-theme-alpine .ag-side-bar .ag-tool-panel-wrapper .ag-pivot-mode-select input:checked {
-            background: #2196f3;
+            background-color: #2196f3;
             border-color: #2196f3; }
           .ag-theme-alpine .ag-side-bar .ag-tool-panel-wrapper .ag-pivot-mode-select input::before {
             box-sizing: border-box;
@@ -2351,7 +2359,7 @@
     .ag-theme-alpine .ag-side-bar .ag-column-drop {
       padding-top: 0; }
       .ag-theme-alpine .ag-side-bar .ag-column-drop > div:first-child {
-        background: #fff;
+        background-color: #fff;
         padding: 12px 12px;
         border-bottom: 1px solid rgba(186, 191, 199, 0.5); }
         .ag-theme-alpine .ag-side-bar .ag-column-drop > div:first-child > span:first-child {
@@ -2426,11 +2434,11 @@
   .ag-theme-alpine .ag-panel .ag-title-bar {
     background-color: #fff;
     border-bottom: 1px solid #babfc7;
-    color: #222233;
+    color: #181d1f;
     height: 48px;
-    font-size: 13px;
-    font-weight: 700;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: "Helvetica Neue", sans-serif;
     padding: 6px 18px; }
     .ag-theme-alpine .ag-panel .ag-title-bar .ag-title-bar-buttons .ag-button {
       height: 20px;
@@ -2494,7 +2502,7 @@
     margin: 0;
     margin-right: 2px; }
     .ag-theme-alpine .ag-chart .ag-native-checkbox:focus {
-      box-shadow: 0 0 1px 1px rgba(33, 150, 243, 0.4);
+      box-shadow: 0 0 2px 0.1rem rgba(33, 150, 243, 0.4);
       border-color: #2196f3;
       outline: none; }
     .ag-theme-alpine .ag-chart .ag-native-checkbox::before {
@@ -2537,7 +2545,7 @@
       border-bottom-width: 1.5px;
       height: 0px; }
     .ag-theme-alpine .ag-chart .ag-native-checkbox:disabled {
-      background-color: rgba(186, 191, 199, 0.3);
+      background-color: rgba(186, 191, 199, 0.2);
       border-color: rgba(186, 191, 199, 0.3); }
     .ag-theme-alpine .ag-chart .ag-native-checkbox:checked:disabled {
       background-color: rgba(33, 150, 243, 0.5);
@@ -2551,6 +2559,57 @@
   .ag-theme-alpine .ag-chart .ag-chart-format input[type='number'] {
     font-size: 0.9em;
     padding-right: 0; }
+  .ag-theme-alpine .ag-chart .ag-chart-format input.ag-native-toggle-button {
+    flex: none;
+    width: unset;
+    min-width: unset;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    width: 28px;
+    height: 18px;
+    background-color: #babfc7;
+    border-color: #babfc7;
+    border-radius: 9px;
+    margin: 0;
+    position: relative; }
+    .ag-theme-alpine .ag-chart .ag-chart-format input.ag-native-toggle-button:focus {
+      box-shadow: none;
+      border-color: #babfc7; }
+    .ag-theme-alpine .ag-chart .ag-chart-format input.ag-native-toggle-button:checked {
+      background-color: #2196f3;
+      border-color: #2196f3; }
+    .ag-theme-alpine .ag-chart .ag-chart-format input.ag-native-toggle-button::before {
+      box-sizing: border-box;
+      height: 18px;
+      width: 18px;
+      content: ' ';
+      background: white;
+      display: inline-block;
+      position: absolute;
+      border-radius: 9px;
+      transition: left 100ms linear;
+      top: 0px;
+      left: 0px;
+      visibility: visible;
+      border: 1px solid #babfc7;
+      padding: 0; }
+    .ag-theme-alpine .ag-chart .ag-chart-format input.ag-native-toggle-button:checked::before {
+      left: 11px;
+      border-color: #2196f3; }
+    .ag-theme-alpine .ag-chart .ag-chart-format input.ag-native-toggle-button::after {
+      content: ' ';
+      line-height: 20px;
+      display: block;
+      text-align: right;
+      padding-left: 5px;
+      padding-right: 5px;
+      transform: none;
+      width: auto;
+      height: auto;
+      border: 0; }
+    .ag-theme-alpine .ag-chart .ag-chart-format input.ag-native-toggle-button:checked::after {
+      text-align: left;
+      content: ' '; }
   .ag-theme-alpine .ag-group-component {
     background: #fcfdfe;
     border-top: 0; }
@@ -2588,16 +2647,16 @@
         -webkit-appearance: none;
         width: 28px;
         height: 18px;
-        background: #babfc7;
-        border: 1px solid #babfc7;
+        background-color: #babfc7;
+        border-color: #babfc7;
         border-radius: 9px;
-        transition: all 0.2s linear;
         margin: 0;
         position: relative; }
         .ag-theme-alpine .ag-group-component .ag-group-component-toolbar input.ag-native-checkbox:focus {
-          box-shadow: none; }
+          box-shadow: none;
+          border-color: #babfc7; }
         .ag-theme-alpine .ag-group-component .ag-group-component-toolbar input.ag-native-checkbox:checked {
-          background: #2196f3;
+          background-color: #2196f3;
           border-color: #2196f3; }
         .ag-theme-alpine .ag-group-component .ag-group-component-toolbar input.ag-native-checkbox::before {
           box-sizing: border-box;
@@ -2637,8 +2696,14 @@
     border-radius: 3px;
     border-color: #babfc7; }
     .ag-theme-alpine .ag-color-picker > .ag-wrapper > div {
-      height: 30px; }
+      height: 24px; }
   .ag-theme-alpine .ag-color-panel .ag-spectrum-slider {
     border: 1px solid #babfc7;
     box-shadow: 0 0px 1px 1px #fff; }
+  .ag-theme-alpine .ag-toggle-button.ag-selected .ag-input-wrapper {
+    background: unset; }
+  .ag-theme-alpine .ag-toggle-button .ag-input-wrapper {
+    background-color: unset;
+    border: unset;
+    border-radius: unset; }
 

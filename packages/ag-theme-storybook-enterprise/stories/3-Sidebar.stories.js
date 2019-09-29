@@ -2,6 +2,7 @@ import { storiesOf } from "@storybook/react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { withKnobs, text } from "@storybook/addon-knobs";
+import { themeKnob } from "./knobs";
 
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
@@ -97,7 +98,7 @@ const columnDefs = [
 export const SideBarDefaultFeatureSet = () => {
   return (
     <div
-      className="ag-theme-alpine"
+      className={themeKnob()}
       style={{
         height: "800px",
         width: "1200px"
@@ -132,7 +133,7 @@ export const SideBarDefaultFeatureSet = () => {
 export const Charts = () => {
   return (
     <div
-      className={text("Theme", "ag-theme-alpine")}
+      className={themeKnob()}
       style={{
         height: "800px",
         width: "1200px"

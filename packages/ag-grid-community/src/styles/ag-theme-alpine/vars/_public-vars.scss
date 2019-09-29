@@ -14,10 +14,26 @@ $color-border-primary: $alpine-gray-4 !default;
 $color-border-secondary: transparentize($alpine-gray-4, 0.5) !default;
 $color-icon: $alpine-gray-4 !default;
 
+// selection
+$color-selected: lighten($color-secondary, 40) !default;
+$color-background-range-selection: lighten($color-secondary, 44) !default;
+$color-background-range-selected-1: darken($color-background-range-selection, 10) !default;
+$color-background-range-selected-2: darken($color-background-range-selection, 20) !default;
+$color-background-range-selected-3: darken($color-background-range-selection, 30) !default;
+$color-background-range-selected-4: darken($color-background-range-selection, 40) !default;
+
+$color-row-hover: transparentize($color-primary, 0.9) !default;
+
+$color-chrome-shadow: $alpine-gray-4 !default;
+
+// dropdown arrow
+$url-data-image-dropdown-arrow: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPg0KPHBhdGggZD0iTTI0LjcwOCAxMi4zNTVsLTguNzA4IDguNzA2LTguNzA4LTguNzA2IDEuNDE2LTEuNDE2IDcuMjkyIDcuMjk0IDcuMjkyLTcuMjk0YzAuNDcyIDAuNDcyIDAuOTQ0IDAuOTQ0IDEuNDE2IDEuNDE2eiI+PC9wYXRoPg0KPC9zdmc+') !default;
+
 // forms
 $color-form-element-secondary: $alpine-gray-3;
 $color-border-form-element: $alpine-gray-4 !default;
 $color-background-form-element-disabled: transparentize($alpine-gray-4, 0.8) !default;
+$color-background-toggle-button: $alpine-gray-4 !default;
 
 // chart selections
 $color-background-chart-range-selection-category: $alpine-green !default;

@@ -17,7 +17,7 @@ $checkbox-border-radius: $border-radius;
 }
 
 @mixin chrome-box-shadow {
-    @include box-shadow($color-border-primary);
+    box-shadow: 0 1px 4px 1px transparentize($color-chrome-shadow, 0.6);
 }
 
 @mixin checkbox($color: $color-secondary) {
@@ -131,6 +131,7 @@ $checkbox-border-radius: $border-radius;
     padding: $grid-size;
     border: 1px solid $color-border-form-element;
     background: $color-background;
+    color: $color-foreground;
     box-sizing: border-box;
 }
 
@@ -143,7 +144,7 @@ $checkbox-border-radius: $border-radius;
 }
 
 @mixin with-dropdown-arrow() {
-    background-image: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPg0KPHBhdGggZD0iTTI0LjcwOCAxMi4zNTVsLTguNzA4IDguNzA2LTguNzA4LTguNzA2IDEuNDE2LTEuNDE2IDcuMjkyIDcuMjk0IDcuMjkyLTcuMjk0YzAuNDcyIDAuNDcyIDAuOTQ0IDAuOTQ0IDEuNDE2IDEuNDE2eiI+PC9wYXRoPg0KPC9zdmc+') !important;
+    background-image: $url-data-image-dropdown-arrow !important;
     background-repeat: no-repeat;
     background-position: right $grid-size top $grid-size;
     background-size: $grid-size * 3;
@@ -241,20 +242,20 @@ $checkbox-border-radius: $border-radius;
 $toggle-button-height: 18px;
 $toggle-button-width: 28px;
 
-@mixin toggle-button($color: $color-primary, $color-background: $color-background) {
+@mixin toggle-button($color: $color-primary) {
     box-sizing: border-box;
     -webkit-appearance: none;
     width: $toggle-button-width;
     height: $toggle-button-height;
-    background-color: $color-border-form-element;
+    background-color: $color-background-toggle-button;
+    border-color: $color-background-toggle-button;
     border-radius: $toggle-button-height / 2;
-    transition: all 0.2s linear;
     margin: 0;
     position: relative;
 
     &:focus {
         box-shadow: none;
-        border-color: $color-border-form-element;
+        border-color: $color-background-toggle-button;
     }
 
     &:checked {

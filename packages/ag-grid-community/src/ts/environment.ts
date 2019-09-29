@@ -65,7 +65,7 @@ export class Environment {
     private theme: string | undefined;
 
     public getSassVariable(theme: string, key: SASS_PROPERTIES): number {
-        const useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : 'classic');
+        const useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : theme.match('alpine') ? 'alpine' : 'classic');
         const defaultValue = HARD_CODED_SIZES[useTheme][key];
         let calculatedValue = 0;
 
@@ -114,12 +114,12 @@ export class Environment {
         return !!theme && theme.indexOf('alpine') >= 0;
     }
 
-    public getTheme(): { theme?: string; el?: HTMLElement } {
+    public getTheme() {
         return this.getThemeOnce();
     }
 
     public chartMenuPanelWidth() {
-        return HARD_CODED_SIZES[this.getTheme().theme].chartMenuPanelWidth;
+        return HARD_CODED_SIZES[this.getTheme().themeFamily].chartMenuPanelWidth;
     }
 
     // Traversing the tree is expensive, and the
@@ -154,6 +154,6 @@ export class Environment {
             this.theme = theme;
             this.themeElement = el;
         }
-        return { theme: this.theme, el: this.themeElement };
+        return { theme: this.theme, el: this.themeElement, themeFamily: this.theme.replace(/-dark$/, '') };
     }
 }

@@ -2,6 +2,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
+import { themeKnob } from "./knobs";
 
 export default {
   title: "Editing"
@@ -99,7 +100,7 @@ const columnDefs = [
 
 export const EditorsAvailableInCommunity = () => (
   <div
-    className="ag-theme-alpine"
+    className={themeKnob()}
     style={{
       height: "500px",
       width: "100%"

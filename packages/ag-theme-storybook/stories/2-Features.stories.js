@@ -2,6 +2,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { AgGridReact } from "ag-grid-react";
 import React, { useRef } from "react";
+import { themeKnob } from "./knobs";
 
 export default {
   title: "Basic Features"
@@ -75,7 +76,7 @@ const columnDefs = [
 
 export const HeaderTooltip = () => (
   <div
-    className="ag-theme-alpine"
+    className={themeKnob()}
     style={{
       height: "500px",
       width: "600px"
@@ -111,7 +112,7 @@ const columnGroupDefs = [
 
 export const ColumnGroups = () => (
   <div
-    className="ag-theme-alpine"
+    className={themeKnob()}
     style={{
       height: "500px",
       width: "600px"
@@ -123,7 +124,7 @@ export const ColumnGroups = () => (
 
 export const ResizableColumnGroups = () => (
   <div
-    className="ag-theme-alpine"
+    className={themeKnob()}
     style={{
       height: "500px",
       width: "600px"
@@ -168,7 +169,7 @@ const pinnedColumnDefs = [
 
 export const PinnedColumns = () => (
   <div
-    className="ag-theme-alpine"
+    className={themeKnob()}
     style={{
       height: "500px",
       width: "700px"
@@ -184,7 +185,7 @@ export const PinnedColumns = () => (
 
 export const DraggableRows = () => (
   <div
-    className="ag-theme-alpine"
+    className={themeKnob()}
     style={{
       height: "500px",
       width: "600px"
@@ -203,7 +204,7 @@ export const DraggableRows = () => (
 
 export const Selection = () => (
   <div
-    className="ag-theme-alpine"
+    className={themeKnob()}
     style={{
       height: "500px",
       width: "600px"
@@ -220,7 +221,7 @@ export const Selection = () => (
 export const FloatingFilter = () => {
   return (
     <div
-      className="ag-theme-alpine"
+      className={themeKnob()}
       style={{
         height: "500px",
         width: "900px"
@@ -254,7 +255,7 @@ export const Overlay = () => {
         Show Overlay
       </button>
       <div
-        className="ag-theme-alpine"
+        className={themeKnob()}
         style={{
           height: "500px",
           width: "100%"
