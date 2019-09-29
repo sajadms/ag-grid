@@ -1518,6 +1518,7 @@
     &.ag-popup > div:not(.ag-tooltip-custom) {
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     }
+
     ////////////////////////////////////////
     // Dialog
     ////////////////////////////////////////
@@ -1538,8 +1539,8 @@
             font-size: $dialog-title-font-size;
             font-weight: $dialog-title-font-weight;
             font-family: $dialog-title-font-family;
-            padding-left: $cell-horizontal-padding;
             padding: $dialog-title-padding;
+            padding-left: $cell-horizontal-padding;
 
             .ag-title-bar-buttons {
                 .ag-button {

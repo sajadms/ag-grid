@@ -1634,6 +1634,10 @@ export class GridOptionsWrapper {
         return this.environment.useNativeCheckboxes();
     }
 
+    public chartMenuPanelWidth() {
+        return this.environment.chartMenuPanelWidth();
+    }
+
     private isNumeric(value: any) {
         return !isNaN(value) && typeof value === 'number';
     }

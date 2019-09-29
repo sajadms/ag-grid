@@ -18,9 +18,6 @@
         border-bottom: 1px solid $chrome-border-color;
     }
 
-    .ag-root {
-    }
-
     .ag-header {
         border-bottom: 1px solid $chrome-border-color;
     }
@@ -626,10 +623,8 @@
 
         // filter panel
         .ag-filter-panel {
-            padding: $grid-size * 2;
-
             .ag-filter-body-wrapper {
-                padding: 0;
+                padding: $grid-size * 2;
                 padding-top: $grid-size;
             }
 
@@ -649,11 +644,16 @@
 
                 .ag-filter-toolpanel-header {
                     padding: $grid-size $grid-size * 2;
-                    padding-left: 0;
+                    background-color: $alpine-white;
+                    border-bottom: 1px solid $border-color;
 
                     [ref='eExpand'] {
                         margin-right: $grid-size;
                     }
+                }
+
+                .ag-filter-air {
+                    border-top: 0;
                 }
             }
         }
@@ -710,6 +710,242 @@
                     }
                 }
             }
+        }
+    }
+
+    ////////////////////////////////////////
+    // Dialog
+    ////////////////////////////////////////
+    .ag-panel {
+        .ag-title-bar {
+            background-color: $dialog-title-background-color;
+            border-bottom: 1px solid $chrome-border-color;
+            color: $dialog-title-foreground-color;
+            height: $dialog-title-height;
+            font-size: $dialog-title-font-size;
+            font-weight: $dialog-title-font-weight;
+            font-family: $dialog-title-font-family;
+            padding: $grid-size $cell-horizontal-padding;
+
+            .ag-title-bar-buttons {
+                .ag-button {
+                    height: $dialog-title-icon-size;
+                    width: $dialog-title-icon-size;
+                    .ag-icon {
+                        line-height: $dialog-title-icon-size;
+                        font-size: $dialog-title-icon-size;
+                    }
+                    border-radius: $border-radius;
+
+                    &:hover,
+                    &.ag-has-popup {
+                        background-color: inherit;
+                        .ag-icon {
+                            color: $active;
+                        }
+                    }
+
+                    &:not(:last-child) {
+                        margin-right: $grid-size;
+                    }
+                }
+            }
+        }
+
+        .ag-message-box {
+            .ag-message-box-button-bar {
+                height: 30px;
+                background-color: $header-background-color;
+                padding: 2px;
+                button {
+                    border-radius: $card-radius;
+                }
+            }
+        }
+    }
+
+    .ag-chart {
+        .ag-chart-menu {
+            top: $grid-size * 2;
+            right: $grid-size * 3;
+            & > .ag-icon {
+                opacity: 1;
+                &:hover {
+                    background: inherit;
+                    color: $active;
+                }
+            }
+        }
+
+        .ag-chart-tabbed-menu {
+            font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+
+            .ag-tab-selected {
+                color: $active;
+            }
+
+            .ag-tab::after {
+                position: absolute;
+                left: unset;
+                right: unset;
+                bottom: unset;
+                transform: translatey($grid-size * 3 + 1);
+            }
+        }
+
+        .ag-tab-body {
+            background-color: $alpine-gray-5;
+        }
+
+        .ag-chart-docked-container .ag-panel {
+            border-left: 1px solid $chrome-border-color;
+        }
+
+        .ag-chart-settings-nav-bar {
+            border-top: 1px solid $chrome-border-color;
+        }
+
+        // Data Tab
+        .ag-chart-data {
+            .ag-radio-button {
+                margin: 0;
+                padding: $grid-size 0;
+
+                input[type='radio'] {
+                    @extend %radio-button;
+                    margin-top: 0;
+                    margin-right: 2px;
+                }
+            }
+        }
+
+        .ag-native-checkbox {
+            @include checkbox($active);
+            margin-right: 2px;
+        }
+
+        // Format tab
+        .ag-chart-format {
+            // the overflow hidden hides the halo effect - so we overwrite it here
+            .ag-input-wrapper {
+                overflow: visible;
+            }
+
+            textarea {
+                @extend %custom-selection;
+                border: 1px solid $active;
+                border-radius: $border-radius;
+                padding: $grid-size;
+            }
+
+            select {
+                @extend %select;
+            }
+
+            input[type='number'] {
+                @extend %input-text;
+                font-size: 0.9em;
+                padding-right: 0;
+            }
+
+            input[type='range'] {
+                @extend %range;
+            }
+
+            input.ag-native-toggle-button {
+                flex: none;
+                width: unset;
+                min-width: unset;
+                @include toggle-button;
+            }
+        }
+    }
+
+    .ag-group-component {
+        background: $alpine-gray-5;
+        border-top: 0;
+
+        .ag-group-component-title-bar {
+            font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+            background: $alpine-white;
+            border-bottom: 1px solid $border-color;
+            padding: $grid-size $grid-size * 2 !important;
+            // hacky way to adjust the height of the header to match the one in the filter panel
+            line-height: $icon-size + $grid-size - 2;
+            height: auto;
+
+            .ag-column-group-icons {
+                margin-left: -2px;
+                margin-right: $grid-size;
+                transform: translateY(1px);
+            }
+        }
+
+        .ag-group-component-container {
+            border-bottom: 1px solid $border-color;
+            margin-left: 0;
+            justify-content: flex-start;
+            padding: $grid-size $grid-size * 2;
+
+            .ag-group-item {
+                margin: 0;
+                margin-right: 0;
+            }
+        }
+
+        // second level nesting
+        .ag-group-component {
+            .ag-group-component-container {
+                padding: $grid-size * 2 0;
+            }
+            .ag-group-component-title-bar {
+                background-color: unset;
+                padding: $grid-size 0 !important;
+                height: auto;
+            }
+        }
+
+        .ag-group-component-toolbar {
+            padding: $grid-size $grid-size * 2;
+            height: auto;
+            background: $alpine-white;
+            input.ag-native-checkbox {
+                @include toggle-button;
+            }
+        }
+    }
+
+    // override to make the border radius work :(
+    .ag-chart-tabbed-menu .ag-chart-settings .ag-chart-settings-mini-wrapper .ag-chart-mini-thumbnail {
+        border-radius: $border-radius;
+    }
+
+    // Color Picker
+    .ag-color-picker > .ag-wrapper {
+        border-radius: $border-radius;
+        border-color: $chrome-border-color;
+
+        & > div {
+            height: $grid-size * 4;
+        }
+    }
+
+    .ag-color-panel {
+        .ag-spectrum-slider {
+            border: 1px solid $chrome-border-color;
+            box-shadow: 0 0px 1px 1px $alpine-white;
+        }
+    }
+
+    // remove styling for toggle button, we do it with ckeckboxes
+    .ag-toggle-button {
+        &.ag-selected .ag-input-wrapper {
+            background: unset;
+        }
+        .ag-input-wrapper {
+            background-color: unset;
+            border: unset;
+            border-radius: unset;
         }
     }
 }

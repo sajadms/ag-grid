@@ -133,6 +133,7 @@ $checkbox-border-radius: $border-radius;
     background-repeat: no-repeat;
     background-position: right $grid-size top $grid-size;
     background-size: $grid-size * 3;
+    padding-right: $grid-size * 4;
 }
 
 %select {
@@ -234,7 +235,6 @@ $toggle-button-width: 28px;
     width: $toggle-button-width;
     height: $toggle-button-height;
     background: $alpine-gray-4;
-    border: 1px solid $alpine-gray-4;
     border-radius: $toggle-button-height / 2;
     transition: all 0.2s linear;
     margin: 0;
@@ -242,6 +242,7 @@ $toggle-button-width: 28px;
 
     &:focus {
         box-shadow: none;
+        border-color: $alpine-gray-4;
     }
 
     &:checked {
@@ -288,5 +289,109 @@ $toggle-button-width: 28px;
     &:checked::after {
         text-align: left;
         content: ' ';
+    }
+}
+
+@mixin range-track {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 3px;
+    background-color: $alpine-gray-4;
+    border-radius: $border-radius;
+}
+
+@mixin range-thumb {
+    margin: 0;
+    padding: 0;
+    background: blue;
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: $alpine-white;
+    border: 1px solid $chrome-border-color;
+    border-radius: 12px;
+}
+
+@mixin ms-fill {
+}
+
+@mixin focus-range-track {
+    background: $active;
+}
+
+@mixin focus-range-thumb {
+    border-color: $active;
+    box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
+}
+
+%range {
+    -webkit-appearance: none;
+    width: 100%;
+
+    &:focus {
+        outline: none;
+
+        &::-webkit-slider-runnable-track {
+            @include focus-range-track;
+        }
+
+        &::-moz-range-track {
+            @include focus-range-track;
+        }
+
+        &::-ms-track {
+            @include focus-range-track;
+        }
+        &::-ms-fill-lower {
+            @include focus-range-track;
+        }
+
+        &::-ms-fill-upper {
+            @include focus-range-track;
+        }
+
+        &::-webkit-slider-thumb {
+            @include focus-range-thumb;
+        }
+
+        &::-ms-thumb {
+            @include focus-range-thumb;
+        }
+        &::-moz-range-thumb {
+            @include focus-range-thumb;
+        }
+    }
+
+    &::-webkit-slider-runnable-track {
+        @include range-track;
+    }
+
+    &::-moz-range-track {
+        @include range-track;
+    }
+
+    &::-ms-track {
+        @include range-track;
+    }
+
+    &::-webkit-slider-thumb {
+        @include range-thumb;
+        transform: translateY(-4px);
+    }
+
+    &::-ms-thumb {
+        @include range-thumb;
+        height: 8.4px;
+    }
+    &::-moz-range-thumb {
+        @include range-thumb;
+    }
+
+    &::-ms-fill-lower {
+        @include ms-fill;
+    }
+    &::-ms-fill-upper {
+        @include ms-fill;
     }
 }

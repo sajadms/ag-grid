@@ -11,6 +11,7 @@ export interface ChangeEvent extends AgEvent {
 
 export class AgCheckbox extends AgAbstractInputField<HTMLInputElement, boolean> {
     protected className = 'ag-checkbox';
+    protected nativeInputClassName = 'ag-native-checkbox';
     protected displayTag = 'input';
     protected inputType = 'checkbox';
     protected labelAlignment: LabelAlignment = 'right';
@@ -20,7 +21,7 @@ export class AgCheckbox extends AgAbstractInputField<HTMLInputElement, boolean> 
         indeterminate: 'checkboxIndeterminate'
     };
 
-    @Autowired('gridOptionsWrapper') private gridOptionsWrapper: GridOptionsWrapper;
+    @Autowired('gridOptionsWrapper') protected gridOptionsWrapper: GridOptionsWrapper;
 
     private selected: boolean | undefined = false;
     private readOnly = false;
@@ -38,6 +39,8 @@ export class AgCheckbox extends AgAbstractInputField<HTMLInputElement, boolean> 
             _.addCssClass(this.eInput, 'ag-hidden');
             this.addIconsPlaceholder();
             this.updateIcons();
+        } else {
+            _.addCssClass(this.eInput, this.nativeInputClassName);
         }
     }
 

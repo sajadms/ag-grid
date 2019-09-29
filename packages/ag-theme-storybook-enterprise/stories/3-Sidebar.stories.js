@@ -3,9 +3,10 @@ import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
 import "ag-grid-enterprise";
+import "ag-grid-enterprise/chartsModule";
 
 export default {
-  title: "Sidebar"
+  title: "Sidebar and Charts"
 };
 
 const data = [
@@ -84,7 +85,7 @@ const columnDefs = [
   }
 ];
 
-export const SideBarBasic = () => {
+export const SideBarDefaultFeatureSet = () => {
   return (
     <div
       className="ag-theme-alpine"
@@ -106,6 +107,40 @@ export const SideBarBasic = () => {
           sortable: true,
           filter: true,
 
+          filterParams: {
+            applyButton: true,
+            clearButton: true
+          }
+        }))}
+        sideBar
+        floatingFilter
+        rowData={data}
+      ></AgGridReact>
+    </div>
+  );
+};
+
+export const Charts = () => {
+  return (
+    <div
+      className="ag-theme-alpine"
+      style={{
+        height: "800px",
+        width: "1200px"
+      }}
+    >
+      <AgGridReact
+        enableCharts={true}
+        enableRangeSelection={true}
+        defaultColDef={{
+          resizable: true,
+          enableValue: true,
+          enableRowGroup: true,
+          sortable: true,
+          filter: true
+        }}
+        columnDefs={columnDefs.map(def => ({
+          ...def,
           filterParams: {
             applyButton: true,
             clearButton: true
