@@ -1,24 +1,39 @@
 @import '../vars/ag-theme-alpine-vars';
 
-$unselected-color: $alpine-gray-4;
-$background-color: $alpine-white;
 $checkbox-size: 13px;
 $checkbox-border-radius: $border-radius;
 
-@mixin checkbox($color: $selection-color) {
+@mixin active-invert {
+    color: $color-background;
+    background-color: $color-primary;
+}
+
+@mixin box-shadow($color) {
+    box-shadow: 0 0 2px 0.1rem transparentize($color, 0.6);
+}
+
+@mixin primary-box-shadow {
+    @include box-shadow($color-primary);
+}
+
+@mixin chrome-box-shadow {
+    @include box-shadow($color-border-primary);
+}
+
+@mixin checkbox($color: $color-secondary) {
     -webkit-appearance: none;
     width: $checkbox-size;
     height: $checkbox-size;
     vertical-align: middle;
     border-radius: $checkbox-border-radius;
-    border: 1px solid $unselected-color;
-    background: $background-color;
+    border: 1px solid $color-border-form-element;
+    background: $color-background;
     transition: background-color 0.1s linear;
     display: block;
     margin: 0;
 
     &:focus {
-        box-shadow: 0 0 1px 1px transparentize($color, 0.6);
+        @include box-shadow($color);
         border-color: $color;
         outline: none;
     }
@@ -28,7 +43,7 @@ $checkbox-border-radius: $border-radius;
         content: ' ';
         width: $checkbox-size;
         height: $checkbox-size;
-        background: $background-color;
+        background: $color-background;
         display: block;
         transform: translate(-1px, -1px);
         visibility: hidden;
@@ -40,8 +55,8 @@ $checkbox-border-radius: $border-radius;
 
     &::after {
         content: ' ';
-        border-right: 1px solid $background-color;
-        border-bottom: 1px solid $background-color;
+        border-right: 1px solid $color-background;
+        border-bottom: 1px solid $color-background;
         display: block;
         transform: translate(floor($checkbox-size / 4), 1px) rotate(45deg);
         transition: all 0.2s linear;
@@ -60,7 +75,7 @@ $checkbox-border-radius: $border-radius;
     }
 
     &:checked::before {
-        background: transparentize($background-color, 1);
+        background: transparentize($color-background, 1);
         visibility: visible;
     }
 
@@ -78,8 +93,8 @@ $checkbox-border-radius: $border-radius;
     }
 
     &:disabled {
-        background-color: transparentize($unselected-color, 0.7);
-        border-color: transparentize($unselected-color, 0.7);
+        background-color: $color-background-form-element-disabled;
+        border-color: transparentize($color-border-form-element, 0.7);
     }
 
     &:checked:disabled {
@@ -89,24 +104,23 @@ $checkbox-border-radius: $border-radius;
 }
 
 %form-font {
-    font: $form-element-font-weight $form-element-font-size $form-element-font-family;
+    font: $font-form-element;
 }
 
 %halo {
     transition: box-shadow 0.1s ease-out;
 
     &:focus {
-        border-color: $active;
-        box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
+        border-color: $color-primary;
+        @include primary-box-shadow();
     }
 }
 
 %custom-selection {
     &::selection {
-        background-color: $active;
-        color: $alpine-white;
+        @include active-invert();
     }
-    caret-color: $active;
+    caret-color: $color-primary;
 }
 
 %input-box {
@@ -115,8 +129,8 @@ $checkbox-border-radius: $border-radius;
     -webkit-appearance: none;
     border-radius: $border-radius;
     padding: $grid-size;
-    border: 1px solid $form-element-border-color;
-    background: $alpine-white;
+    border: 1px solid $color-border-form-element;
+    background: $color-background;
     box-sizing: border-box;
 }
 
@@ -148,32 +162,32 @@ $checkbox-border-radius: $border-radius;
 %radio-button {
     @extend %halo;
     -webkit-appearance: none;
-    border: 1px solid $form-element-border-color;
+    border: 1px solid $color-border-form-element;
     border-radius: 100%;
-    width: $form-element-font-size - 1;
-    height: $form-element-font-size - 1;
+    width: $size-font-form-element - 1;
+    height: $size-font-form-element - 1;
     margin: 0;
-    margin-top: -$form-element-font-size / 4;
+    margin-top: -$size-font-form-element / 4;
     vertical-align: middle;
-    background: $alpine-white;
+    background: $color-background;
 
     &::after {
         content: ' ';
         border-radius: 100%;
-        background: $active;
+        background: $color-primary;
         width: 0;
         height: 0;
         display: block;
-        margin-left: $form-element-font-size - 8;
-        margin-top: $form-element-font-size - 8;
+        margin-left: $size-font-form-element - 8;
+        margin-top: $size-font-form-element - 8;
         transition: all 0.08s ease-out;
     }
 
     &:checked {
-        // border-color: $active;
+        // border-color: $color-primary;
         &::after {
-            width: $form-element-font-size - 7;
-            height: $form-element-font-size - 7;
+            width: $size-font-form-element - 7;
+            height: $size-font-form-element - 7;
             margin-left: 2px;
             margin-top: 2px;
         }
@@ -186,55 +200,53 @@ $checkbox-border-radius: $border-radius;
     appearance: none;
     -webkit-appearance: none;
     border-radius: $border-radius;
-    border: 1px solid $active;
-    color: $active;
-    background: $alpine-white;
+    border: 1px solid $color-primary;
+    color: $color-primary;
+    background: $color-background;
     font-weight: 600;
     padding: $grid-size $grid-size * 2;
     transition: all 0.1s;
 
     &:hover {
-        border-color: $active;
-        background-color: transparentize($active, 0.9);
-        color: $active;
+        border-color: $color-primary;
+        background-color: transparentize($color-primary, 0.9);
+        color: $color-primary;
     }
 
     &:active {
-        border-color: $active;
-        background-color: transparentize($active, 0.1);
-        color: $alpine-white;
+        border-color: $color-primary;
+        background-color: transparentize($color-primary, 0.1);
+        color: $color-background;
     }
 }
 
 %reset-button {
-    @extend %button;
-
-    color: $alpine-gray-3;
-    border-color: $alpine-gray-3;
+    color: $color-form-element-secondary;
+    border-color: $color-form-element-secondary;
     font-weight: 500;
 
     &:hover {
-        border-color: $active;
-        background-color: transparentize($active, 0.9);
-        color: $active;
+        border-color: $color-primary;
+        background-color: transparentize($color-primary, 0.9);
+        color: $color-primary;
     }
 
     &:active {
-        border-color: $active;
-        background-color: transparentize($active, 0.1);
-        color: $alpine-white;
+        border-color: $color-primary;
+        background-color: transparentize($color-primary, 0.1);
+        color: $color-background;
     }
 }
 
 $toggle-button-height: 18px;
 $toggle-button-width: 28px;
 
-@mixin toggle-button($color: $active, $background-color: $alpine-white) {
+@mixin toggle-button($color: $color-primary, $color-background: $color-background) {
     box-sizing: border-box;
     -webkit-appearance: none;
     width: $toggle-button-width;
     height: $toggle-button-height;
-    background: $alpine-gray-4;
+    background-color: $color-border-form-element;
     border-radius: $toggle-button-height / 2;
     transition: all 0.2s linear;
     margin: 0;
@@ -242,12 +254,12 @@ $toggle-button-width: 28px;
 
     &:focus {
         box-shadow: none;
-        border-color: $alpine-gray-4;
+        border-color: $color-border-form-element;
     }
 
     &:checked {
-        background: $color;
-        border-color: $active;
+        background-color: $color;
+        border-color: $color-primary;
     }
 
     &::before {
@@ -264,13 +276,13 @@ $toggle-button-width: 28px;
         left: 0px;
         // below resets stuff from checkbox
         visibility: visible;
-        border: 1px solid $alpine-gray-4;
+        border: 1px solid $color-border-form-element;
         padding: 0;
     }
 
     &:checked::before {
         left: $toggle-button-width - $toggle-button-height + 1;
-        border-color: $active;
+        border-color: $color-primary;
     }
 
     &::after {
@@ -297,7 +309,7 @@ $toggle-button-width: 28px;
     padding: 0;
     width: 100%;
     height: 3px;
-    background-color: $alpine-gray-4;
+    background-color: $color-border-form-element;
     border-radius: $border-radius;
 }
 
@@ -308,8 +320,8 @@ $toggle-button-width: 28px;
     -webkit-appearance: none;
     width: 12px;
     height: 12px;
-    background: $alpine-white;
-    border: 1px solid $chrome-border-color;
+    background: $color-background;
+    border: 1px solid $color-border-primary;
     border-radius: 12px;
 }
 
@@ -317,12 +329,12 @@ $toggle-button-width: 28px;
 }
 
 @mixin focus-range-track {
-    background: $active;
+    background: $color-primary;
 }
 
 @mixin focus-range-thumb {
-    border-color: $active;
-    box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
+    border-color: $color-primary;
+    @include primary-box-shadow();
 }
 
 %range {

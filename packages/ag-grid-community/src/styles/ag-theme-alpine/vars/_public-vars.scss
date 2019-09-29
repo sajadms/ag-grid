@@ -1,0 +1,65 @@
+@import './colors';
+
+////////////////////////////////////////
+// Colors
+////////////////////////////////////////
+
+$color-primary: $alpine-blue !default;
+$color-secondary: $alpine-orange !default;
+$color-background: $alpine-white !default;
+$color-foreground: $alpine-black !default;
+$color-background-alt: $alpine-gray-5 !default;
+
+$color-border-primary: $alpine-gray-4 !default;
+$color-border-secondary: transparentize($alpine-gray-4, 0.5) !default;
+$color-icon: $alpine-gray-4 !default;
+
+// forms
+$color-form-element-secondary: $alpine-gray-3;
+$color-border-form-element: $alpine-gray-4 !default;
+$color-background-form-element-disabled: transparentize($alpine-gray-4, 0.8) !default;
+
+// chart selections
+$color-background-chart-range-selection-category: $alpine-green !default;
+$color-background-chart-range-selection: $alpine-blue !default;
+
+// group chips
+$color-background-chip: transparentize($alpine-gray-4, 0.8) !default;
+
+// delta changes
+$color-cell-data-changed: $alpine-light-pink !default;
+$color-value-change-delta-up: $alpine-dim-green !default;
+$color-value-change-delta-down: $alpine-dim-red !default;
+$color-value-change-value-highlight-background: transparentize($alpine-deep-teal, 0.5) !default;
+
+////////////////////////////////////////
+//Fonts
+////////////////////////////////////////
+
+// Primary
+$font-family-default: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif !default;
+$size-font-default: 14px !default;
+$weight-font-default: 400 !default;
+$font-default: $weight-font-default $size-font-default $font-family-default;
+
+// Secondary (used mostly in headers)
+$font-family-secondary: $font-family-default !default;
+$size-font-secondary: 13px !default;
+$weight-font-secondary: 700 !default;
+$font-secondary: $weight-font-secondary $size-font-secondary $font-family-secondary;
+
+// Form elements
+$font-family-form-element: $font-family-default !default;
+$size-font-form-element: 13px !default;
+$weight-font-form-element: 400 !default;
+$font-form-element: $weight-font-form-element $size-font-form-element $font-family-form-element;
+
+// Chrome UI (menu, tool panel, etc)
+$font-family-chrome: $font-family-default !default;
+$size-font-chrome: 13px !default;
+$weight-font-chrome: 400 !default;
+$font-chrome: $weight-font-chrome $size-font-chrome $font-family-chrome;
+
+// tooltip and status bar are chrome but smaller
+$size-font-tooltip: $size-font-chrome - 1 !default;
+$size-font-status-bar: $size-font-chrome - 2 !default;

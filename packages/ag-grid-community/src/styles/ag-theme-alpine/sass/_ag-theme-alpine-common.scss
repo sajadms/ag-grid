@@ -10,24 +10,24 @@
     }
 
     .ag-root-wrapper {
-        border: 1px solid $chrome-border-color;
+        border: 1px solid $color-border-primary;
         border-radius: $border-radius;
     }
 
     .ag-column-drop {
-        border-bottom: 1px solid $chrome-border-color;
+        border-bottom: 1px solid $color-border-primary;
     }
 
     .ag-header {
-        border-bottom: 1px solid $chrome-border-color;
+        border-bottom: 1px solid $color-border-primary;
     }
     .ag-header-cell {
-        border-color: $chrome-border-color;
+        border-color: $color-border-primary;
     }
 
     .ag-ltr .ag-header-cell,
     .ag-ltr .ag-header-group-cell {
-        border-right: 1px solid $chrome-border-color;
+        border-right: 1px solid $color-border-primary;
     }
 
     .ag-ltr .ag-cell {
@@ -35,7 +35,7 @@
     }
 
     .ag-row:not(.ag-row-selected) .ag-cell.ag-column-hover:not(.ag-cell-range-selected) {
-        background-color: transparentize($active, 0.97);
+        background-color: transparentize($color-primary, 0.97);
     }
 
     ////////////////////////////////////////
@@ -97,7 +97,7 @@
         }
 
         .ag-native-checkbox {
-            @include checkbox($active);
+            @include checkbox($color-primary);
         }
     }
 
@@ -112,7 +112,7 @@
     // context menu and enterprise column menu
     ////////////////////////////////////////
     .ag-menu {
-        background: $alpine-gray-5;
+        background: $color-background-alt;
 
         .ag-menu-list {
             margin: 0;
@@ -120,7 +120,7 @@
     }
 
     .ag-menu-list {
-        font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+        font: $font-chrome;
         padding: $grid-size * 2;
         margin: 0;
 
@@ -138,7 +138,7 @@
     }
 
     .ag-tab-header {
-        border-bottom: 1px solid $chrome-border-color;
+        border-bottom: 1px solid $color-border-primary;
 
         .ag-tab {
             padding: $grid-size $grid-size * 2;
@@ -151,7 +151,7 @@
 
         .ag-tab-selected {
             .ag-icon {
-                color: $active;
+                color: $color-primary;
             }
         }
 
@@ -161,9 +161,9 @@
             height: 0px;
             border-top-left-radius: 3px;
             border-top-right-radius: 3px;
-            border: 1px solid $chrome-border-color;
-            border-bottom-color: $alpine-gray-5;
-            background: $alpine-gray-5;
+            border: 1px solid $color-border-primary;
+            border-bottom-color: $color-background-alt;
+            background: $color-background-alt;
             position: relative;
             left: -($grid-size * 3 - 1);
             bottom: -$grid-size * 3 - 1;
@@ -195,13 +195,14 @@
     // Popup
     ////////////////////////////////////////
     &.ag-popup > div:not(.ag-tooltip-custom) {
-        border: 1px solid $chrome-border-color;
+        @include chrome-box-shadow();
+        border: 1px solid $color-border-primary;
         border-radius: $border-radius;
-        box-shadow: 0 0 2px 0.1rem transparentize($alpine-gray-4, 0.6);
+        @include chrome-box-shadow();
     }
 
     &.ag-dnd-ghost {
-        box-shadow: 0 0 2px 0.1rem transparentize($alpine-gray-4, 0.6);
+        @include chrome-box-shadow();
         border-radius: $border-radius;
     }
 
@@ -236,7 +237,7 @@
     ////////////////////////////////////////
     // Column Resize Handle
     ////////////////////////////////////////
-    $resize-handle-color: transparentize($chrome-border-color, 0.8);
+    $resize-handle-color: transparentize($color-border-primary, 0.8);
     .ag-header-cell-resize {
         box-sizing: border-box;
         right: -2px;
@@ -259,11 +260,11 @@
     ////////////////////////////////////////
     .ag-pinned-left-header,
     .ag-root:not(.ag-has-focus) .ag-cell.ag-cell-last-left-pinned:not(.ag-cell-range-right) {
-        border-right: 1px solid $chrome-border-color !important;
+        border-right: 1px solid $color-border-primary !important;
     }
 
     .ag-pinned-right-header {
-        border-left-color: $chrome-border-color;
+        border-left-color: $color-border-primary;
     }
 
     .ag-ltr .ag-pinned-right-header .ag-header-cell-resize {
@@ -271,7 +272,7 @@
     }
 
     .ag-ltr .ag-root:not(.ag-has-focus) .ag-cell.ag-cell-first-right-pinned:not(.ag-cell-range-left) {
-        border-left-color: $chrome-border-color;
+        border-left-color: $color-border-primary;
     }
 
     ////////////////////////////////////////
@@ -279,7 +280,7 @@
     ////////////////////////////////////////
     .ag-input-wrapper input:not([type]) {
         @extend %input-text;
-        border-color: $form-element-border-color;
+        border-color: $color-border-form-element;
         font-size: smaller;
     }
 
@@ -299,15 +300,15 @@
             height: $icon-size + $grid-size * 2 - 2;
             width: $icon-size + $grid-size * 5;
             border-radius: $border-radius;
-            border: 1px solid $form-element-border-color;
+            border: 1px solid $color-border-form-element;
             text-align: left;
 
             .ag-icon {
-                color: $form-element-border-color;
+                color: $color-border-form-element;
             }
 
             &:active .ag-icon {
-                color: $alpine-white;
+                color: $color-background;
             }
         }
     }
@@ -320,12 +321,12 @@
         .ag-has-focus .ag-cell-focus:not(.ag-cell-range-selected),
         .ag-has-focus .ag-cell-focus.ag-cell-range-single-cell,
         .ag-cell-focus.ag-cell-range-single-cell.ag-cell-range-handle {
-            border: 1px solid $active;
+            border: 1px solid $color-primary;
         }
     }
 
     .ag-cell.ag-cell-inline-editing {
-        box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
+        @include primary-box-shadow();
         border-radius: 0;
         padding: 0;
         height: 100%;
@@ -337,7 +338,7 @@
             border: 0;
             border-radius: 0;
             padding-left: $grid-size * 3 - 1;
-            font: $font-weight $font-size $font-family;
+            font: $font-default;
         }
         // select editor
         .ag-cell-edit-input select {
@@ -346,7 +347,7 @@
             border-radius: 0;
             padding-left: $grid-size * 3 - 1;
             background-position: right $grid-size top $row-height / 2 - 9;
-            font: $font-weight $font-size $font-family;
+            font: $font-default;
         }
     }
 
@@ -354,9 +355,9 @@
     // Popup editing
     ////////////////////////////////////////
     .ag-popup > div.ag-popup-editor {
+        @include primary-box-shadow();
         min-height: $row-height;
-        box-shadow: 0 0 2px 0.1rem transparentize($active, 0.6);
-        border-color: $active;
+        border-color: $color-primary;
         border-radius: 0;
         padding: 0;
         overflow: visible;
@@ -369,7 +370,7 @@
             border-radius: 0;
             padding-left: $grid-size * 3 - 1;
             padding-right: $grid-size * 6 - 1;
-            font: $font-weight $font-size $font-family;
+            font: $font-default;
             line-height: $row-height - $grid-size * 2 - 2;
         }
 
@@ -386,7 +387,7 @@
         textarea {
             @extend %custom-selection;
             border: 0;
-            font: $font-weight $font-size $font-family;
+            font: $font-default;
             padding: $grid-size * 2 $grid-size * 3;
         }
     }
@@ -405,8 +406,7 @@
         }
 
         .ag-rich-select-row-selected {
-            background-color: $active;
-            color: $alpine-white;
+            @include active-invert;
         }
     }
 
@@ -426,7 +426,7 @@
             }
 
             .ag-checkbox {
-                @include checkbox($active);
+                @include checkbox($color-primary);
             }
 
             .ag-input-wrapper {
@@ -441,7 +441,7 @@
         }
 
         .ag-primary-cols-list-panel .ag-checkbox input {
-            @include checkbox($active);
+            @include checkbox($color-primary);
         }
 
         .ag-primary-cols-list-panel .ag-column-group-icons {
@@ -465,10 +465,10 @@
     // Overlay
     ////////////////////////////////////////
     .ag-overlay-loading-center {
-        box-shadow: 0 0 2px 0.1rem transparentize($alpine-gray-4, 0.6);
-        border: 1px solid $alpine-gray-4;
+        @include chrome-box-shadow();
+        border: 1px solid $color-border-primary;
         padding: $grid-size * 2 $grid-size * 3;
-        font: $font-weight $font-size $font-family;
+        font: $font-default;
     }
 
     ////////////////////////////////////////
@@ -508,7 +508,7 @@
 
     .ag-column-drop-horizontal {
         // Align the first pill to the header
-        font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+        font: $font-chrome;
         .ag-icon-group {
             margin-right: $grid-size * 2;
         }
@@ -540,16 +540,16 @@
         .ag-cell.ag-cell-range-selected:not(.ag-cell-range-single-cell) {
             border: 1px solid transparent;
             &.ag-cell-range-top {
-                border-top-color: $alpine-orange-1;
+                border-top-color: $color-secondary;
             }
             &.ag-cell-range-right {
-                border-right-color: $alpine-orange-1;
+                border-right-color: $color-secondary;
             }
             &.ag-cell-range-bottom {
-                border-bottom-color: $alpine-orange-1;
+                border-bottom-color: $color-secondary;
             }
             &.ag-cell-range-left {
-                border-left-color: $alpine-orange-1;
+                border-left-color: $color-secondary;
             }
         }
     }
@@ -559,8 +559,9 @@
     ////////////////////////////////////////
     .ag-status-bar {
         border: 0;
-        border-top: 1px solid $chrome-border-color;
-        font: $chrome-font-weight $tooltip-font-size - 1 $chrome-font-family;
+        border-top: 1px solid $color-border-primary;
+        font: $font-chrome;
+        font-size: $size-font-status-bar;
         padding-left: $cell-horizontal-padding;
         padding-right: $cell-horizontal-padding;
 
@@ -581,13 +582,13 @@
     // Side Bar
     ////////////////////////////////////////
     .ag-side-bar {
-        font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+        font: $font-chrome;
         border: 0;
 
         .ag-tool-panel-wrapper {
-            border-left: 1px solid $chrome-border-color;
+            border-left: 1px solid $color-border-primary;
             // border-right: 1px solid $border-color;
-            background-color: $alpine-gray-5;
+            background-color: $color-background-alt;
 
             .ag-pivot-mode-select {
                 margin-left: $grid-size * 2;
@@ -600,7 +601,7 @@
         .ag-column-drop {
             padding-top: 0;
             & > div:first-child {
-                background: $alpine-white;
+                background-color: $color-background;
                 padding: $grid-size * 2 $grid-size * 2;
                 border-bottom: 1px solid $border-color;
                 & > span:first-child {
@@ -640,11 +641,11 @@
             }
 
             .ag-filter-toolpanel-instance {
-                font-weight: $chrome-font-weight;
+                font-weight: $weight-font-chrome;
 
                 .ag-filter-toolpanel-header {
                     padding: $grid-size $grid-size * 2;
-                    background-color: $alpine-white;
+                    background-color: $color-background;
                     border-bottom: 1px solid $border-color;
 
                     [ref='eExpand'] {
@@ -660,7 +661,7 @@
 
         // side buttons
         .ag-side-buttons {
-            border-left: 1px solid $chrome-border-color;
+            border-left: 1px solid $color-border-primary;
             width: $grid-size * 5;
 
             .ag-side-button {
@@ -687,9 +688,9 @@
                     width: 3px;
                     border-top-right-radius: 3px;
                     border-bottom-right-radius: 3px;
-                    border: 1px solid $chrome-border-color;
-                    border-left-color: $alpine-gray-5;
-                    background: $alpine-gray-5;
+                    border: 1px solid $color-border-primary;
+                    border-left-color: $color-background-alt;
+                    background: $color-background-alt;
                     position: absolute;
                     display: block;
                     transition: all 0.1s linear;
@@ -700,7 +701,7 @@
                     margin-left: 0;
 
                     & > div .ag-icon {
-                        color: $active;
+                        color: $color-primary;
                     }
 
                     &::before {
@@ -719,7 +720,7 @@
     .ag-panel {
         .ag-title-bar {
             background-color: $dialog-title-background-color;
-            border-bottom: 1px solid $chrome-border-color;
+            border-bottom: 1px solid $color-border-primary;
             color: $dialog-title-foreground-color;
             height: $dialog-title-height;
             font-size: $dialog-title-font-size;
@@ -741,7 +742,7 @@
                     &.ag-has-popup {
                         background-color: inherit;
                         .ag-icon {
-                            color: $active;
+                            color: $color-primary;
                         }
                     }
 
@@ -772,16 +773,16 @@
                 opacity: 1;
                 &:hover {
                     background: inherit;
-                    color: $active;
+                    color: $color-primary;
                 }
             }
         }
 
         .ag-chart-tabbed-menu {
-            font: $chrome-font-weight $chrome-font-size $chrome-font-family;
+            font: $font-chrome;
 
             .ag-tab-selected {
-                color: $active;
+                color: $color-primary;
             }
 
             .ag-tab::after {
@@ -794,15 +795,15 @@
         }
 
         .ag-tab-body {
-            background-color: $alpine-gray-5;
+            background-color: $color-background-alt;
         }
 
         .ag-chart-docked-container .ag-panel {
-            border-left: 1px solid $chrome-border-color;
+            border-left: 1px solid $color-border-primary;
         }
 
         .ag-chart-settings-nav-bar {
-            border-top: 1px solid $chrome-border-color;
+            border-top: 1px solid $color-border-primary;
         }
 
         // Data Tab
@@ -820,7 +821,7 @@
         }
 
         .ag-native-checkbox {
-            @include checkbox($active);
+            @include checkbox($color-primary);
             margin-right: 2px;
         }
 
@@ -833,7 +834,7 @@
 
             textarea {
                 @extend %custom-selection;
-                border: 1px solid $active;
+                border: 1px solid $color-primary;
                 border-radius: $border-radius;
                 padding: $grid-size;
             }
@@ -862,12 +863,12 @@
     }
 
     .ag-group-component {
-        background: $alpine-gray-5;
+        background: $color-background-alt;
         border-top: 0;
 
         .ag-group-component-title-bar {
-            font: $chrome-font-weight $chrome-font-size $chrome-font-family;
-            background: $alpine-white;
+            font: $font-chrome;
+            background: $color-background;
             border-bottom: 1px solid $border-color;
             padding: $grid-size $grid-size * 2 !important;
             // hacky way to adjust the height of the header to match the one in the filter panel
@@ -908,7 +909,7 @@
         .ag-group-component-toolbar {
             padding: $grid-size $grid-size * 2;
             height: auto;
-            background: $alpine-white;
+            background: $color-background;
             input.ag-native-checkbox {
                 @include toggle-button;
             }
@@ -923,7 +924,7 @@
     // Color Picker
     .ag-color-picker > .ag-wrapper {
         border-radius: $border-radius;
-        border-color: $chrome-border-color;
+        border-color: $color-border-primary;
 
         & > div {
             height: $grid-size * 4;
@@ -932,8 +933,8 @@
 
     .ag-color-panel {
         .ag-spectrum-slider {
-            border: 1px solid $chrome-border-color;
-            box-shadow: 0 0px 1px 1px $alpine-white;
+            border: 1px solid $color-border-primary;
+            box-shadow: 0 0px 1px 1px $color-background;
         }
     }
 

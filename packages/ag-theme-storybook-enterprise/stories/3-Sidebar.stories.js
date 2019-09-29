@@ -1,5 +1,8 @@
+import { storiesOf } from "@storybook/react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
+import { withKnobs, text } from "@storybook/addon-knobs";
+
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
 import "ag-grid-enterprise";
@@ -8,6 +11,12 @@ import "ag-grid-enterprise/chartsModule";
 export default {
   title: "Sidebar and Charts"
 };
+
+const stories = storiesOf("Storybook Knobs", module);
+
+// Add the `withKnobs` decorator to add knobs support to your stories.
+// You can also configure `withKnobs` as a global decorator.
+stories.addDecorator(withKnobs);
 
 const data = [
   {
@@ -123,7 +132,7 @@ export const SideBarDefaultFeatureSet = () => {
 export const Charts = () => {
   return (
     <div
-      className="ag-theme-alpine"
+      className={text("Theme", "ag-theme-alpine")}
       style={{
         height: "800px",
         width: "1200px"

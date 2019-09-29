@@ -1,15 +1,4 @@
-$alpine-blue-2: #2196f3;
-$alpine-orange-1: #ff9800;
-
-$alpine-black: #223;
-// $alpine-black: #000;
-$alpine-white: #fff;
-
-$alpine-gray-1: #383632;
-$alpine-gray-2: #585652;
-$alpine-gray-3: #68686e;
-$alpine-gray-4: #babfc7;
-$alpine-gray-5: #fcfdfe;
+@import './public-vars';
 
 $foreground-opacity: 1 !default;
 $secondary-foreground-color-opacity: 1 !default;
@@ -22,45 +11,32 @@ $icon-size: 16px !default;
 // these three should be changed in environment.ts, too
 $row-height: $grid-size * 7 !default;
 
-// theme shortcuts
-$default-background: $alpine-white !default;
-$chrome-background: $alpine-white !default;
+$default-background: $color-background !default;
+$chrome-background: $color-background !default;
+$background-color: $default-background !default;
 
-$border-color: transparentize($alpine-gray-4, 0.5) !default;
-$chrome-border-color: $alpine-gray-4 !default;
-$form-element-border-color: $alpine-gray-4 !default;
+$border-color: $color-border-secondary !default;
 
-$active: $alpine-blue-2 !default;
-$foreground-color: $alpine-black !default;
-$icon-color: $alpine-gray-4 !default;
 $alt-icon-color: $default-background !default;
-$alt-background: transparentize($alpine-gray-4, 0.8) !default;
-$odd-row-background-color: $alpine-gray-5 !default;
 $header-cell-moving-background-color: $default-background !default;
 
 // Derived from above
-$foreground-color: rgba($foreground-color, $foreground-opacity) !default; // foreground
-$secondary-foreground-color: rgba($foreground-color, $secondary-foreground-color-opacity) !default; // foreground-secondary
-$disabled-foreground-color: rgba($foreground-color, $disabled-foreground-color-opacity) !default; // foreground-disabled
-$input-border-color: $alpine-gray-3 !default;
-$input-disabled-background-color: #ebebeb !default;
+$secondary-foreground-color: rgba($color-foreground, $secondary-foreground-color-opacity) !default; // foreground-secondary
+$disabled-foreground-color: rgba($color-foreground, $disabled-foreground-color-opacity) !default; // foreground-disabled
+$input-border-color: $color-border-form-element !default;
+$input-disabled-background-color: $color-background-form-element-disabled !default;
 
-$primary-color: $active !default;
-$accent-color: $active !default;
-$range-selection-background-color: lighten($alpine-orange-1, 44) !default;
+$range-selection-background-color: lighten($color-secondary, 44) !default;
 $ag-range-selected-color-1: darken($range-selection-background-color, 10) !default;
 $ag-range-selected-color-2: darken($range-selection-background-color, 20) !default;
 $ag-range-selected-color-3: darken($range-selection-background-color, 30) !default;
 $ag-range-selected-color-4: darken($range-selection-background-color, 40) !default;
-$range-selection-highlight-color: $alpine-orange-1 !default;
+$range-selection-highlight-color: $color-secondary !default;
 
-$selection-color: $alpine-orange-1;
-$selected-color: lighten($selection-color, 40) !default;
+$selected-color: lighten($color-secondary, 40) !default;
 
-$background-color: $default-background !default;
-
-$range-selection-chart-category-background-color: rgba(0, 255, 132, 0.1) !default;
-$range-selection-chart-background-color: rgba(0, 88, 255, 0.1) !default;
+$range-selection-chart-category-background-color: transparentize($color-background-chart-range-selection-category, 0.9) !default;
+$range-selection-chart-background-color: transparentize($color-background-chart-range-selection, 0.9) !default;
 
 $editor-background-color: $chrome-background !default;
 $panel-background-color: $chrome-background !default;
@@ -69,17 +45,11 @@ $header-background-color: $chrome-background !default;
 $header-cell-hover-background-color: $header-background-color !default;
 $header-foreground-color: $secondary-foreground-color !default;
 
-$hover-color: transparentize($active, 0.9) !default;
-$chip-background-color: transparentize($alpine-gray-4, 0.8) !default;
+$hover-color: transparentize($color-primary, 0.9) !default;
+$chip-background-color: $color-background-chip !default;
 
 $row-stub-background-color: inherit !default;
 $row-floating-background-color: inherit !default;
-
-// delta changes
-$cell-data-changed-color: #fce4ec !default;
-$value-change-delta-up-color: #43a047 !default;
-$value-change-delta-down-color: #e53935 !default;
-$value-change-value-highlight-background-color: transparentize(#16a085, 0.5) !default;
 
 $header-height: $grid-size * 8 !default;
 $virtual-item-height: $grid-size * 5 !default;
@@ -92,32 +62,14 @@ $cell-horizontal-padding: $grid-size * 3 !default;
 $header-icon-size: 14px !default;
 $border-radius: 3px !default;
 
-// Fonts
-$font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif !default;
-
-$font-size: 14px !default;
-$font-weight: 400 !default;
-
-$secondary-font-family: $font-family !default;
-$secondary-font-size: 13px !default;
-$secondary-font-weight: 700 !default;
-
-$form-element-font-family: $font-family !default;
-$form-element-font-size: 13px !default;
-$form-element-font-weight: 400 !default;
-
-$chrome-font-family: $font-family !default;
-$chrome-font-size: 13px !default;
-$chrome-font-weight: 400 !default;
-
 $card-radius: 2px !default;
 $card-shadow: none !default;
 
-$tooltip-background-color: $alpine-gray-5 !default;
-$tooltip-foreground-color: $foreground-color !default;
+$tooltip-background-color: $color-background-alt !default;
+$tooltip-foreground-color: $color-foreground !default;
 $tooltip-border-radius: $border-radius !default;
-$tooltip-border-color: $tooltip-background-color !default;
-$tooltip-font-size: 12px !default;
+$tooltip-border-color: $color-background-alt !default;
+$tooltip-font-size: $size-font-tooltip !default;
 
 // Icons
 $icon-font-family: 'agGridBalham' !default;
@@ -126,19 +78,19 @@ $icons-data: 'AAEAAAALAIAAAwAwT1MvMg8SBlYAAAC8AAAAYGNtYXAXVtK8AAABHAAAAFRnYXNwAA
 @import '../../ag-theme-base/vars/ag-theme-base-vars';
 
 $params: (
-    font-family: $font-family,
-    font-size: $font-size,
-    font-weight: $font-weight,
-    secondary-font-family: $secondary-font-family,
-    secondary-font-size: $secondary-font-size,
-    secondary-font-weight: $secondary-font-weight,
-    accent-color: $accent-color,
-    primary-color: $primary-color,
+    font-family: $font-family-default,
+    font-size: $size-font-default,
+    font-weight: $weight-font-default,
+    secondary-font-family: $font-family-secondary,
+    secondary-font-size: $size-font-secondary,
+    secondary-font-weight: $weight-font-secondary,
+    accent-color: $color-primary,
+    primary-color: $color-primary,
     hover-color: $hover-color,
     selected-color: $selected-color,
     default-background: $default-background,
     background-color: $background-color,
-    foreground-color: $foreground-color,
+    foreground-color: $color-foreground,
     foreground-opacity: $foreground-opacity,
     secondary-foreground-color-opacity: $secondary-foreground-color-opacity,
     secondary-foreground-color: $secondary-foreground-color,
@@ -152,19 +104,19 @@ $params: (
     header-background-color: $header-background-color,
     header-cell-hover-background-color: $header-cell-hover-background-color,
     header-cell-moving-background-color: $header-cell-moving-background-color,
-    odd-row-background-color: $odd-row-background-color,
+    odd-row-background-color: $color-background-alt,
     row-stub-background-color: $row-stub-background-color,
     row-floating-background-color: $row-floating-background-color,
-    cell-data-changed-color: $cell-data-changed-color,
     chip-background-color: $chip-background-color,
     card-background-color: $background-color,
-    value-change-delta-up-color: $value-change-delta-up-color,
-    value-change-delta-down-color: $value-change-delta-down-color,
-    value-change-value-highlight-background-color: $value-change-value-highlight-background-color,
+    cell-data-changed-color: $color-cell-data-changed,
+    value-change-delta-up-color: $color-value-change-delta-up,
+    value-change-delta-down-color: $color-value-change-delta-down,
+    value-change-value-highlight-background-color: $color-value-change-value-highlight-background,
     editor-background-color-color: $editor-background-color,
     input-border-color: $input-border-color,
     input-disabled-background-color: $input-disabled-background-color,
-    icon-color: $icon-color,
+    icon-color: $color-icon,
     alt-icon-color: $alt-icon-color,
     icon-opacity: $foreground-opacity,
     range-selection-background-color: $range-selection-background-color,
