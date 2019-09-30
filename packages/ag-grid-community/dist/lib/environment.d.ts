@@ -4,11 +4,10 @@
 export declare type SASS_PROPERTIES = 'headerHeight' | 'virtualItemHeight' | 'rowHeight' | 'chartMenuPanelWidth';
 export declare class Environment {
     private eGridDiv;
-    private themeElement;
-    private theme;
     getSassVariable(theme: string, key: SASS_PROPERTIES): number;
     isThemeDark(): boolean;
     useNativeCheckboxes(): boolean;
+    chartMenuPanelWidth(): number;
     getTheme(): {
         theme?: undefined;
         el?: undefined;
@@ -18,6 +17,4 @@ export declare class Environment {
         el: HTMLElement;
         themeFamily: string;
     };
-    chartMenuPanelWidth(): number;
-    private getThemeOnce;
 }

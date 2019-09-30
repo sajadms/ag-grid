@@ -995,7 +995,7 @@
   .ag-theme-alpine-dark .ag-paging-page-summary-panel span {
     margin: 0 6px; }
   .ag-theme-alpine-dark .ag-row-selected {
-    background-color: #663d00; }
+    background-color: #804c00; }
   .ag-theme-alpine-dark .ag-ltr .ag-cell.ag-cell-range-selected:not(.ag-cell-range-single-cell),
   .ag-theme-alpine-dark .ag-rtl .ag-cell.ag-cell-range-selected:not(.ag-cell-range-single-cell) {
     border: 1px solid transparent; }
@@ -1097,7 +1097,7 @@
     .ag-theme-alpine-dark .ag-rich-select .ag-rich-select-row {
       padding-left: 18px; }
     .ag-theme-alpine-dark .ag-rich-select .ag-rich-select-row-selected {
-      background-color: #663d00; }
+      background-color: #804c00; }
   .ag-theme-alpine-dark .ag-ltr .ag-floating-filter-button {
     margin-left: 18px; }
   .ag-theme-alpine-dark .ag-floating-filter-button button {
@@ -1856,12 +1856,12 @@
     .ag-theme-alpine-dark .ag-tab-body .ag-menu-list > div:last-child > span {
       padding-bottom: 6px; }
   .ag-theme-alpine-dark.ag-popup > div:not(.ag-tooltip-custom) {
-    box-shadow: 0 0 2px 0.1rem rgba(104, 104, 110, 0.4);
+    box-shadow: 0 1px 4px 1px rgba(24, 29, 31, 0.4);
     border: 1px solid #68686e;
     border-radius: 3px;
-    box-shadow: 0 0 2px 0.1rem rgba(104, 104, 110, 0.4); }
+    box-shadow: 0 1px 4px 1px rgba(24, 29, 31, 0.4); }
   .ag-theme-alpine-dark.ag-dnd-ghost {
-    box-shadow: 0 0 2px 0.1rem rgba(104, 104, 110, 0.4);
+    box-shadow: 0 1px 4px 1px rgba(24, 29, 31, 0.4);
     border-radius: 3px; }
   .ag-theme-alpine-dark .ag-selection-checkbox input {
     -webkit-appearance: none;
@@ -2234,7 +2234,7 @@
   .ag-theme-alpine-dark .ag-column-select-panel .ag-primary-cols-filter-wrapper.ag-input-wrapper {
     overflow: visible; }
   .ag-theme-alpine-dark .ag-overlay-loading-center {
-    box-shadow: 0 0 2px 0.1rem rgba(104, 104, 110, 0.4);
+    box-shadow: 0 1px 4px 1px rgba(24, 29, 31, 0.4);
     border: 1px solid #68686e;
     padding: 12px 18px;
     font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; }
@@ -2555,7 +2555,9 @@
   .ag-theme-alpine-dark .ag-chart .ag-chart-format textarea {
     border: 1px solid #2196f3;
     border-radius: 3px;
-    padding: 6px; }
+    padding: 6px;
+    color: #fff;
+    background: #181d1f; }
   .ag-theme-alpine-dark .ag-chart .ag-chart-format input[type='number'] {
     font-size: 0.9em;
     padding-right: 0; }
@@ -2706,4 +2708,8 @@
     background-color: unset;
     border: unset;
     border-radius: unset; }
+  .ag-theme-alpine-dark .ag-angle-select .ag-angle-select-field .ag-parent-circle {
+    background-color: #babfc7; }
+  .ag-theme-alpine-dark .ag-angle-select .ag-angle-select-field .ag-child-circle {
+    background-color: #181d1f; }
 

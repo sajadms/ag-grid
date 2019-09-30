@@ -61,8 +61,6 @@ const CALCULATED_SIZES: HardCodedSize = {};
 @Bean('environment')
 export class Environment {
     @Autowired('eGridDiv') private eGridDiv: HTMLElement;
-    private themeElement: HTMLElement | undefined;
-    private theme: string | undefined;
 
     public getSassVariable(theme: string, key: SASS_PROPERTIES): number {
         const useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : theme.match('alpine') ? 'alpine' : 'classic');
@@ -114,46 +112,36 @@ export class Environment {
         return !!theme && theme.indexOf('alpine') >= 0;
     }
 
-    public getTheme() {
-        return this.getThemeOnce();
-    }
-
     public chartMenuPanelWidth() {
         return HARD_CODED_SIZES[this.getTheme().themeFamily].chartMenuPanelWidth;
     }
 
-    // Traversing the tree is expensive, and the
-    // theme getter will happen with every checkbox aksing if native or not.
-    private getThemeOnce() {
-        if (!this.theme) {
-            const reg = /\bag-(fresh|dark|blue|material|bootstrap|(?:theme-([\w\-]*)))\b/;
-            let el: HTMLElement = this.eGridDiv;
-            let themeMatch: RegExpMatchArray;
+    public getTheme() {
+        const reg = /\bag-(fresh|dark|blue|material|bootstrap|(?:theme-([\w\-]*)))\b/;
+        let el: HTMLElement = this.eGridDiv;
+        let themeMatch: RegExpMatchArray;
 
-            while (el) {
-                themeMatch = reg.exec(el.className);
-                if (!themeMatch) {
-                    el = el.parentElement;
-                } else {
-                    break;
-                }
-            }
-
+        while (el) {
+            themeMatch = reg.exec(el.className);
             if (!themeMatch) {
-                return {};
+                el = el.parentElement;
+            } else {
+                break;
             }
-
-            const theme = themeMatch[0];
-            const usingOldTheme = themeMatch[2] === undefined;
-
-            if (usingOldTheme) {
-                const newTheme = theme.replace('ag-', 'ag-theme-');
-                _.doOnce(() => console.warn(`ag-Grid: As of v19 old theme are no longer provided. Please replace ${theme} with ${newTheme}.`), 'using-old-theme');
-            }
-
-            this.theme = theme;
-            this.themeElement = el;
         }
-        return { theme: this.theme, el: this.themeElement, themeFamily: this.theme.replace(/-dark$/, '') };
+
+        if (!themeMatch) {
+            return {};
+        }
+
+        const theme = themeMatch[0];
+        const usingOldTheme = themeMatch[2] === undefined;
+
+        if (usingOldTheme) {
+            const newTheme = theme.replace('ag-', 'ag-theme-');
+            _.doOnce(() => console.warn(`ag-Grid: As of v19 old theme are no longer provided. Please replace ${theme} with ${newTheme}.`), 'using-old-theme');
+        }
+
+        return { theme, el, themeFamily: theme.replace(/-dark$/, '') };
     }
 }
