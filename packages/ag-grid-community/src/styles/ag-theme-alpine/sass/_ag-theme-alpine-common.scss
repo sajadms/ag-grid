@@ -674,6 +674,9 @@
 
             .ag-side-button {
                 margin-bottom: $grid-size;
+                display: flex;
+                align-items: center;
+
                 button {
                     display: flex;
                     align-items: start;
@@ -690,9 +693,9 @@
                     }
                 }
 
-                button::before {
+                &::before {
                     content: ' ';
-                    min-height: $grid-size * 18;
+                    height: $grid-size * 3;
                     width: 3px;
                     border-top-right-radius: 3px;
                     border-bottom-right-radius: 3px;
@@ -704,18 +707,20 @@
                     transition: all 0.1s linear;
                 }
 
-                &.ag-selected button {
-                    border: 0;
-                    margin-left: 0;
-
-                    & > div .ag-icon {
-                        color: $color-primary;
-                    }
-
+                &.ag-selected {
                     &::before {
                         transform: translate(-2px, 0);
                         opacity: 1;
-                        width: 8px;
+                        width: 6px;
+                    }
+
+                    button {
+                        border: 0;
+                        margin-left: 0;
+
+                        & > div .ag-icon {
+                            color: $color-primary;
+                        }
                     }
                 }
             }
