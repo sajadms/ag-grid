@@ -31,14 +31,14 @@
         border-color: $color-border-primary;
     }
 
-    .ag-ltr .ag-header-cell,
-    .ag-ltr .ag-header-group-cell {
-        border-right: 1px solid $color-border-primary;
-    }
+    /*     .ag-ltr .ag-header-cell, */
+    /*     .ag-ltr .ag-header-group-cell { */
+    /*         border-right: 1px solid $color-border-primary; */
+    /*     } */
 
-    .ag-ltr .ag-cell {
-        border-right: 1px solid $border-color;
-    }
+    /*     .ag-ltr .ag-cell { */
+    /*         border-right: 1px solid $border-color; */
+    /*     } */
 
     .ag-row:not(.ag-row-selected) .ag-cell.ag-column-hover:not(.ag-cell-range-selected) {
         background-color: transparentize($color-primary, 0.97);
@@ -243,7 +243,8 @@
     ////////////////////////////////////////
     // Column Resize Handle
     ////////////////////////////////////////
-    $resize-handle-color: transparentize($color-border-primary, 0.8);
+    $resize-handle-color: transparentize($color-border-primary, 0.6);
+
     .ag-header-cell-resize {
         box-sizing: border-box;
         right: -2px;
