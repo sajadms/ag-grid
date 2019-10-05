@@ -99,7 +99,9 @@
 
         .ag-filter-condition label {
             @extend %label;
-            margin-right: $grid-size;
+            display: inline-block;
+            margin: 0;
+            margin-left: $grid-size * 1;
         }
 
         .ag-native-checkbox {
@@ -963,13 +965,30 @@
     }
 
     // hover effect on menu icons
-
     [ref='eMenu'].ag-header-icon {
         @extend %button;
         padding: $grid-size / 2;
 
         .ag-icon {
             color: $color-primary;
+        }
+    }
+
+    // RTL Overrides
+    .ag-rtl {
+        .ag-filter .ag-filter-apply-panel button + button {
+            margin-left: 0;
+            margin-right: $grid-size * 2;
+        }
+
+        [ref='agOpened'],
+        [ref='agClosed'] {
+            transform: rotate(180deg);
+        }
+
+        .ag-header-cell-resize {
+            right: unset;
+            left: -2px;
         }
     }
 }

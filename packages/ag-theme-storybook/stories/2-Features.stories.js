@@ -2,7 +2,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { AgGridReact } from "ag-grid-react";
 import React, { useRef } from "react";
-import { themeKnob } from "./knobs";
+import { themeKnob, rtlKnob } from "./knobs";
 
 export default {
   title: "Basic Features"
@@ -82,7 +82,11 @@ export const HeaderTooltip = () => (
       width: "600px"
     }}
   >
-    <AgGridReact columnDefs={columnDefs} rowData={data}></AgGridReact>
+    <AgGridReact
+      enableRtl={rtlKnob()}
+      columnDefs={columnDefs}
+      rowData={data}
+    ></AgGridReact>
   </div>
 );
 
@@ -118,7 +122,11 @@ export const ColumnGroups = () => (
       width: "600px"
     }}
   >
-    <AgGridReact columnDefs={columnGroupDefs} rowData={data}></AgGridReact>
+    <AgGridReact
+      enableRtl={rtlKnob()}
+      columnDefs={columnGroupDefs}
+      rowData={data}
+    ></AgGridReact>
   </div>
 );
 
@@ -131,6 +139,7 @@ export const ResizableColumnGroups = () => (
     }}
   >
     <AgGridReact
+      enableRtl={rtlKnob()}
       defaultColDef={{ resizable: true }}
       columnDefs={columnGroupDefs}
       rowData={data}
@@ -176,6 +185,7 @@ export const PinnedColumns = () => (
     }}
   >
     <AgGridReact
+      enableRtl={rtlKnob()}
       defaultColDef={{ resizable: true }}
       columnDefs={pinnedColumnDefs}
       rowData={data}
@@ -192,6 +202,7 @@ export const DraggableRows = () => (
     }}
   >
     <AgGridReact
+      enableRtl={rtlKnob()}
       animateRows={true}
       defaultColDef={{ resizable: true }}
       rowDragManaged={true}
@@ -212,6 +223,7 @@ export const Selection = () => (
     }}
   >
     <AgGridReact
+      enableRtl={rtlKnob()}
       rowSelection={"multiple"}
       columnDefs={columnDefs}
       rowData={data}
@@ -229,6 +241,7 @@ export const FloatingFilter = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         columnDefs={columnDefs.map(def => ({
           ...def,
           floatingFilterComponentParams: { suppressFilterButton: false },
@@ -263,6 +276,7 @@ export const Overlay = () => {
         }}
       >
         <AgGridReact
+          enableRtl={rtlKnob()}
           ref={gridRef}
           columnDefs={columnDefs}
           rowData={data}

@@ -41,11 +41,13 @@ $checkbox-border-radius: $border-radius;
     // the element creates the flashing effect when the checkbox is ticked.
     &::before {
         content: ' ';
-        width: $checkbox-size;
-        height: $checkbox-size;
+        width: $checkbox-size - 2;
+        height: $checkbox-size - 2;
         background: $color-background;
         display: block;
-        transform: translate(-1px, -1px);
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
         visibility: hidden;
         position: absolute;
         transition: background-color 0.2s linear;
@@ -54,15 +56,19 @@ $checkbox-border-radius: $border-radius;
     }
 
     &::after {
+        position: absolute;
         content: ' ';
         border-right: 1px solid $color-background;
         border-bottom: 1px solid $color-background;
         display: block;
-        transform: translate(4px, 1px) rotate(45deg);
+        transform: rotate(45deg);
         transition: all 0.2s linear;
         clip-path: inset(0px 5px 0px 0px);
         width: 5px;
         height: 9px;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-top: 1px;
     }
 
     &:checked {
@@ -86,8 +92,11 @@ $checkbox-border-radius: $border-radius;
 
     &:indeterminate::after {
         clip-path: inset(0px 0px 0px 0px);
-        transform: rotate(0deg) translate(ceil($checkbox-size / 6) - 2, ceil($checkbox-size / 2) - 2);
-        width: ceil($checkbox-size / 3 * 2);
+        transform: rotate(0deg);
+        margin-top: 6px;
+        margin-left: 2px;
+        margin-right: 2px;
+        width: 9px;
         border-bottom-width: 1.5px;
         height: 0px;
     }
@@ -157,6 +166,12 @@ $checkbox-border-radius: $border-radius;
     &:active {
         background-image: $url-pressed-data-image-dropdown-arrow !important;
     }
+
+    .ag-rtl & {
+        background-position: left $grid-size top $grid-size;
+        padding-right: $grid-size;
+        padding-left: $grid-size * 4;
+    }
 }
 
 %select {
@@ -198,6 +213,7 @@ $checkbox-border-radius: $border-radius;
             width: $checkbox-size - 8;
             height: $checkbox-size - 8;
             margin-left: 3px;
+            margin-right: 3px;
             margin-top: 3px;
         }
     }

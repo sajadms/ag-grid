@@ -3,7 +3,7 @@ import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import "ag-grid-community/src/styles/ag-theme-alpine-dark/sass/ag-theme-alpine-dark.scss";
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
-import { themeKnob } from "./knobs";
+import { themeKnob, rtlKnob } from "./knobs";
 
 export default {
   title: "Tutorial Steps"
@@ -80,7 +80,11 @@ export const BasicConfig = () => (
       width: "600px"
     }}
   >
-    <AgGridReact columnDefs={columnDefs} rowData={data}></AgGridReact>
+    <AgGridReact
+      enableRtl={rtlKnob()}
+      columnDefs={columnDefs}
+      rowData={data}
+    ></AgGridReact>
   </div>
 );
 
@@ -94,6 +98,7 @@ export const FilterEnabled = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         columnDefs={columnDefs.map(def => ({
           ...def,
           sortable: true,
@@ -119,6 +124,7 @@ export const SelectionEnabled = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         columnDefs={columnDefs.map((def, index) => ({
           ...def,
           ...(index === 0
