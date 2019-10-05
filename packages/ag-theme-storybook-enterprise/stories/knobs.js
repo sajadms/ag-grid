@@ -9,3 +9,6 @@ export const themeKnob = () =>
     },
     "ag-theme-alpine"
   );
+
+// This had to be a knob, but it does not work, so I am hard-coding it
+export const rtlKnob = () => true;

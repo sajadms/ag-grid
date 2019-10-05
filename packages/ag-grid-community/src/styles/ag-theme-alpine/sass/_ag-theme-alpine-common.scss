@@ -296,7 +296,6 @@
             @extend %button;
             background-position: right $grid-size / 2 top $grid-size / 2;
             padding: $grid-size - 1;
-            padding-left: $grid-size - 1;
             height: $icon-size + $grid-size * 2 - 2;
             width: $icon-size + $grid-size * 5;
             border-radius: $border-radius;
@@ -342,14 +341,17 @@
             border: 0;
             border-radius: 0;
             padding-left: $grid-size * 3 - 1;
+            padding-right: $grid-size * 3 - 1;
             font: $font-default;
         }
+
         // select editor
         .ag-cell-edit-input select {
             @extend %select;
             border: 0;
             border-radius: 0;
             padding-left: $grid-size * 3 - 1;
+            padding-right: $grid-size * 3 - 1;
             background-position: right $grid-size top $row-height / 2 - 9;
             font: $font-default;
         }
@@ -405,6 +407,7 @@
         .ag-rich-select-value {
             @include with-dropdown-arrow();
             background-position: right $grid-size top $row-height / 2 - $icon-size / 2;
+            border-bottom: 1px solid $color-border-secondary;
         }
 
         .ag-virtual-list-item {
@@ -422,13 +425,17 @@
     .ag-column-select-panel {
         .ag-primary-cols-header-panel {
             border-top: 0;
-            padding-left: $grid-size;
+            padding-left: $grid-size * 1;
             padding-top: $grid-size * 2;
             padding-bottom: $grid-size * 2;
             height: auto;
 
-            & > div:first-child {
+            & > [ref='eExpand'] {
                 margin-left: $grid-size;
+            }
+
+            & > [ref='eExpand'].ag-hidden + div {
+                margin-left: $grid-size * 2;
             }
 
             .ag-checkbox {
@@ -972,6 +979,10 @@
         .ag-icon {
             color: $color-primary;
         }
+
+        &:active .ag-icon {
+            color: $color-background;
+        }
     }
 
     // RTL Overrides
@@ -981,6 +992,9 @@
             margin-right: $grid-size * 2;
         }
 
+        // arrows should point in the other direction
+        [ref='eExpanded'],
+        [ref='eContracted'],
         [ref='agOpened'],
         [ref='agClosed'] {
             transform: rotate(180deg);
@@ -989,6 +1003,80 @@
         .ag-header-cell-resize {
             right: unset;
             left: -2px;
+        }
+
+        .ag-floating-filter-button {
+            button {
+                background-position: left $grid-size / 2 top $grid-size / 2;
+                padding-left: $grid-size * 4;
+            }
+        }
+
+        .ag-cell.ag-cell-inline-editing .ag-cell-edit-input select {
+            background-position: left $grid-size top $row-height / 2 - 9;
+        }
+
+        ////////////////////////////////////////
+        // Popup editing
+        ////////////////////////////////////////
+        .ag-popup > div.ag-popup-editor {
+            .ag-input-wrapper .ag-cell-edit-input,
+            .ag-cell-edit-input select {
+                padding-right: $grid-size * 3 - 1;
+                padding-left: $grid-size * 6 - 1;
+            }
+
+            // select editor
+            .ag-cell-edit-input select {
+                background-position: left $grid-size top $row-height / 2 - 9;
+            }
+        }
+
+        .ag-menu-list {
+            .ag-menu-option-shortcut {
+                text-align: left !important;
+                padding-left: 0 !important;
+                padding-right: $grid-size * 2 !important;
+            }
+        }
+
+        ////////////////////////////////////////
+        // Column Chooser
+        ////////////////////////////////////////
+        .ag-column-select-panel {
+            .ag-primary-cols-header-panel {
+                padding-right: $grid-size * 1;
+
+                & > [ref='eExpand'] {
+                    margin-right: $grid-size;
+                    margin-left: 0;
+                }
+
+                & > [ref='eExpand'].ag-hidden + div {
+                    margin-right: $grid-size * 2;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        .ag-column-drop-cell .ag-column-drag {
+            margin-left: 0;
+            margin-right: $grid-size;
+        }
+
+        .ag-group-checkbox {
+            display: block;
+            // this should not be necessary, but I am negating some weird inline flex idea
+            margin-top: $grid-size / 2;
+        }
+        .ag-rich-select {
+            .ag-rich-select-value {
+                background-position: left $grid-size top $row-height / 2 - $icon-size / 2;
+                padding-right: $cell-horizontal-padding;
+            }
+            .ag-rich-select-row {
+                padding-right: $cell-horizontal-padding;
+            }
         }
     }
 }

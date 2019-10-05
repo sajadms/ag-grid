@@ -4,7 +4,7 @@ import "ag-grid-community/src/styles/ag-theme-alpine-dark/sass/ag-theme-alpine-d
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
 import "ag-grid-enterprise";
-import { themeKnob } from "./knobs";
+import { themeKnob, rtlKnob } from "./knobs";
 
 export default {
   title: "Tutorial Steps (enterprise)"
@@ -81,7 +81,11 @@ export const BasicConfig = () => (
       width: "600px"
     }}
   >
-    <AgGridReact columnDefs={columnDefs} rowData={data}></AgGridReact>
+    <AgGridReact
+      enableRtl={rtlKnob()}
+      columnDefs={columnDefs}
+      rowData={data}
+    ></AgGridReact>
   </div>
 );
 
@@ -95,6 +99,7 @@ export const FilterEnabled = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         defaultColDef={{ resizable: true }}
         columnDefs={columnDefs.map(def => ({
           ...def,
@@ -121,6 +126,7 @@ export const SelectionEnabled = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         columnDefs={columnDefs.map((def, index) => ({
           ...def,
           ...(index === 0
@@ -162,6 +168,7 @@ export const Grouping = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         animateRows={true}
         columnDefs={groupColumnDefs}
         groupSelectsChildren={true}
@@ -192,6 +199,7 @@ export const RangeSelectionAndStatusBar = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         enableRangeSelection
         columnDefs={columnDefs}
         rowData={data}

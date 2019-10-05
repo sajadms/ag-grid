@@ -2,7 +2,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
-import { themeKnob } from "./knobs";
+import { themeKnob, rtlKnob } from "./knobs";
 
 export default {
   title: "Editing"
@@ -107,6 +107,7 @@ export const EditorsAvailableInCommunity = () => (
     }}
   >
     <AgGridReact
+      enableRtl={rtlKnob()}
       columnDefs={columnDefs}
       rowData={data}
       rowSelection="multiple"

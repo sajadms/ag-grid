@@ -56,7 +56,6 @@ $checkbox-border-radius: $border-radius;
     }
 
     &::after {
-        position: absolute;
         content: ' ';
         border-right: 1px solid $color-background;
         border-bottom: 1px solid $color-background;
@@ -297,8 +296,8 @@ $toggle-button-width: 28px;
         position: absolute;
         border-radius: $toggle-button-height / 2;
         transition: left 100ms linear;
-        top: 0px;
-        left: 0px;
+        top: -1px;
+        left: -1px;
         // below resets stuff from checkbox
         visibility: visible;
         border: 1px solid $color-border-form-element;
@@ -311,7 +310,11 @@ $toggle-button-width: 28px;
     }
 
     &::after {
-        content: ' ';
+        margin: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: none;
         line-height: 20px;
         display: block;
         text-align: right;

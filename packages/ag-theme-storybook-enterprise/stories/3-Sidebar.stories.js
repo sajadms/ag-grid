@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { withKnobs, text } from "@storybook/addon-knobs";
-import { themeKnob } from "./knobs";
+import { themeKnob, rtlKnob } from "./knobs";
 
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
@@ -105,6 +105,7 @@ export const SideBarDefaultFeatureSet = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         animateRows={true}
         rowGroupPanelShow="always"
         defaultColDef={{
@@ -142,6 +143,7 @@ export const Charts = () => {
       }}
     >
       <AgGridReact
+        enableRtl={rtlKnob()}
         animateRows={true}
         rowGroupPanelShow="always"
         enableCharts={true}
