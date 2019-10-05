@@ -105,6 +105,8 @@ export const SideBarDefaultFeatureSet = () => {
       }}
     >
       <AgGridReact
+        animateRows={true}
+        rowGroupPanelShow="always"
         defaultColDef={{
           resizable: true,
           enableValue: true,
@@ -140,6 +142,8 @@ export const Charts = () => {
       }}
     >
       <AgGridReact
+        animateRows={true}
+        rowGroupPanelShow="always"
         enableCharts={true}
         enableRangeSelection={true}
         defaultColDef={{
@@ -159,6 +163,18 @@ export const Charts = () => {
         sideBar
         floatingFilter
         rowData={data}
+        statusBar={{
+          statusPanels: [
+            {
+              statusPanel: "agTotalAndFilteredRowCountComponent",
+              align: "left"
+            },
+            { statusPanel: "agTotalRowCountComponent", align: "center" },
+            { statusPanel: "agFilteredRowCountComponent" },
+            { statusPanel: "agSelectedRowCountComponent" },
+            { statusPanel: "agAggregationComponent" }
+          ]
+        }}
       ></AgGridReact>
     </div>
   );

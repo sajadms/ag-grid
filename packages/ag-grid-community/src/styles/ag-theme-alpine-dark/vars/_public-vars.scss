@@ -20,7 +20,9 @@ $color-icon: $alpine-gray-3 !default;
 $color-row-hover: transparentize($color-primary, 0.8) !default;
 
 // dropdown arrow
-$url-data-image-dropdown-arrow: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPgogICAgICAgIDxnIGZpbGw9IiNGRkZGRkYiIGZpbGwtcnVsZT0ibm9uemVybyI+PHBhdGggZD0iTTI0LjcwOCAxMi4zNTVsLTguNzA4IDguNzA2LTguNzA4LTguNzA2IDEuNDE2LTEuNDE2IDcuMjkyIDcuMjk0IDcuMjkyLTcuMjk0YzAuNDcyIDAuNDcyIDAuOTQ0IDAuOTQ0IDEuNDE2IDEuNDE2eiI+PC9wYXRoPgo8L2c+Cjwvc3ZnPg==') !default;
+$url-data-image-dropdown-arrow: url($white-dropdown-arrow) !default;
+$url-hover-data-image-dropdown-arrow: url($blue-dropdown-arrow) !default;
+$url-pressed-data-image-dropdown-arrow: url($black-dropdown-arrow) !default;
 
 // switch needs to be a bit darker
 $color-background-toggle-button: $alpine-gray-3 !default;

@@ -162,6 +162,7 @@ export const Grouping = () => {
       }}
     >
       <AgGridReact
+        animateRows={true}
         columnDefs={groupColumnDefs}
         groupSelectsChildren={true}
         rowSelection="multiple"

@@ -1,6 +1,6 @@
 @import '../vars/ag-theme-alpine-vars';
 
-$checkbox-size: 13px;
+$checkbox-size: 15px;
 $checkbox-border-radius: $border-radius;
 
 @mixin active-invert {
@@ -58,11 +58,11 @@ $checkbox-border-radius: $border-radius;
         border-right: 1px solid $color-background;
         border-bottom: 1px solid $color-background;
         display: block;
-        transform: translate(floor($checkbox-size / 4), 1px) rotate(45deg);
+        transform: translate(4px, 1px) rotate(45deg);
         transition: all 0.2s linear;
         clip-path: inset(0px 5px 0px 0px);
-        width: ceil(($checkbox-size + 1) / 3);
-        height: ceil($checkbox-size / 2);
+        width: 5px;
+        height: 9px;
     }
 
     &:checked {
@@ -149,6 +149,14 @@ $checkbox-border-radius: $border-radius;
     background-position: right $grid-size top $grid-size;
     background-size: $grid-size * 3;
     padding-right: $grid-size * 4;
+
+    &:hover {
+        background-image: $url-hover-data-image-dropdown-arrow !important;
+    }
+
+    &:active {
+        background-image: $url-pressed-data-image-dropdown-arrow !important;
+    }
 }
 
 %select {
@@ -165,8 +173,8 @@ $checkbox-border-radius: $border-radius;
     -webkit-appearance: none;
     border: 1px solid $color-border-form-element;
     border-radius: 100%;
-    width: $size-font-form-element - 1;
-    height: $size-font-form-element - 1;
+    width: $checkbox-size;
+    height: $checkbox-size;
     margin: 0;
     margin-top: -$size-font-form-element / 4;
     vertical-align: middle;
@@ -179,18 +187,18 @@ $checkbox-border-radius: $border-radius;
         width: 0;
         height: 0;
         display: block;
-        margin-left: $size-font-form-element - 8;
-        margin-top: $size-font-form-element - 8;
+        margin-left: $checkbox-size - 8;
+        margin-top: $checkbox-size - 8;
         transition: all 0.08s ease-out;
     }
 
     &:checked {
         // border-color: $color-primary;
         &::after {
-            width: $size-font-form-element - 7;
-            height: $size-font-form-element - 7;
-            margin-left: 2px;
-            margin-top: 2px;
+            width: $checkbox-size - 8;
+            height: $checkbox-size - 8;
+            margin-left: 3px;
+            margin-top: 3px;
         }
     }
 }
@@ -206,7 +214,7 @@ $checkbox-border-radius: $border-radius;
     background: $color-background;
     font-weight: 600;
     padding: $grid-size $grid-size * 2;
-    transition: all 0.1s;
+    // transition: all 0.1s;
 
     &:hover {
         border-color: $color-primary;

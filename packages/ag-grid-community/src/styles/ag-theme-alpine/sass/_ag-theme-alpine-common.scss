@@ -27,21 +27,21 @@
     .ag-header {
         border-bottom: 1px solid $color-border-primary;
     }
+
     .ag-header-cell {
         border-color: $color-border-primary;
     }
 
-    /*     .ag-ltr .ag-header-cell, */
-    /*     .ag-ltr .ag-header-group-cell { */
-    /*         border-right: 1px solid $color-border-primary; */
-    /*     } */
-
-    /*     .ag-ltr .ag-cell { */
-    /*         border-right: 1px solid $border-color; */
-    /*     } */
-
     .ag-row:not(.ag-row-selected) .ag-cell.ag-column-hover:not(.ag-cell-range-selected) {
         background-color: transparentize($color-primary, 0.97);
+    }
+
+    .ag-row:not(.ag-row-first) {
+        border-top-width: 0;
+
+        .ag-cell {
+            border-top: 1px solid $color-border-secondary;
+        }
     }
 
     ////////////////////////////////////////
@@ -144,41 +144,28 @@
     }
 
     .ag-tab-header {
+        min-width: 15rem;
         border-bottom: 1px solid $color-border-primary;
+        justify-content: center;
 
         .ag-tab {
-            padding: $grid-size $grid-size * 2;
+            padding: $grid-size $grid-size * 4;
+            padding-bottom: $grid-size - 2;
 
             .ag-icon {
-                margin-left: $grid-size;
                 display: block;
             }
+            border-bottom: 2px solid transparent;
+            margin-bottom: -0px;
+            transition: all 0.3s linear;
         }
 
         .ag-tab-selected {
             .ag-icon {
                 color: $color-primary;
             }
-        }
 
-        .ag-tab::after {
-            content: ' ';
-            width: $grid-size * 3;
-            height: 0px;
-            border-top-left-radius: 3px;
-            border-top-right-radius: 3px;
-            border: 1px solid $color-border-primary;
-            border-bottom-color: $color-background-alt;
-            background: $color-background-alt;
-            position: relative;
-            left: -($grid-size * 3 - 1);
-            bottom: -$grid-size * 3 - 1;
-            display: block;
-            transition: all 0.1s linear;
-        }
-        .ag-tab-selected::after {
-            opacity: 1;
-            height: 6px;
+            border-bottom-color: $color-primary;
         }
     }
 
@@ -260,6 +247,10 @@
             display: block;
             transform: translateX($grid-size / 2 - 2);
         }
+
+        &:hover::before {
+            background: $color-primary;
+        }
     }
 
     ////////////////////////////////////////
@@ -312,6 +303,10 @@
 
             .ag-icon {
                 color: $color-border-form-element;
+            }
+
+            &:hover .ag-icon {
+                color: $color-primary;
             }
 
             &:active .ag-icon {
@@ -480,6 +475,10 @@
         font: $font-default;
     }
 
+    .ag-overlay-loading-wrapper {
+        background-color: transparentize($color-background, 0.25);
+    }
+
     ////////////////////////////////////////
     // Grouping
     ////////////////////////////////////////
@@ -504,6 +503,12 @@
         }
         ~ .ag-group-checkbox {
             margin-left: $grid-size;
+        }
+    }
+
+    .ag-group-expanded {
+        .ag-icon-contracted:empty:before {
+            content: map-get($icons-font-codes, tree-open);
         }
     }
 
@@ -560,6 +565,8 @@
             &.ag-cell-range-left {
                 border-left-color: $color-secondary;
             }
+
+            border-top-color: transparent;
         }
     }
 
@@ -677,6 +684,7 @@
                 margin-bottom: $grid-size;
                 display: flex;
                 align-items: center;
+                transition: border-left-color 0.3s linear;
 
                 button {
                     display: flex;
@@ -694,30 +702,15 @@
                     }
                 }
 
-                &::before {
-                    content: ' ';
-                    height: $grid-size * 3;
-                    width: 3px;
-                    border-top-right-radius: 3px;
-                    border-bottom-right-radius: 3px;
-                    border: 1px solid $color-border-primary;
-                    border-left-color: $color-background-alt;
-                    background: $color-background-alt;
-                    position: absolute;
-                    display: block;
-                    transition: all 0.1s linear;
-                }
+                border-left: 2px solid transparent;
 
                 &.ag-selected {
-                    &::before {
-                        transform: translate(-2px, 0);
-                        opacity: 1;
-                        width: 6px;
-                    }
+                    border-left-color: $color-primary;
 
                     button {
                         border: 0;
                         margin-left: 0;
+                        color: $color-primary;
 
                         & > div .ag-icon {
                             color: $color-primary;
@@ -797,14 +790,6 @@
 
             .ag-tab-selected {
                 color: $color-primary;
-            }
-
-            .ag-tab::after {
-                position: absolute;
-                left: unset;
-                right: unset;
-                bottom: unset;
-                transform: translatey($grid-size * 3 + 1);
             }
         }
 
@@ -974,6 +959,17 @@
             .ag-child-circle {
                 background-color: $color-background;
             }
+        }
+    }
+
+    // hover effect on menu icons
+
+    [ref='eMenu'].ag-header-icon {
+        @extend %button;
+        padding: $grid-size / 2;
+
+        .ag-icon {
+            color: $color-primary;
         }
     }
 }

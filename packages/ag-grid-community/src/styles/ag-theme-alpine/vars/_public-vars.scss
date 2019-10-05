@@ -12,7 +12,7 @@ $color-background-alt: $alpine-gray-5 !default;
 
 $color-border-primary: $alpine-gray-4 !default;
 $color-border-secondary: transparentize($alpine-gray-4, 0.5) !default;
-$color-icon: $alpine-gray-4 !default;
+$color-icon: $alpine-gray-3 !default;
 
 // selection
 $color-selected: lighten($color-secondary, 40) !default;
@@ -27,7 +27,9 @@ $color-row-hover: transparentize($color-primary, 0.9) !default;
 $color-chrome-shadow: $alpine-gray-4 !default;
 
 // dropdown arrow
-$url-data-image-dropdown-arrow: url('data:image/svg+xml;charset=utf-8;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiB2aWV3Qm94PSIwIDAgMzIgMzIiPg0KPHBhdGggZD0iTTI0LjcwOCAxMi4zNTVsLTguNzA4IDguNzA2LTguNzA4LTguNzA2IDEuNDE2LTEuNDE2IDcuMjkyIDcuMjk0IDcuMjkyLTcuMjk0YzAuNDcyIDAuNDcyIDAuOTQ0IDAuOTQ0IDEuNDE2IDEuNDE2eiI+PC9wYXRoPg0KPC9zdmc+') !default;
+$url-data-image-dropdown-arrow: url($black-dropdown-arrow) !default;
+$url-hover-data-image-dropdown-arrow: url($blue-dropdown-arrow) !default;
+$url-pressed-data-image-dropdown-arrow: url($white-dropdown-arrow) !default;
 
 // forms
 $color-form-element-secondary: $alpine-gray-3;
@@ -78,4 +80,4 @@ $font-chrome: $weight-font-chrome $size-font-chrome $font-family-chrome;
 
 // tooltip and status bar are chrome but smaller
 $size-font-tooltip: $size-font-chrome - 1 !default;
-$size-font-status-bar: $size-font-chrome - 2 !default;
+$size-font-status-bar: $size-font-chrome - 1 !default;

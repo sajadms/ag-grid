@@ -7,5 +7,5 @@ export const themeKnob = () =>
       Alpine: "ag-theme-alpine",
       "Alpine Dark": "ag-theme-alpine-dark"
     },
-    "ag-theme-alpine-dark"
+    "ag-theme-alpine"
   );

@@ -192,6 +192,7 @@ export const DraggableRows = () => (
     }}
   >
     <AgGridReact
+      animateRows={true}
       defaultColDef={{ resizable: true }}
       rowDragManaged={true}
       columnDefs={columnDefs.map((row, index) =>
