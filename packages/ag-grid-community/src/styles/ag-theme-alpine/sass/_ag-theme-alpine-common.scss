@@ -1,8 +1,11 @@
 @import '../../ag-theme-base/sass/ag-theme-base';
 @import './ag-theme-alpine-mixins';
+@import '../icons/dist/ag-grid-alpine-icons';
 
 @mixin ag-theme-alpine($params) {
     @include ag-grid-theme($params);
+    @include ag-grid-alpine-icons;
+
     color: $color-foreground;
 
     &.ag-popup {
@@ -1169,6 +1172,17 @@
         .ag-labeled label {
             margin-right: 0;
             margin-left: $grid-size;
+        }
+    }
+
+    // use different icons for horizontal and vertical grip
+    .ag-icon-grip {
+        @extend .ag-icon-reorder-vertical;
+    }
+
+    .ag-column-drop-horizontal {
+        .ag-icon-grip {
+            @extend .ag-icon-reorder-horizontal;
         }
     }
 }

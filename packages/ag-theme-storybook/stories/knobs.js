@@ -11,4 +11,4 @@ export const themeKnob = () =>
   );
 
 // This had to be a knob, but it does not work, so I am hard-coding it
-export const rtlKnob = () => true;
+export const rtlKnob = () => false;
