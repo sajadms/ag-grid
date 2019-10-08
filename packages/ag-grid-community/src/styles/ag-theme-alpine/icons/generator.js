@@ -22,7 +22,7 @@ webfontsGenerator(
             baseSelector: '.ag-icon'
         },
         types: formats,
-        fixedWidth: true,
+        fixedWidth: false,
         dest: './dist/',
         cssTemplate: './scss-template.hbs'
     },

@@ -628,12 +628,14 @@
 
         .ag-column-drop {
             padding-top: 0;
+
             & > div:first-child {
                 background-color: $color-background;
                 padding: $grid-size * 2 $grid-size * 2;
                 border-bottom: 1px solid $border-color;
                 & > span:first-child {
                     margin-left: 0px;
+                    display: none;
                 }
             }
 
@@ -976,15 +978,15 @@
 
     // hover effect on menu icons
     [ref='eMenu'].ag-header-icon {
-        @extend %button;
-        padding: $grid-size / 2;
+        // @extend %button;
+        // padding: $grid-size / 2;
 
         .ag-icon {
             color: $color-primary;
         }
 
         &:active .ag-icon {
-            color: $color-background;
+            // color: $color-background;
         }
     }
 
