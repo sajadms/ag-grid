@@ -2,7 +2,7 @@ const fs = require('fs');
 const webfontsGenerator = require('@vusion/webfonts-generator');
 const mkdirp = require('mkdirp');
 
-const formats = ['eot', 'woff', 'woff2', 'ttf', 'svg'];
+const formats = ['woff', 'ttf'];
 var mimeTypes = {
     eot: 'application/vnd.ms-fontobject',
     svg: 'image/svg+xml',
@@ -17,6 +17,7 @@ webfontsGenerator(
         writeFiles: false,
         scssFile: true,
         fontName: 'ag-grid-alpine-icons',
+        fontHeight: 1000,
         templateOptions: {
             classPrefix: 'ag-icon-',
             baseSelector: '.ag-icon'

@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
     <title>tree-closed</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="tree-closed" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Path-2" fill="#000000" fill-rule="nonzero" points="6.5 4.5 7.5 3.5 12.5 8.5 7.5 13.5 6.5 12.5 10.5 8.5"></polygon>
+        <g transform="translate(10.000000, 7.000000)" fill="#000000" fill-rule="nonzero" id="Shape">
+            <path d="M11.061,9 L2.355,17.708 L0.939,16.292 L8.233,9 L0.939,1.708 L2.355,0.292 C5.257,3.196 8.159,6.098 11.061,9 Z"></path>
+        </g>
     </g>
 </svg>

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
     <title>reorder-horizontal</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
     <g id="reorder-horizontal" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <polygon id="Rectangle-2" fill="#000000" fill-rule="nonzero" points="6 3 6 13 5 12 5 4"></polygon>
-        <rect id="Rectangle-2-Copy" fill="#000000" fill-rule="nonzero" x="8" y="3" width="1" height="10"></rect>
-        <polygon id="Rectangle-2-Copy-3" fill="#000000" fill-rule="nonzero" points="11 3 12 4 12 12 11 13"></polygon>
+        <path d="M17,25 L15,25 L15,7 L17,7 L17,25 Z M23,23 L21,25 L21,7 L23,9 L23,23 Z M11,25 L9,23 L9,9 L11,7 L11,25 Z" id="Shape" fill="#000000" fill-rule="nonzero"></path>
     </g>
 </svg>

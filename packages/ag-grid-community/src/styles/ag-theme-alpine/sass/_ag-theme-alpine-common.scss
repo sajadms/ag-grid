@@ -518,12 +518,6 @@
         }
     }
 
-    .ag-group-expanded {
-        .ag-icon-contracted:empty:before {
-            content: map-get($icons-font-codes, tree-open);
-        }
-    }
-
     .ag-header-select-all {
         margin-right: $grid-size;
     }
@@ -554,7 +548,7 @@
 
         .ag-column-drop-cell-button {
             min-width: auto;
-            transform: translateY(1px);
+            transform: translateY(2px);
         }
     }
 
@@ -635,7 +629,7 @@
                 border-bottom: 1px solid $border-color;
                 & > span:first-child {
                     margin-left: 0px;
-                    display: none;
+                    // display: none;
                 }
             }
 
@@ -946,6 +940,10 @@
         }
     }
 
+    .ag-picker-button:hover .ag-icon {
+        color: $color-primary;
+    }
+
     .ag-color-panel {
         .ag-spectrum-slider {
             border: 1px solid $color-border-primary;
@@ -1001,10 +999,7 @@
         [ref='eExpanded'],
         [ref='eContracted'],
         [ref='agOpened'],
-        [ref='agClosed'] {
-            transform: rotate(180deg);
-        }
-
+        [ref='agClosed'],
         [ref='eExpand'],
         [ref='eColumnGroupIcons'] {
             transform: scaleX(-1);
@@ -1186,5 +1181,9 @@
         .ag-icon-grip {
             @extend .ag-icon-reorder-horizontal;
         }
+    }
+
+    .ag-panel .ag-title-bar .ag-title-bar-buttons .ag-button .ag-icon {
+        font-size: $icon-size;
     }
 }
