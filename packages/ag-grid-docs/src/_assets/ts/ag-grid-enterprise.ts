@@ -7,6 +7,8 @@ import "../../../../ag-grid-community/src/styles/ag-theme-blue/sass/ag-theme-blu
 import "../../../../ag-grid-community/src/styles/ag-theme-bootstrap/sass/ag-theme-bootstrap.scss";
 import "../../../../ag-grid-community/src/styles/ag-theme-balham/sass/ag-theme-balham.scss";
 import "../../../../ag-grid-community/src/styles/ag-theme-balham-dark/sass/ag-theme-balham-dark.scss";
+import "../../../../ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
+import "../../../../ag-grid-community/src/styles/ag-theme-alpine-dark/sass/ag-theme-alpine-dark.scss";
 
 declare var HMR: boolean;
 

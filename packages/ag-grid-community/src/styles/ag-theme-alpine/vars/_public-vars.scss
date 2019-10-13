@@ -4,17 +4,28 @@
 // Colors
 ////////////////////////////////////////
 
+// Used as an active state across the grid - focus forms, caret, etc.
 $color-primary: $alpine-blue !default;
+// color used for the grid selection and selection checkboxes.
 $color-secondary: $alpine-orange !default;
+// background
 $color-background: $alpine-white !default;
+
+// text
 $color-foreground: $alpine-black !default;
+
+// used for panels and popups
 $color-background-alt: $alpine-gray-5 !default;
 
+// borders between the grid elements (body, panel, header, etc.)
 $color-border-primary: $alpine-gray-4 !default;
+
+// borders between body cells
 $color-border-secondary: transparentize($alpine-gray-4, 0.5) !default;
+
 $color-icon: $alpine-gray-3 !default;
 
-// selection
+// range selection
 $color-selected: lighten($color-secondary, 40) !default;
 $color-background-range-selection: lighten($color-secondary, 44) !default;
 $color-background-range-selected-1: darken($color-background-range-selection, 10) !default;
@@ -24,6 +35,7 @@ $color-background-range-selected-4: darken($color-background-range-selection, 40
 
 $color-row-hover: transparentize($color-primary, 0.9) !default;
 
+// shadows of popups, menus, etc
 $color-chrome-shadow: $alpine-gray-4 !default;
 
 // dropdown arrow
@@ -31,17 +43,19 @@ $url-data-image-dropdown-arrow: url($black-dropdown-arrow) !default;
 $url-hover-data-image-dropdown-arrow: url($blue-dropdown-arrow) !default;
 $url-pressed-data-image-dropdown-arrow: url($white-dropdown-arrow) !default;
 
-// forms
+// color for the reset / cancel buttons
 $color-form-element-secondary: $alpine-gray-3;
 $color-border-form-element: $alpine-gray-4 !default;
 $color-background-form-element-disabled: transparentize($alpine-gray-4, 0.8) !default;
+
+// inactive color for the switch
 $color-background-toggle-button: $alpine-gray-4 !default;
 
 // chart selections
 $color-background-chart-range-selection-category: $alpine-green !default;
 $color-background-chart-range-selection: $alpine-blue !default;
 
-// group chips
+// chips in grouping and aggregation
 $color-background-chip: transparentize($alpine-gray-4, 0.8) !default;
 
 // delta changes

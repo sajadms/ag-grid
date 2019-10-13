@@ -19968,7 +19968,7 @@ var Environment = /** @class */ (function () {
     function Environment() {
     }
     Environment.prototype.getSassVariable = function (theme, key) {
-        var useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : 'classic');
+        var useTheme = 'ag-theme-' + (theme.match('material') ? 'material' : theme.match('balham') ? 'balham' : theme.match('alpine') ? 'alpine' : 'classic');
         var defaultValue = HARD_CODED_SIZES[useTheme][key];
         var calculatedValue = 0;
         if (!CALCULATED_SIZES[theme]) {
@@ -20006,41 +20006,32 @@ var Environment = /** @class */ (function () {
         var theme = this.getTheme().theme;
         return !!theme && theme.indexOf('alpine') >= 0;
     };
-    Environment.prototype.getTheme = function () {
-        return this.getThemeOnce();
-    };
     Environment.prototype.chartMenuPanelWidth = function () {
-        return this.getSassVariable(this.getTheme().theme, 'chartMenuPanelWidth');
+        return HARD_CODED_SIZES[this.getTheme().themeFamily].chartMenuPanelWidth;
     };
-    // Traversing the tree is expensive, and the
-    // theme getter will happen with every checkbox aksing if native or not.
-    Environment.prototype.getThemeOnce = function () {
-        if (!this.theme) {
-            var reg = /\bag-(fresh|dark|blue|material|bootstrap|(?:theme-([\w\-]*)))\b/;
-            var el = this.eGridDiv;
-            var themeMatch = void 0;
-            while (el) {
-                themeMatch = reg.exec(el.className);
-                if (!themeMatch) {
-                    el = el.parentElement;
-                }
-                else {
-                    break;
-                }
-            }
+    Environment.prototype.getTheme = function () {
+        var reg = /\bag-(fresh|dark|blue|material|bootstrap|(?:theme-([\w\-]*)))\b/;
+        var el = this.eGridDiv;
+        var themeMatch;
+        while (el) {
+            themeMatch = reg.exec(el.className);
             if (!themeMatch) {
-                return {};
+                el = el.parentElement;
             }
-            var theme_1 = themeMatch[0];
-            var usingOldTheme = themeMatch[2] === undefined;
-            if (usingOldTheme) {
-                var newTheme_1 = theme_1.replace('ag-', 'ag-theme-');
-                utils_1._.doOnce(function () { return console.warn("ag-Grid: As of v19 old theme are no longer provided. Please replace " + theme_1 + " with " + newTheme_1 + "."); }, 'using-old-theme');
+            else {
+                break;
             }
-            this.theme = theme_1;
-            this.themeElement = el;
         }
-        return { theme: this.theme, el: this.themeElement };
+        if (!themeMatch) {
+            return {};
+        }
+        var theme = themeMatch[0];
+        var usingOldTheme = themeMatch[2] === undefined;
+        if (usingOldTheme) {
+            var newTheme_1 = theme.replace('ag-', 'ag-theme-');
+            utils_1._.doOnce(function () { return console.warn("ag-Grid: As of v19 old theme are no longer provided. Please replace " + theme + " with " + newTheme_1 + "."); }, 'using-old-theme');
+        }
+        return { theme: theme, el: el, themeFamily: theme.replace(/-dark$/, '') };
     };
     __decorate([
         context_1.Autowired('eGridDiv'),
@@ -43097,6 +43088,7 @@ var AgToggleButton = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.className = 'ag-toggle-button';
         _this.nativeInputClassName = 'ag-native-toggle-button';
+        _this.inputType = 'checkbox';
         return _this;
     }
     AgToggleButton.prototype.postConstruct = function () {

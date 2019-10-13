@@ -825,6 +825,10 @@
                     margin-right: 2px;
                 }
             }
+
+            .ag-checkbox {
+                padding: $grid-size 0;
+            }
         }
 
         .ag-native-checkbox {
@@ -1185,5 +1189,9 @@
 
     .ag-panel .ag-title-bar .ag-title-bar-buttons .ag-button .ag-icon {
         font-size: $icon-size;
+    }
+
+    .ag-header-expand-icon {
+        transform: translateY($grid-size / 2);
     }
 }
