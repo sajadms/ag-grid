@@ -1,4 +1,4 @@
-import { RowNode } from "./entities/rowNode";
+import { RowNode } from './entities/rowNode';
 import {
     ChartRef,
     FillOperationParams,
@@ -16,31 +16,31 @@ import {
     ProcessChartOptionsParams,
     ProcessDataFromClipboardParams,
     TabToNextCellParams
-} from "./entities/gridOptions";
-import { _ } from "./utils";
-import { EventService } from "./eventService";
-import { Constants } from "./constants";
-import { ComponentUtil } from "./components/componentUtil";
-import { GridApi } from "./gridApi";
-import { ColDef, ColGroupDef, IAggFunc, SuppressKeyboardEventParams } from "./entities/colDef";
-import { Autowired, Bean, Context, PostConstruct, PreDestroy, Qualifier } from "./context/context";
-import { ColumnApi } from "./columnController/columnApi";
-import { ColumnController } from "./columnController/columnController";
-import { IViewportDatasource } from "./interfaces/iViewportDatasource";
-import { IDatasource } from "./interfaces/iDatasource";
-import { CellPosition } from "./entities/cellPosition";
-import { IServerSideDatasource } from "./interfaces/iServerSideDatasource";
-import { BaseExportParams, ProcessCellForExportParams, ProcessHeaderForExportParams } from "./interfaces/exportParams";
-import { AgEvent } from "./events";
-import { Environment, SASS_PROPERTIES } from "./environment";
-import { PropertyKeys } from "./propertyKeys";
-import { ColDefUtil } from "./components/colDefUtil";
-import { Events } from "./eventKeys";
-import { AutoHeightCalculator } from "./rendering/autoHeightCalculator";
-import { SideBarDef, SideBarDefParser, ToolPanelDef } from "./entities/sideBar";
-import { ModuleNames } from "./modules/moduleNames";
-import { ChartOptions } from "./interfaces/iChartOptions";
-import { ModuleRegistry } from "./modules/moduleRegistry";
+} from './entities/gridOptions';
+import { _ } from './utils';
+import { EventService } from './eventService';
+import { Constants } from './constants';
+import { ComponentUtil } from './components/componentUtil';
+import { GridApi } from './gridApi';
+import { ColDef, ColGroupDef, IAggFunc, SuppressKeyboardEventParams } from './entities/colDef';
+import { Autowired, Bean, Context, PostConstruct, PreDestroy, Qualifier } from './context/context';
+import { ColumnApi } from './columnController/columnApi';
+import { ColumnController } from './columnController/columnController';
+import { IViewportDatasource } from './interfaces/iViewportDatasource';
+import { IDatasource } from './interfaces/iDatasource';
+import { CellPosition } from './entities/cellPosition';
+import { IServerSideDatasource } from './interfaces/iServerSideDatasource';
+import { BaseExportParams, ProcessCellForExportParams, ProcessHeaderForExportParams } from './interfaces/exportParams';
+import { AgEvent } from './events';
+import { Environment, SASS_PROPERTIES } from './environment';
+import { PropertyKeys } from './propertyKeys';
+import { ColDefUtil } from './components/colDefUtil';
+import { Events } from './eventKeys';
+import { AutoHeightCalculator } from './rendering/autoHeightCalculator';
+import { SideBarDef, SideBarDefParser, ToolPanelDef } from './entities/sideBar';
+import { ModuleNames } from './modules/moduleNames';
+import { ChartOptions } from './interfaces/iChartOptions';
+import { ModuleRegistry } from './modules/moduleRegistry';
 
 const DEFAULT_ROW_HEIGHT = 25;
 const DEFAULT_DETAIL_ROW_HEIGHT = 300;
@@ -61,7 +61,9 @@ function zeroOrGreater(value: any, defaultValue: number): number {
 }
 
 function oneOrGreater(value: any, defaultValue: number): number {
-    if (value > 0) { return value; }
+    if (value > 0) {
+        return value;
+    }
     // zero gets returned if number is missing or the wrong type
     return defaultValue;
 }
@@ -73,7 +75,6 @@ export interface PropertyChangedEvent extends AgEvent {
 
 @Bean('gridOptionsWrapper')
 export class GridOptionsWrapper {
-
     private static MIN_COL_WIDTH = 10;
 
     public static PROP_HEADER_HEIGHT = 'headerHeight';
@@ -128,7 +129,6 @@ export class GridOptionsWrapper {
 
     @PostConstruct
     public init(): void {
-
         if (!(this.gridOptions.suppressPropertyNamesCheck === true)) {
             this.checkGridOptionsProperties();
             this.checkColumnDefProperties();
@@ -138,22 +138,26 @@ export class GridOptionsWrapper {
         this.eventService.addGlobalListener(this.globalEventHandler.bind(this), async);
 
         if (this.isGroupSelectsChildren() && this.isSuppressParentsInRowNodes()) {
-            console.warn('ag-Grid: \'groupSelectsChildren\' does not work with \'suppressParentsInRowNodes\', this selection method needs the part in rowNode to work');
+            console.warn("ag-Grid: 'groupSelectsChildren' does not work with 'suppressParentsInRowNodes', this selection method needs the part in rowNode to work");
         }
 
         if (this.isGroupSelectsChildren()) {
             if (!this.isRowSelectionMulti()) {
-                console.warn('ag-Grid: rowSelection must be \'multiple\' for groupSelectsChildren to make sense');
+                console.warn("ag-Grid: rowSelection must be 'multiple' for groupSelectsChildren to make sense");
             }
             if (this.isRowModelServerSide()) {
-                console.warn('ag-Grid: group selects children is NOT support for Server Side Row Model. ' +
-                    'This is because the rows are lazy loaded, so selecting a group is not possible as' +
-                    'the grid has no way of knowing what the children are.');
+                console.warn(
+                    'ag-Grid: group selects children is NOT support for Server Side Row Model. ' +
+                        'This is because the rows are lazy loaded, so selecting a group is not possible as' +
+                        'the grid has no way of knowing what the children are.'
+                );
             }
         }
 
         if (this.isGroupRemoveSingleChildren() && this.isGroupHideOpenParents()) {
-            console.warn('ag-Grid: groupRemoveSingleChildren and groupHideOpenParents do not work with each other, you need to pick one. And don\'t ask us how to us these together on our support forum either you will get the same answer!');
+            console.warn(
+                "ag-Grid: groupRemoveSingleChildren and groupHideOpenParents do not work with each other, you need to pick one. And don't ask us how to us these together on our support forum either you will get the same answer!"
+            );
         }
 
         if (this.isEnableRangeSelection()) {
@@ -161,26 +165,22 @@ export class GridOptionsWrapper {
         }
 
         if (!this.isEnableRangeSelection() && (this.isEnableRangeHandle() || this.isEnableFillHandle())) {
-            console.warn('ag-Grid: \'enableRangeHandle\' and \'enableFillHandle\' will not work unless \'enableRangeSelection\' is set to true');
+            console.warn("ag-Grid: 'enableRangeHandle' and 'enableFillHandle' will not work unless 'enableRangeSelection' is set to true");
         }
 
         this.addEventListener(GridOptionsWrapper.PROP_DOM_LAYOUT, this.updateLayoutClasses.bind(this));
     }
 
     private checkColumnDefProperties() {
-        if (this.gridOptions.columnDefs == null) { return; }
+        if (this.gridOptions.columnDefs == null) {
+            return;
+        }
 
         this.gridOptions.columnDefs.forEach(colDef => {
             const userProperties: string[] = Object.getOwnPropertyNames(colDef);
             const validProperties: string[] = [...ColDefUtil.ALL_PROPERTIES, ...ColDefUtil.FRAMEWORK_PROPERTIES];
 
-            this.checkProperties(
-                userProperties,
-                validProperties,
-                validProperties,
-                'colDef',
-                'https://www.ag-grid.com/javascript-grid-column-properties/'
-            );
+            this.checkProperties(userProperties, validProperties, validProperties, 'colDef', 'https://www.ag-grid.com/javascript-grid-column-properties/');
         });
     }
 
@@ -194,30 +194,14 @@ export class GridOptionsWrapper {
 
         const validPropertiesAndExceptions: string[] = [...validProperties, 'api', 'columnApi'];
 
-        this.checkProperties(
-            userProperties,
-            validPropertiesAndExceptions,
-            validProperties,
-            'gridOptions',
-            'https://www.ag-grid.com/javascript-grid-properties/'
-        );
+        this.checkProperties(userProperties, validPropertiesAndExceptions, validProperties, 'gridOptions', 'https://www.ag-grid.com/javascript-grid-properties/');
     }
 
-    private checkProperties(
-        userProperties: string[],
-        validPropertiesAndExceptions: string[],
-        validProperties: string[],
-        containerName: string,
-        docsUrl: string
-    ) {
-        const invalidProperties: { [p: string]: string[] } = _.fuzzyCheckStrings(
-            userProperties,
-            validPropertiesAndExceptions,
-            validProperties
-        );
+    private checkProperties(userProperties: string[], validPropertiesAndExceptions: string[], validProperties: string[], containerName: string, docsUrl: string) {
+        const invalidProperties: { [p: string]: string[] } = _.fuzzyCheckStrings(userProperties, validPropertiesAndExceptions, validProperties);
 
         _.iterateObject<any>(invalidProperties, (key, value) => {
-            console.warn(`ag-grid: invalid ${containerName} property '${key}' did you mean any of these: ${value.slice(0, 8).join(", ")}`);
+            console.warn(`ag-grid: invalid ${containerName} property '${key}' did you mean any of these: ${value.slice(0, 8).join(', ')}`);
         });
 
         if (Object.keys(invalidProperties).length > 0) {
@@ -242,7 +226,7 @@ export class GridOptionsWrapper {
     }
 
     public isRowSelection() {
-        return this.gridOptions.rowSelection === "single" || this.gridOptions.rowSelection === "multiple";
+        return this.gridOptions.rowSelection === 'single' || this.gridOptions.rowSelection === 'multiple';
     }
 
     public isRowDeselection() {
@@ -290,9 +274,11 @@ export class GridOptionsWrapper {
     }
 
     public isRowModelDefault() {
-        return _.missing(this.gridOptions.rowModelType) ||
+        return (
+            _.missing(this.gridOptions.rowModelType) ||
             this.gridOptions.rowModelType === Constants.ROW_MODEL_TYPE_CLIENT_SIDE ||
-            this.gridOptions.rowModelType === Constants.DEPRECATED_ROW_MODEL_TYPE_NORMAL;
+            this.gridOptions.rowModelType === Constants.DEPRECATED_ROW_MODEL_TYPE_NORMAL
+        );
     }
 
     public isFullRowEdit() {
@@ -320,7 +306,7 @@ export class GridOptionsWrapper {
     }
 
     public getSideBar(): SideBarDef {
-        return (this.gridOptions.sideBar as SideBarDef);
+        return this.gridOptions.sideBar as SideBarDef;
     }
 
     public isSuppressTouch() {
@@ -430,15 +416,16 @@ export class GridOptionsWrapper {
     // returns either 'print', 'autoHeight' or 'normal' (normal is the default)
     public getDomLayout(): string {
         const domLayout = this.gridOptions.domLayout || Constants.DOM_LAYOUT_NORMAL;
-        const validLayouts = [
-            Constants.DOM_LAYOUT_PRINT,
-            Constants.DOM_LAYOUT_AUTO_HEIGHT,
-            Constants.DOM_LAYOUT_NORMAL
-        ];
+        const validLayouts = [Constants.DOM_LAYOUT_PRINT, Constants.DOM_LAYOUT_AUTO_HEIGHT, Constants.DOM_LAYOUT_NORMAL];
 
         if (validLayouts.indexOf(domLayout) === -1) {
-            _.doOnce(() => console.warn(`ag-Grid: ${domLayout} is not valid for DOM Layout, valid values are ${Constants.DOM_LAYOUT_NORMAL}, ${Constants.DOM_LAYOUT_AUTO_HEIGHT} and ${Constants.DOM_LAYOUT_PRINT}`),
-                'warn about dom layout values');
+            _.doOnce(
+                () =>
+                    console.warn(
+                        `ag-Grid: ${domLayout} is not valid for DOM Layout, valid values are ${Constants.DOM_LAYOUT_NORMAL}, ${Constants.DOM_LAYOUT_AUTO_HEIGHT} and ${Constants.DOM_LAYOUT_PRINT}`
+                    ),
+                'warn about dom layout values'
+            );
             return Constants.DOM_LAYOUT_NORMAL;
         }
 
@@ -614,7 +601,7 @@ export class GridOptionsWrapper {
     }
 
     public isEnableCharts() {
-        if (isTrue((this.gridOptions.enableCharts))) {
+        if (isTrue(this.gridOptions.enableCharts)) {
             return ModuleRegistry.assertRegistered(ModuleNames.GridChartsModule, 'enableCharts');
         }
         return false;
@@ -661,7 +648,9 @@ export class GridOptionsWrapper {
         // so we always paginate on the child rows here as there are no parent rows
         const shouldPaginate = this.isGroupSuppressRow() || this.isGroupRemoveSingleChildren() || this.isGroupRemoveLowestSingleChildren();
 
-        if (shouldPaginate) { return true; }
+        if (shouldPaginate) {
+            return true;
+        }
 
         return isTrue(this.gridOptions.paginateChildRows);
     }
@@ -822,7 +811,9 @@ export class GridOptionsWrapper {
 
     public isAnimateRows() {
         // never allow animating if enforcing the row order
-        if (this.isEnsureDomOrder()) { return false; }
+        if (this.isEnsureDomOrder()) {
+            return false;
+        }
 
         return isTrue(this.gridOptions.animateRows);
     }
@@ -884,7 +875,6 @@ export class GridOptionsWrapper {
     }
 
     public isMasterDetail() {
-
         const masterDetail = isTrue(this.gridOptions.masterDetail);
 
         if (masterDetail) {
@@ -1233,7 +1223,7 @@ export class GridOptionsWrapper {
     }
 
     public getMinColWidth() {
-        if (this.gridOptions.minColWidth && (this.gridOptions.minColWidth > GridOptionsWrapper.MIN_COL_WIDTH)) {
+        if (this.gridOptions.minColWidth && this.gridOptions.minColWidth > GridOptionsWrapper.MIN_COL_WIDTH) {
             return this.gridOptions.minColWidth;
         }
 
@@ -1241,7 +1231,7 @@ export class GridOptionsWrapper {
     }
 
     public getMaxColWidth() {
-        if (this.gridOptions.maxColWidth && (this.gridOptions.maxColWidth > GridOptionsWrapper.MIN_COL_WIDTH)) {
+        if (this.gridOptions.maxColWidth && this.gridOptions.maxColWidth > GridOptionsWrapper.MIN_COL_WIDTH) {
             return this.gridOptions.maxColWidth;
         }
 
@@ -1261,8 +1251,7 @@ export class GridOptionsWrapper {
 
         if (typeof rowBuffer === 'number') {
             if (rowBuffer < 0) {
-                _.doOnce(() => console.warn(`ag-Grid: rowBuffer should not be negative`),
-                    'warn rowBuffer negative');
+                _.doOnce(() => console.warn(`ag-Grid: rowBuffer should not be negative`), 'warn rowBuffer negative');
                 this.gridOptions.rowBuffer = rowBuffer = 0;
             }
         } else {
@@ -1284,9 +1273,7 @@ export class GridOptionsWrapper {
     // allow the user to provide the scroll width before we work it out.
     public getScrollbarWidth() {
         if (this.scrollWidth == null) {
-            const useGridOptions =
-                typeof this.gridOptions.scrollbarWidth === 'number' &&
-                this.gridOptions.scrollbarWidth >= 0;
+            const useGridOptions = typeof this.gridOptions.scrollbarWidth === 'number' && this.gridOptions.scrollbarWidth >= 0;
             this.scrollWidth = useGridOptions ? this.gridOptions.scrollbarWidth : _.getScrollbarWidth();
         }
         return this.scrollWidth;
@@ -1324,8 +1311,9 @@ export class GridOptionsWrapper {
             console.warn('ag-grid: since version 4.3.x groupAggFunction is now called groupRowAggNodes');
         }
         if (options.checkboxSelection) {
-            console.warn('ag-grid: since version 8.0.x checkboxSelection is not supported as a grid option. ' +
-                'If you want this on all columns, use defaultColDef instead and set it there');
+            console.warn(
+                'ag-grid: since version 8.0.x checkboxSelection is not supported as a grid option. ' + 'If you want this on all columns, use defaultColDef instead and set it there'
+            );
         }
         if (options.paginationInitialRowCount) {
             console.warn('ag-grid: since version 9.0.x paginationInitialRowCount is now called infiniteInitialRowCount');
@@ -1361,7 +1349,9 @@ export class GridOptionsWrapper {
             console.warn(`ag-grid: since version 18.2.x, 'groupSuppressRow' should not be used anymore. Instead remove row groups and perform custom sorting.`);
         }
         if (options.groupColumnDef) {
-            console.warn(`ag-grid: since version 11.0.x, groupColumnDef has been renamed, this property is now called autoGroupColumnDef. Please change your configuration accordingly`);
+            console.warn(
+                `ag-grid: since version 11.0.x, groupColumnDef has been renamed, this property is now called autoGroupColumnDef. Please change your configuration accordingly`
+            );
         }
         if (options.slaveGrids) {
             console.warn(`ag-grid: since version 12.x, slaveGrids has been renamed, this property is now called alignedGrids. Please change your configuration accordingly`);
@@ -1456,7 +1446,7 @@ export class GridOptionsWrapper {
 
         const sideBarDef = this.gridOptions.sideBar as SideBarDef;
         if (Object.keys(toolPanelColumnsCompProps).length > 0 && sideBarDef && sideBarDef.toolPanels) {
-            const columnsDef: ToolPanelDef[] = (sideBarDef.toolPanels.filter((it: ToolPanelDef) => it.id === 'columns')) as ToolPanelDef[];
+            const columnsDef: ToolPanelDef[] = sideBarDef.toolPanels.filter((it: ToolPanelDef) => it.id === 'columns') as ToolPanelDef[];
             if (columnsDef.length === 1) {
                 _.mergeDeep(columnsDef[0], {
                     componentParams: toolPanelColumnsCompProps
@@ -1466,17 +1456,20 @@ export class GridOptionsWrapper {
 
         if (options.enableStatusBar) {
             console.warn(`ag-grid: since version 19.x, enableStatusBar is gone, please specify statusBar components`);
-            options.statusBar = options.statusBar ||
-                {
-                    components: [{ component: 'agAggregationComponent' }]
-                };
+            options.statusBar = options.statusBar || {
+                components: [{ component: 'agAggregationComponent' }]
+            };
         }
         if (options.alwaysShowStatusBar) {
-            console.warn(`ag-grid: since version 19.x, alwaysShowStatusBar is gone. Please specify a min-height on the ag-status-bar css class, eg .ag-status-bar {min-height: 35px; }`);
+            console.warn(
+                `ag-grid: since version 19.x, alwaysShowStatusBar is gone. Please specify a min-height on the ag-status-bar css class, eg .ag-status-bar {min-height: 35px; }`
+            );
         }
 
         if (options.enableServerSideSorting || options.enableSorting) {
-            console.warn(`ag-Grid: since v20, grid options enableSorting and enableServerSideSorting are gone. Instead set sortable=true on the column definition for the columns sorting are allowed on. To migrate from gridOption.enableSorting=true, set gridOptions.defaultColDef.sortable=true`);
+            console.warn(
+                `ag-Grid: since v20, grid options enableSorting and enableServerSideSorting are gone. Instead set sortable=true on the column definition for the columns sorting are allowed on. To migrate from gridOption.enableSorting=true, set gridOptions.defaultColDef.sortable=true`
+            );
             if (!options.defaultColDef) {
                 options.defaultColDef = {};
             }
@@ -1486,7 +1479,9 @@ export class GridOptionsWrapper {
         }
 
         if (options.enableFilter || options.enableServerSideFilter) {
-            console.warn(`ag-Grid: since v20, grid options enableFilter and enableServerSideFilter are gone. Instead set filter=true (if not already specifying a specific filter) on the column definition for the columns filtering is allowed on. To migrate from gridOptions.enableFilter=true, set gridOptions.defaultColDef.filter=true. If you are explicitly setting specific filters for each column (ie colDef.filter is already set) the you don't need to do anything.`);
+            console.warn(
+                `ag-Grid: since v20, grid options enableFilter and enableServerSideFilter are gone. Instead set filter=true (if not already specifying a specific filter) on the column definition for the columns filtering is allowed on. To migrate from gridOptions.enableFilter=true, set gridOptions.defaultColDef.filter=true. If you are explicitly setting specific filters for each column (ie colDef.filter is already set) the you don't need to do anything.`
+            );
             if (!options.defaultColDef) {
                 options.defaultColDef = {};
             }
@@ -1496,7 +1491,9 @@ export class GridOptionsWrapper {
         }
 
         if (options.enableColResize) {
-            console.warn(`ag-Grid: since v20, grid options enableColResize is gone. Instead set resizable=true on the column definition for the columns resizing are allowed on. To migrate from gridOption.enableColResize=true, set gridOptions.defaultColDef.resizable=true`);
+            console.warn(
+                `ag-Grid: since v20, grid options enableColResize is gone. Instead set resizable=true on the column definition for the columns resizing are allowed on. To migrate from gridOption.enableColResize=true, set gridOptions.defaultColDef.resizable=true`
+            );
             if (!options.defaultColDef) {
                 options.defaultColDef = {};
             }
@@ -1510,37 +1507,51 @@ export class GridOptionsWrapper {
         }
 
         if (options.suppressTabbing) {
-            console.warn(`ag-Grid: since v20.1, suppressTabbing is replaced with the more powerful grid callback suppressKeyboardEvent(params) which can suppress any keyboard event including tabbing.`);
+            console.warn(
+                `ag-Grid: since v20.1, suppressTabbing is replaced with the more powerful grid callback suppressKeyboardEvent(params) which can suppress any keyboard event including tabbing.`
+            );
         }
 
         if (options.doesDataFlower) {
-            console.warn('ag-Grid: since v21.1, doesDataFlower is deprecated. Master/Detail is the new way for showing child data for a row and was introduced over a year ago. Please migrate your code to use master/detail instead.');
+            console.warn(
+                'ag-Grid: since v21.1, doesDataFlower is deprecated. Master/Detail is the new way for showing child data for a row and was introduced over a year ago. Please migrate your code to use master/detail instead.'
+            );
         }
 
         if (options.enableOldSetFilterModel) {
-            console.warn('ag-Grid: since v22.x, enableOldSetFilterModel is deprecated. Please move to the new Set Filter Model as the old one may not be supported in v23 onwards.');
+            console.warn(
+                'ag-Grid: since v22.x, enableOldSetFilterModel is deprecated. Please move to the new Set Filter Model as the old one may not be supported in v23 onwards.'
+            );
         }
     }
 
     private checkForViolations() {
-        if (this.isTreeData()) { this.treeDataViolations(); }
+        if (this.isTreeData()) {
+            this.treeDataViolations();
+        }
     }
 
     private treeDataViolations() {
         if (this.isRowModelDefault()) {
             if (_.missing(this.getDataPathFunc())) {
-                console.warn('ag-Grid: property usingTreeData=true with rowModel=clientSide, but you did not ' +
-                    'provide getDataPath function, please provide getDataPath function if using tree data.');
+                console.warn(
+                    'ag-Grid: property usingTreeData=true with rowModel=clientSide, but you did not ' +
+                        'provide getDataPath function, please provide getDataPath function if using tree data.'
+                );
             }
         }
         if (this.isRowModelServerSide()) {
             if (_.missing(this.getIsServerSideGroupFunc())) {
-                console.warn('ag-Grid: property usingTreeData=true with rowModel=serverSide, but you did not ' +
-                    'provide isServerSideGroup function, please provide isServerSideGroup function if using tree data.');
+                console.warn(
+                    'ag-Grid: property usingTreeData=true with rowModel=serverSide, but you did not ' +
+                        'provide isServerSideGroup function, please provide isServerSideGroup function if using tree data.'
+                );
             }
             if (_.missing(this.getServerSideGroupKeyFunc())) {
-                console.warn('ag-Grid: property usingTreeData=true with rowModel=serverSide, but you did not ' +
-                    'provide getServerSideGroupKey function, please provide getServerSideGroupKey function if using tree data.');
+                console.warn(
+                    'ag-Grid: property usingTreeData=true with rowModel=serverSide, but you did not ' +
+                        'provide getServerSideGroupKey function, please provide getServerSideGroupKey function if using tree data.'
+                );
             }
         }
     }
@@ -1580,7 +1591,7 @@ export class GridOptionsWrapper {
         return this.getDefaultRowHeight();
     }
 
-    public getRowHeightForNode(rowNode: RowNode, allowEstimate = false): { height: number, estimated: boolean } {
+    public getRowHeightForNode(rowNode: RowNode, allowEstimate = false): { height: number; estimated: boolean } {
         // check the function first, in case use set both function and
         // number, when using virtual pagination then function can be
         // used for pinned rows and the number for the body rows.
@@ -1605,8 +1616,7 @@ export class GridOptionsWrapper {
         }
 
         const defaultRowHeight = this.getDefaultRowHeight();
-        const rowHeight = this.gridOptions.rowHeight && this.isNumeric(this.gridOptions.rowHeight) ?
-            this.gridOptions.rowHeight : defaultRowHeight;
+        const rowHeight = this.gridOptions.rowHeight && this.isNumeric(this.gridOptions.rowHeight) ? this.gridOptions.rowHeight : defaultRowHeight;
 
         const minRowHeight = Math.min(defaultRowHeight, rowHeight);
 
@@ -1629,6 +1639,14 @@ export class GridOptionsWrapper {
 
     public getVirtualItemHeight() {
         return this.specialForNewMaterial(20, 'virtualItemHeight');
+    }
+
+    public useNativeCheckboxes() {
+        return this.environment.useNativeCheckboxes();
+    }
+
+    public chartMenuPanelWidth() {
+        return this.environment.chartMenuPanelWidth();
     }
 
     private isNumeric(value: any) {

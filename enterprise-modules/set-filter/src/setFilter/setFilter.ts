@@ -23,6 +23,7 @@ enum CheckboxState {CHECKED, UNCHECKED, INTERMEDIATE}
 export class SetFilter extends ProvidedFilter {
 
     private valueModel: SetValueModel;
+  private eSelectAllCheckbox: HTMLInputElement;
 
     @RefSelector('eSelectAll') private eSelectAll: HTMLInputElement;
     @RefSelector('eSelectAllContainer') private eSelectAllContainer: HTMLElement;
@@ -122,6 +123,14 @@ export class SetFilter extends ProvidedFilter {
         this.eUncheckedIcon = _.createIconNoSpan('checkboxUnchecked', this.gridOptionsWrapper, this.setFilterParams.column);
         this.eIndeterminateCheckedIcon = _.createIconNoSpan('checkboxIndeterminate', this.gridOptionsWrapper, this.setFilterParams.column);
 
+
+        if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+          this.eSelectAllCheckbox = document.createElement("input");
+          this.eSelectAllCheckbox.type = "checkbox";
+          this.eSelectAllCheckbox.className = "ag-native-checkbox";
+          this.eSelectAll.appendChild(this.eSelectAllCheckbox);
+        }
+
         this.initialiseFilterBodyUi();
 
         const syncValuesAfterDataChange = !params.suppressSyncValuesAfterDataChange
@@ -175,6 +184,12 @@ export class SetFilter extends ProvidedFilter {
     }
 
     private updateCheckboxIcon() {
+    if (this.gridOptionsWrapper.useNativeCheckboxes()) {
+      this.eSelectAllCheckbox.checked =
+        this.selectAllState === CheckboxState.CHECKED;
+      this.eSelectAllCheckbox.indeterminate =
+        this.selectAllState === CheckboxState.INTERMEDIATE;
+    } else {
         _.clearElement(this.eSelectAll);
 
         let icon: HTMLElement;
@@ -194,6 +209,7 @@ export class SetFilter extends ProvidedFilter {
         }
 
         this.eSelectAll.appendChild(icon);
+      }
     }
 
     public setLoading(loading: boolean): void {

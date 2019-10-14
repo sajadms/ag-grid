@@ -1,0 +1,17 @@
+{
+    "name": "webfonts-loader-test",
+    "private": true,
+    "main": "entry.js",
+    "scripts": {
+        "build": "rimraf ./dist && node generator.js"
+    },
+    "devDependencies": {
+        "@vusion/webfonts-generator": "0.5.5"
+    },
+    "standard": {
+        "ignore": [
+            "./dist"
+        ]
+    },
+    "dependencies": {}
+}
