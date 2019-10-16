@@ -1,6 +1,7 @@
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import "ag-grid-community/src/styles/ag-theme-alpine-dark/sass/ag-theme-alpine-dark.scss";
+import "@ag-community/client-side-row-model";
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
 import "ag-grid-enterprise";

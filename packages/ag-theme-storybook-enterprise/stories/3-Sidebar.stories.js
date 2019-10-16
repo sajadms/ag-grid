@@ -4,6 +4,7 @@ import "ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine.scss";
 import { withKnobs, text } from "@storybook/addon-knobs";
 import { themeKnob, rtlKnob } from "./knobs";
 
+import "@ag-community/client-side-row-model";
 import { AgGridReact } from "ag-grid-react";
 import React from "react";
 import "ag-grid-enterprise";
